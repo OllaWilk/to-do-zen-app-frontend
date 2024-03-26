@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": ["../to-do-zen-app-back/types"]
+    }
+  }
+}
