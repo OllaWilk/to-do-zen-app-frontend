@@ -1,33 +1,16 @@
 import React from 'react';
+import { Header } from './components/layout/Header/Header';
 
-import logo from './logo.svg';
-import { TestInterface } from 'types';
-
-import './App.css';
+import './App.scss';
 
 function App() {
-  const foo: TestInterface = {
-    x: 4,
-  };
-
   return (
     <div className='App'>
       <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          {foo.x}
-        </a>
+        <Header />
       </header>
     </div>
   );
 }
 
-export default App;
+export { App };

@@ -2,30 +2,27 @@
   "name": "to-do-zen-app-front",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.91",
-    "@types/react": "^18.2.71",
-    "@types/react-dom": "^18.2.22",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p start:* ",
+    "start:react": "react-scripts start",
+    "start-silent": "run-p start > /dev/null",
+    "start-and-test": "run-p start-silent test ",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --noStackTrace",
+    "test-all": "react-scripts test --watchAll=false --noStackTrace",
+    "test-related": "react-scripts test --watchAll=false --noStackTrace --findRelatedTests",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.tsx": [
+      "npm run test-related --",
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "browserslist": {
@@ -40,8 +37,34 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^16.18.91",
+    "@types/react": "^18.2.71",
+    "@types/react-dom": "^18.2.22",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
   "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/eslint-parser": "^7.24.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "customize-cra": "^1.0.0",
-    "react-app-rewire-alias": "^1.1.7"
+    "eslint": "^8.57.0",
+    "eslint-scope": "^8.0.1",
+    "exlint": "^0.1.6",
+    "husky": "^9.0.11",
+    "jest": "^27.5.1",
+    "lint-staged": "^15.2.2",
+    "react-app-rewire-alias": "^1.1.7",
+    "sass": "^1.72.0"
   }
 }
