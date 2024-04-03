@@ -6,17 +6,16 @@ import {
   AnimatedAstronaut,
   ButtonBlack,
 } from '../../common/index';
-
 import styles from './Welcome.module.scss';
 
 const Welcome = () => {
-  const { text } = welcomeContent;
+  const { text, title, pathToHome } = welcomeContent;
   return (
     <section className={styles.welcome}>
       <article>
         <Logo text={'SpaceSteps'} />
         <Paragraph text={text} />
-        <ButtonBlack dynamicPath='tasks' buttonName='start' />
+        <ButtonBlack dynamicPath={pathToHome} buttonName={title} />
       </article>
       <AnimatedAstronaut />
     </section>

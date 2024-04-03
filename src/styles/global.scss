@@ -15,7 +15,7 @@ body {
   font-size: (14px * 1.1);
   color: var(--color-light);
   letter-spacing: 0.5px;
-  overflow-y: scroll;
+  overflow: visible;
   line-height: 1.7;
 }
 
