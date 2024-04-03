@@ -1,6 +1,11 @@
 import React from 'react';
 import { welcomeContent } from '../../../data/dataStore';
-import { Logo, Paragraph, AnimatedAstronaut } from '../../common/index';
+import {
+  Logo,
+  Paragraph,
+  AnimatedAstronaut,
+  ButtonBlack,
+} from '../../common/index';
 
 import styles from './Welcome.module.scss';
 
@@ -11,6 +16,7 @@ const Welcome = () => {
       <article>
         <Logo text={'SpaceSteps'} />
         <Paragraph text={text} />
+        <ButtonBlack dynamicPath='tasks' buttonName='start' />
       </article>
       <AnimatedAstronaut />
     </section>

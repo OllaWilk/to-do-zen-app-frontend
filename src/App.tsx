@@ -1,13 +1,16 @@
 import React from 'react';
-import { Welcome } from './components/views/Welcome/Welcome';
-
-import './App.scss';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Welcome, Tasks, NotFound } from './components/views';
 
 function App() {
   return (
-    <>
-      <Welcome />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Welcome />} />
+        <Route path='/tasks' element={<Tasks />} />
+        <Route path='/*' element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
