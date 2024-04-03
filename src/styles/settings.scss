@@ -1,0 +1,27 @@
+:root {
+  /* Colors */
+  --color-light: #fff;
+  --color-dark: #2f3542;
+  --color-main: #514d9e;
+  --color-grey: #f9f8fd;
+  --color-lignt-purple: #e8cdf5;
+  --color-light-peach: #fdc5d8;
+  --color-light-main: #dfd7fd;
+  --color-purple: #c37ee2;
+  --color-peach: #e37da2;
+
+  /* Fonts */
+  --font-text: 'Poppins', sans-serif;
+
+  --radius: 5px;
+  --base-size: 12px;
+  --transition: all 0.5s;
+
+  /* Response */
+
+  --screen-xxl: 1400px;
+  --screen-xl: 1200px;
+  --screen-l: 992px;
+  --screen-md: 768px;
+  --screen-sm: 576px;
+}

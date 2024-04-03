@@ -1,0 +1,24 @@
+@import '../../../styles/mixins.scss';
+
+.logo {
+  @include flex(row, center, center);
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .imgWrap {
+    width: 70px;
+    height: 70px;
+
+    img {
+      width: 100%;
+      max-width: 80px;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .text {
+    font-size: calc(var(--base-size) * 3.5);
+    max-width: 300px;
+  }
+}

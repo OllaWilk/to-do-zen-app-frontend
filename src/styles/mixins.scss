@@ -1,0 +1,66 @@
+@mixin p-el($element) {
+  &:#{$element},
+  &::#{$element} {
+    position: absolute;
+    @content;
+  }
+}
+
+@mixin flex($flex-direction, $align-items, $justify-content) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+// Mobile devices
+@mixin sm-max {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin sm-min {
+  @media screen and (min-width: 480px) {
+    @content;
+  }
+}
+
+// Tablet devices
+@mixin md-max {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin md-min {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+// Desctop devices
+@mixin lg-max {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin lg-min {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+// Large-desctop devices
+@mixin xl-max {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin xl-min {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}

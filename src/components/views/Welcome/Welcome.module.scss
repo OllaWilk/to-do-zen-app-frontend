@@ -1,0 +1,15 @@
+@import '../../../styles/mixins.scss';
+
+.welcome {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+
+  article {
+    @include flex(column, flex-start, center);
+    width: 66.6%;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+}

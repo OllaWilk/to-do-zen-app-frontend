@@ -1,0 +1,44 @@
+@import './settings.scss';
+@import './mixins.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-main);
+  font-family: var(--font-text);
+  font-size: (14px * 1.1);
+  color: var(--color-light);
+  letter-spacing: 0.5px;
+  overflow-y: scroll;
+  line-height: 1.7;
+}
+
+.container {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  @include flex(column, center, center);
+
+  @media screen and (max-width: 1200px) {
+    width: 92%;
+  }
+}
+
+a,
+a:hover,
+a:visited {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+@import './typography.scss';
