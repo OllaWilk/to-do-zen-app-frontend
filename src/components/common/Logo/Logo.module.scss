@@ -18,11 +18,11 @@
   }
 
   .text {
-    font-size: calc(var(--base-size) * 3.5);
+    font-size: 3.5rem;
     max-width: 300px;
 
     @include sm-max {
-      font-size: calc(var(--base-size) * 1.5);
+      font-size: 1.5rem;
     }
   }
 }
