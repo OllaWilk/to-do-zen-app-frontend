@@ -1,0 +1,12 @@
+@import '../../../styles//mixins.scss';
+
+.controlPanel {
+  background-color: var(--color-grey);
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 30px 30px 0;
+  width: 33%;
+  height: 100%;
+  @include flex(column, center, flex-start);
+}
