@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 @keyframes floatAnimation {
   0% {
     transform: translate(-50%, 0) rotate(30deg);
@@ -22,10 +24,15 @@
 
   .astronaut {
     position: absolute;
-    top: 60px;
+    top: 30%;
     left: 50%;
     transform: translate(-50%) rotate(30deg);
     width: 40%;
+    height: auto;
     animation: floatAnimation 5s ease-in-out infinite;
+
+    @include lg-max {
+      top: 40%;
+    }
   }
 }
