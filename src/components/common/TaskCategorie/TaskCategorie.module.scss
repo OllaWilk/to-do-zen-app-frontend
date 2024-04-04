@@ -16,7 +16,7 @@
   .cartImage {
     border-radius: 30px 0 0 30px;
     width: 250px;
-    height: 170px;
+    height: 180px;
     padding: 20px;
 
     img {
@@ -26,7 +26,7 @@
   }
 
   .cartText {
-    min-height: 170px;
+    height: 180px;
     width: calc(100% - 250px);
     padding: 20px;
     text-align: justify;
@@ -57,15 +57,35 @@
   }
 }
 
-.cartTasksOpen {
-  transform: translateY(0);
-  opacity: 1;
-  max-height: 1000px;
-  transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out,
-    transform 0.25s ease-in-out;
+.cartTasksClosed {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(0%);
+  transition: max-height 0.25s ease-in-out, opacity ease-in-out 0.25s,
+    transform 0.3s ease-in-out;
+  width: 100%;
 
   ul {
     @include flex(column, center, space-between);
     gap: 20px;
+    background-color: var(--color-light);
+    border-radius: 30px;
+    margin: 5px;
+  }
+}
+
+.cartTasksOpen {
+  transform: translateY(0%);
+  opacity: 1;
+  transition: max-height 0.25s ease-in-out, opacity ease-in-out 0.25s,
+    transform 0.3s ease-in-out;
+  width: 100%;
+
+  ul {
+    @include flex(column, center, space-between);
+    gap: 20px;
+    background-color: var(--color-light);
+    border-radius: 30px;
+    margin: 5px;
   }
 }
