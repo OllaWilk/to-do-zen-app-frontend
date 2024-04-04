@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { logo } from '../../../images';
 import styles from './Logo.module.scss';
 

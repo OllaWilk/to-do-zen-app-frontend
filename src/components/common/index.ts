@@ -7,3 +7,4 @@ export { TaskForm } from './TaskForm/TaskForm';
 export { SearchBar } from './SearchBar/SearchBar';
 export { TaskCategorie } from './TaskCategorie/TaskCategorie';
 export { RoundButton } from './Buttons/RoundButton/RoundButton';
+export { ButtonIcon } from './Buttons/ButtonIcon/ButtonIcon';

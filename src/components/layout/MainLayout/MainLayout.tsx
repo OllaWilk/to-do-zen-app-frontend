@@ -8,7 +8,7 @@ type MainLayout = {
 const MainLayout: React.FC<MainLayout> = ({ children }) => {
   return (
     <>
-      <header className={styles.navigation}> Nawigation</header>
+      <header className={styles.navigation}>Nawigation</header>
       <section className={styles.cockpit}>{children}</section>
     </>
   );

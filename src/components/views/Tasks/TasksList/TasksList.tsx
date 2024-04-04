@@ -1,5 +1,4 @@
 import React from 'react';
-import {} from '../../../../data/dataStore';
 import { SearchBar, TaskCategorie } from '../../../common';
 import styles from './TasksList.module.scss';
 
