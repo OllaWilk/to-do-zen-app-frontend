@@ -1,29 +1,51 @@
 import React from 'react';
-import { SearchBar, TaskCategorie } from '../../../common';
+import { SearchBar, TaskInfo } from '../../../common';
 import styles from './TasksList.module.scss';
 
 const TasksList = () => {
   return (
     <div className={styles.tasksList}>
       <SearchBar />
-      <TaskCategorie
-        title={'To Do'}
-        description={
-          'The "To Do" list is your personal action plan. Here, you jot down all the tasks you need to accomplish to move closer to achieving your goals. It\'s the first step toward organizing your time and energy in the most effective way'
-        }
-      />
-      <TaskCategorie
-        title={'In Progress'}
-        description={
-          'The "In Progress" list contains tasks you are currently working on. It serves as a reminder that you are in motion, developing, and executing plans. This list allows you to monitor your progress and maintain motivation'
-        }
-      />
-      <TaskCategorie
-        title={'Done'}
-        description={
-          'The "Done" list is a record of your accomplishments. Every task that lands here is proof that you are one step closer to fulfilling your dreams. It\'s also an excellent opportunity to celebrate successes, big and small.'
-        }
-      />
+      <div>
+        <h2>Category: To Do</h2>
+
+        <TaskInfo
+          title={'title: Organize Your Workspace'}
+          description={
+            'Description: Keeping your desk clean and organized can significantly enhance your productivity and help you focus better on your tasks.'
+          }
+        />
+        <TaskInfo
+          title={'Schedule a Catch-up with Friends '}
+          description={
+            'Maintaining social connections is crucial for your well-being. Set a date to reconnect and share life updates with friends.'
+          }
+        />
+        <TaskInfo
+          title={'Read a Book Chapter '}
+          description={
+            'Dedicate some time to reading a chapter of a book every day. It’s a great way to relax and learn something new, expanding your perspectives'
+          }
+        />
+      </div>
+      <div>
+        <h2>In Progress</h2>
+        <TaskInfo
+          title={'Update Your Resume'}
+          description={
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
+          }
+        />
+      </div>
+      <div>
+        <h2>Done</h2>
+        <TaskInfo
+          title={'Learn a New Skill'}
+          description={
+            'Identify a skill that could benefit your career and spend some time each day developing it, whether it’s a software tool, a programming language, or soft skills like public speaking.'
+          }
+        />
+      </div>
     </div>
   );
 };

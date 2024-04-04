@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { hartClaud } from '../../../images';
-import style from './TaskCategorie.module.scss';
+import { hartClaud, edit, deleteIcon } from '../../../images';
+import style from './TaskInfo.module.scss';
 
 interface Props {
   title: string;
   description: string;
 }
-const TaskCategorie = ({ title, description }: Props) => {
+const TaskInfo = ({ title, description }: Props) => {
   const [acordion, setAcordion] = useState(true);
 
   const toggleAcordion = () => {
@@ -22,16 +22,14 @@ const TaskCategorie = ({ title, description }: Props) => {
         <h2>{title}</h2>
         <p>{description}</p>
       </div>
-      <div className={acordion ? style.cartTasksClosed : style.cartTasksOpen}>
-        <ul>
-          <li>5</li>
-          <li>4</li>
-          <li>3</li>
-          <li>2</li>
-        </ul>
+      <div
+        className={`${acordion ? style.cartTasksClosed : style.cartTasksOpen}`}
+      >
+        <p className={style.buttonIcon}>delete</p>
+        <p className={style.buttonIcon}>edit</p>
       </div>
     </article>
   );
 };
 
-export { TaskCategorie };
+export { TaskInfo };

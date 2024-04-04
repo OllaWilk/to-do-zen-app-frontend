@@ -5,6 +5,6 @@ export { ButtonBlack } from './Buttons/ButtonBlack/ButtonBlack';
 export { UserPanel } from './UserPanel/UserPanel';
 export { TaskForm } from './TaskForm/TaskForm';
 export { SearchBar } from './SearchBar/SearchBar';
-export { TaskCategorie } from './TaskCategorie/TaskCategorie';
+export { TaskInfo } from './TaskInfo/TaskInfo';
 export { RoundButton } from './Buttons/RoundButton/RoundButton';
 export { ButtonIcon } from './Buttons/ButtonIcon/ButtonIcon';

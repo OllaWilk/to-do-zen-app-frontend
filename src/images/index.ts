@@ -5,3 +5,5 @@ export { default as userAvatar } from './userAvatar.png';
 export { default as markFlag } from './markFlag.png';
 export { default as hartClaud } from './hartClaud.png';
 export { default as search } from './search.png';
+export { default as deleteIcon } from './delete.png';
+export { default as edit } from './edit.png';
