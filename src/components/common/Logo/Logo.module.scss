@@ -18,7 +18,6 @@
   }
 
   .text {
-    font-size: calc(var(--base-size) * 3.5);
     max-width: 300px;
 
     @include sm-max {

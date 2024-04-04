@@ -13,7 +13,7 @@ const Welcome = () => {
   return (
     <section className={styles.welcome}>
       <article>
-        <Logo text={'SpaceSteps'} />
+        <Logo text={'SpaceSteps'} size='3.5rem' />
         <Paragraph text={text} />
         <ButtonBlack dynamicPath={pathToHome} buttonName={title} />
       </article>

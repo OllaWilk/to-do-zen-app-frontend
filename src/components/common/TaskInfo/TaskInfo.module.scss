@@ -3,7 +3,7 @@
 .cart {
   width: 100%;
   border-radius: 30px;
-  @include flex(row, flex-start, space-between);
+  @include flex(row, center, space-between);
   flex-wrap: wrap;
   cursor: pointer;
   z-index: 888;
@@ -16,8 +16,8 @@
   .cartImage {
     border-radius: 30px 0 0 30px;
     width: 250px;
-    height: 150px;
-    min-height: 150px;
+    height: 180px;
+    min-height: 100%;
     padding: 20px;
 
     img {
@@ -27,11 +27,10 @@
   }
 
   .cartText {
-    height: 150px;
-    min-height: 150px;
+    min-height: 180px;
 
     width: calc(100% - 250px);
-    padding: 20px 30px;
+    padding: 0px 30px;
     text-align: justify;
     @include flex(column, center, center);
 

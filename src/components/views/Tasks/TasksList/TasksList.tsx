@@ -40,9 +40,39 @@ const TasksList = () => {
       <div>
         <h2>Done</h2>
         <TaskInfo
-          title={'Learn a New Skill'}
+          title={'Update Your Resume'}
           description={
-            'Identify a skill that could benefit your career and spend some time each day developing it, whether it’s a software tool, a programming language, or soft skills like public speaking.'
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
+          }
+        />
+        <TaskInfo
+          title={'Update Your Resume'}
+          description={
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
+          }
+        />
+        <TaskInfo
+          title={'Update Your Resume'}
+          description={
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
+          }
+        />
+        <TaskInfo
+          title={'Update Your Resume'}
+          description={
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
+          }
+        />
+        <TaskInfo
+          title={'Update Your Resume'}
+          description={
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
+          }
+        />
+        <TaskInfo
+          title={'Update Your Resume'}
+          description={
+            'Take some time to refresh your resume. Keeping it up-to-date is essential for when new opportunities arise'
           }
         />
       </div>
