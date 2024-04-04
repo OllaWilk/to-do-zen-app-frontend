@@ -1,7 +1,20 @@
 import React from 'react';
+import { userAvatar } from '../../../images';
+import styles from './UserPanel.module.scss';
 
-const UserPanel = () => {
-  return <div>UserPanel</div>;
+interface Props {
+  userName: string;
+}
+
+const UserPanel = ({ userName }: Props) => {
+  return (
+    <div className={styles.userWrap}>
+      <p className={styles.text}>{userName}</p>
+      <div className={styles.imgWrap}>
+        <img src={userAvatar} alt='avatar' />
+      </div>
+    </div>
+  );
 };
 
 export { UserPanel };

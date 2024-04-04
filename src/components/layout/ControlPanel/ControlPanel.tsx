@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './ControlPanel.module.scss';
 import { MainLayout } from 'src/components/layout';
+import styles from './ControlPanel.module.scss';
 
 type ControlPanel = {
   children: React.ReactNode;

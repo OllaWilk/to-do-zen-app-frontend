@@ -1,0 +1,11 @@
+.accordion {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  color: var(--color-light);
+  font-weight: semibold;
+  cursor: pointer;
+}

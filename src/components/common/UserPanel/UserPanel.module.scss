@@ -1,0 +1,26 @@
+@import '../../../styles/mixins.scss';
+
+.userWrap {
+  @include flex(row, flex-end, flex-end);
+  gap: 20px;
+  width: 100%;
+  flex-wrap: nowrap;
+  padding: 20px 30px;
+
+  .text {
+    color: var(--color-main);
+  }
+
+  .imgWrap {
+    width: 70px;
+    height: 70px;
+    background-color: var(--color-light);
+    padding: 8px;
+    border-radius: 50%;
+
+    img {
+      @include img;
+      object-fit: contain;
+    }
+  }
+}
