@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import { TaskEntity } from 'types';
 import { hartClaud, edit, deleteIcon } from '../../../images';
 import style from './TaskInfo.module.scss';
 
-interface Props {
-  title: string;
-  description: string;
-}
-const TaskInfo = ({ title, description }: Props) => {
-  const [acordion, setAcordion] = useState(true);
+const TaskInfo = ({
+  title,
+  description,
+}: Pick<TaskEntity, 'title' | 'description'>) => {
+  const [accordion, setAccordion] = useState(true);
 
   const toggleAcordion = () => {
-    setAcordion(!acordion);
+    setAccordion(!accordion);
   };
 
   return (
@@ -23,7 +23,7 @@ const TaskInfo = ({ title, description }: Props) => {
         <p>{description}</p>
       </div>
       <div
-        className={`${acordion ? style.cartTasksClosed : style.cartTasksOpen}`}
+        className={`${accordion ? style.cartTasksClosed : style.cartTasksOpen}`}
       >
         <p className={style.buttonIcon}>delete</p>
         <p className={style.buttonIcon}>edit</p>
