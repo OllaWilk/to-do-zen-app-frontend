@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { TaskEntity } from 'types';
-import { hartClaud, edit, deleteIcon } from '../../../images';
+import { hartClaud } from '../../../images';
 import style from './TaskInfo.module.scss';
+import { Link } from 'react-router-dom';
 
 const TaskInfo = ({
   title,
   description,
-}: Pick<TaskEntity, 'title' | 'description'>) => {
+  id,
+}: Pick<TaskEntity, 'title' | 'description' | 'id'>) => {
   const [accordion, setAccordion] = useState(true);
 
   const toggleAcordion = () => {
@@ -25,8 +27,9 @@ const TaskInfo = ({
       <div
         className={`${accordion ? style.cartTasksClosed : style.cartTasksOpen}`}
       >
-        <p className={style.buttonIcon}>delete</p>
-        <p className={style.buttonIcon}>edit</p>
+        <Link to={`/${id}`}>
+          <p className={style.buttonIcon}>edit</p>
+        </Link>
       </div>
     </article>
   );

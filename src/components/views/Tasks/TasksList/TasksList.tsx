@@ -20,13 +20,20 @@ const TasksList = () => {
   return (
     <div className={styles.tasksList}>
       <SearchBar />
-      {tasks &&
+      {tasks ? (
         tasks.map((task) => (
           <div key={task.id}>
             <h2>{task.category}</h2>
-            <TaskInfo title={task.title} description={task.description} />
+            <TaskInfo
+              title={task.title}
+              description={task.description}
+              id={task.id}
+            />
           </div>
-        ))}
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
