@@ -8,8 +8,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Welcome />} />
         <Route path='/tasks' element={<Tasks />} />
-        <Route path='/:id' element={<Task />} />
-        <Route path='/*' element={<NotFound />} />
+        <Route path='/tasks/:id' element={<Task />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

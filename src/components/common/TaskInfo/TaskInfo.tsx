@@ -28,7 +28,7 @@ const TaskInfo = ({
       <div
         className={`${accordion ? style.cartTasksClosed : style.cartTasksOpen}`}
       >
-        <Link to={`/${id}`}>
+        <Link to={`/tasks/${id}`}>
           <p className={style.buttonIcon}>edit</p>
         </Link>
         <ButtonDeleteTask taskId={`${id}`} />
