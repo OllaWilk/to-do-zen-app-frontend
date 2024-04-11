@@ -12,12 +12,16 @@ const MainLayout: React.FC<MainLayout> = ({ children }) => {
 
   return (
     <>
-      <header className={styles.navigation}>
+      <header
+        className={
+          !isOpen
+            ? styles.navigation
+            : `${styles.navigation} ${styles.toggleHorizontal}`
+        }
+      >
         <Logo text={'SpaceSteps'} size='20px' />
         <Navigation />
-        <div onClick={toggleIsOpen}>
-          <HamburgerNavigation isOpen={isOpen} />
-        </div>
+        <HamburgerNavigation isOpen={isOpen} handleClick={toggleIsOpen} />
       </header>
       <section className={styles.cockpit}>{children}</section>
     </>

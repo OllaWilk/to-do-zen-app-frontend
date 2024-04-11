@@ -6,11 +6,12 @@ import styles from './HamburgerNavigation.module.scss';
 
 interface Props {
   isOpen: boolean;
+  handleClick: () => void;
 }
 
-const HamburgerNavigation = ({ isOpen }: Props) => {
+const HamburgerNavigation = ({ isOpen, handleClick }: Props) => {
   return (
-    <div className={styles.hamburgerComponent}>
+    <div className={styles.hamburgerComponent} onClick={handleClick}>
       {isOpen ? <HiMenu /> : <IoMdClose />}
     </div>
   );
