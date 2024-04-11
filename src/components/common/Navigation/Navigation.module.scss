@@ -2,28 +2,37 @@
 
 .component {
   @include flex(column, center, center);
-
   width: 100%;
-  height: 33vh;
   gap: 30px;
   color: var(--color-light);
-  padding: 0 20px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--color-main);
 
   .navLink {
-    @include btn;
+    @include flex(row, center, flex-start);
+    gap: 25px;
+    padding: 8px 25px 8px 25px;
     width: 100%;
     text-align: left;
     position: relative;
     border: none;
     border-radius: none;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 
     &:hover {
-      border-left: 20px solid darken($color: #f4f4fe, $amount: 8);
+      background-color: lighten($color: #080808, $amount: 5);
+      border-left: 20px solid var(--color-main);
     }
   }
 
   a {
     color: var(--color-light);
-    font-weight: normal;
+    height: 100%;
+  }
+
+  .mark {
+    font-size: 20px;
+    line-height: 20px;
   }
 }
