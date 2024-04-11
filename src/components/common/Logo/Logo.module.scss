@@ -1,13 +1,15 @@
 @import '../../../styles/mixins.scss';
 
 .logo {
+  width: 100%;
   @include flex(row, center, center);
   flex-wrap: wrap;
   gap: 10px;
+  color: var(--color-light);
 
   .imgWrap {
-    width: 70px;
-    height: 70px;
+    width: 56px;
+    height: 56px;
 
     img {
       width: 100%;

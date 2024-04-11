@@ -1,6 +1,7 @@
 import React from 'react';
 import { logo } from '../../../images';
 import styles from './Logo.module.scss';
+import { Link } from 'react-router-dom';
 
 interface Props {
   text?: string;
@@ -9,7 +10,7 @@ interface Props {
 
 const Logo = ({ text, size }: Props) => {
   return (
-    <div className={styles.logo}>
+    <Link to={'/tasks'} className={styles.logo}>
       <div className={styles.imgWrap}>
         <img src={logo} alt='logo' />
       </div>
@@ -18,7 +19,7 @@ const Logo = ({ text, size }: Props) => {
           {text}
         </h1>
       )}
-    </div>
+    </Link>
   );
 };
 
