@@ -20,7 +20,6 @@ export const formContent: FormContent = {
   title: 'title',
   cathegory: 'cathegory',
   categoryOption: ['do', 'in progress', 'done'],
-  reminder: 'Reminder',
   priority: 'priority',
   priorityOption: ['low', 'medium', 'high'],
   description: 'description',

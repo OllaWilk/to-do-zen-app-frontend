@@ -15,7 +15,6 @@ const TaskForm = ({ taskData }: Props) => {
   const [form, setForm] = useState({
     title: '',
     category: '',
-    // reminder: null,
     priority: '',
     description: '',
   });
@@ -24,7 +23,6 @@ const TaskForm = ({ taskData }: Props) => {
     title,
     cathegory,
     categoryOption,
-    reminder,
     priority,
     priorityOption,
     description,
@@ -94,17 +92,7 @@ const TaskForm = ({ taskData }: Props) => {
           required
         />
       </p>
-      {/* TO DO FIX PROBLEM WITH SENDING REMINDER  */}
-      {/* <p>
-        <label>{reminder}</label>
-        <input
-          value={form.reminder}
-          onChange={(e) => updateForm(e.target.name, e.target.value)}
-          checked={isChecked}
-          type='checkbox'
-          name='reminder'
-        />
-      </p> */}
+      {/* TO DO add reminder */}
       <p>
         <span>{priority}</span>
         <select
