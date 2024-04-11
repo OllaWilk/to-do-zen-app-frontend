@@ -4,18 +4,28 @@ import { formContent } from '../../../data/dataStore';
 
 import styles from './TaskForm.module.scss';
 
+enum Priority {
+  Low = 'low',
+  Medium = 'medium',
+  High = 'high',
+}
+
+enum Category {
+  ToDo = 'to do',
+  InProgress = 'in progress',
+  Done = 'done',
+}
+
 interface Props {
   taskData?: TaskEntity;
 }
 
 const TaskForm = ({ taskData }: Props) => {
-  const [isChecked, setIsChecked] = useState(false);
-
   /* TO DO: fix problem with import Category enum from types */
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
     title: '',
-    category: '',
-    priority: '',
+    category: Category.Done,
+    priority: Priority.High,
     description: '',
   });
 
@@ -35,7 +45,12 @@ const TaskForm = ({ taskData }: Props) => {
     console.log('saved form', form);
 
     try {
-      const res = await fetch('http://localhost:3001/tasks/', {
+      const baseUrl = 'http://localhost:3001/tasks/';
+      const url = taskData?.id ? `${baseUrl}${taskData.id}` : baseUrl;
+
+      console.log('url', url);
+      console.log('baseurl', baseUrl);
+      const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,14 +59,23 @@ const TaskForm = ({ taskData }: Props) => {
           ...form,
         }),
       });
-    } catch (err) {
-      console.log(err);
+
+      if (res.ok) {
+        setForm({
+          title: '',
+          category: Category.Done,
+          priority: Priority.High,
+          description: '',
+        });
+      } else {
+        console.log('Error saving the form');
+      }
+    } catch (error) {
+      console.error('Failed to save the form', error);
     }
   };
 
   const updateForm = (key: any, value: any) => {
-    setIsChecked(!isChecked);
-
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
