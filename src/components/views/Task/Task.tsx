@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { TaskEntity } from 'types';
 import { taskView } from '../../../data/dataStore';
 import { ControlPanel, MainLayout } from '../../layout/index';
-import { TaskForm, UserPanel } from '../../common/index';
+import { ButtonDeleteTask, TaskForm, UserPanel } from '../../common/index';
 
 const Task = () => {
   const [task, setTask] = useState<TaskEntity | null>(null);
@@ -24,6 +24,7 @@ const Task = () => {
   return (
     <MainLayout>
       <TaskForm taskData={task} />
+      <ButtonDeleteTask taskId={`${task.id}`} />
       <ControlPanel>
         <UserPanel userName={taskView.userName} />
       </ControlPanel>

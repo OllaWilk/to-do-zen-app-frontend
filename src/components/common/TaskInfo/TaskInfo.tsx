@@ -3,6 +3,7 @@ import { TaskEntity } from 'types';
 import { hartClaud } from '../../../images';
 import style from './TaskInfo.module.scss';
 import { Link } from 'react-router-dom';
+import { ButtonDeleteTask } from '../Buttons/ButtonDeleteTask/ButtonDeleteTask';
 
 const TaskInfo = ({
   title,
@@ -30,6 +31,7 @@ const TaskInfo = ({
         <Link to={`/${id}`}>
           <p className={style.buttonIcon}>edit</p>
         </Link>
+        <ButtonDeleteTask taskId={`${id}`} />
       </div>
     </article>
   );

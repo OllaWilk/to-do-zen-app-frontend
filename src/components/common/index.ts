@@ -8,4 +8,5 @@ export { SearchBar } from './SearchBar/SearchBar';
 export { TaskInfo } from './TaskInfo/TaskInfo';
 export { RoundButton } from './Buttons/RoundButton/RoundButton';
 export { ButtonIcon } from './Buttons/ButtonIcon/ButtonIcon';
+export { ButtonDeleteTask } from './Buttons/ButtonDeleteTask/ButtonDeleteTask';
 export { Navigation } from './Navigation/Navigation';

@@ -2,7 +2,7 @@ import { TaskEntity } from 'types';
 
 const BASE_URL = 'http://localhost:3001/tasks/';
 
-const createOrUodateTask = async (
+export const createOrUodateTask = async (
   task: Omit<TaskEntity, 'id' | 'time'>,
   taskId?: string
 ) => {
@@ -30,4 +30,22 @@ const createOrUodateTask = async (
   }
 };
 
-export { createOrUodateTask };
+export const deleteTask = async (taskId: string) => {
+  const url = `${BASE_URL}${taskId}`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to delete the task');
+    }
+  } catch (error) {
+    console.error('Error deleting the task:', error);
+    throw error;
+  }
+};
