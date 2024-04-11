@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
+import { createOrUodateTask } from '../../../utils/apiCalls/taskService';
 import { TaskEntity } from 'types';
 import { formContent } from '../../../data/dataStore';
 
@@ -42,36 +43,19 @@ const TaskForm = ({ taskData }: Props) => {
 
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log('saved form', form);
 
     try {
-      const baseUrl = 'http://localhost:3001/tasks/';
-      const url = taskData?.id ? `${baseUrl}${taskData.id}` : baseUrl;
+      const savedTask = await createOrUodateTask(form, taskData?.id);
+      console.log('Task saved:', savedTask);
 
-      console.log('url', url);
-      console.log('baseurl', baseUrl);
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...form,
-        }),
+      setForm({
+        title: '',
+        category: Category.Done,
+        priority: Priority.High,
+        description: '',
       });
-
-      if (res.ok) {
-        setForm({
-          title: '',
-          category: Category.Done,
-          priority: Priority.High,
-          description: '',
-        });
-      } else {
-        console.log('Error saving the form');
-      }
     } catch (error) {
-      console.error('Failed to save the form', error);
+      console.error('Error saving the form', error);
     }
   };
 
