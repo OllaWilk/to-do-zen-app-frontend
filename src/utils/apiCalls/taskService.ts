@@ -16,7 +16,7 @@ const createOrUodateTask = async (
 
   try {
     const res = await fetch(url, {
-      method: 'POST',
+      method: taskId ? 'PATCH' : 'POST',
       headers,
       body,
     });
