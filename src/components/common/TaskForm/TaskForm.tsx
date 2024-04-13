@@ -2,8 +2,8 @@ import React, { SyntheticEvent, useState } from 'react';
 import { createOrUodateTask } from '../../../utils/apiCalls/taskService';
 import { TaskEntity } from 'types';
 import { formContent } from '../../../data/dataStore';
-
 import styles from './TaskForm.module.scss';
+import { ButtonForm } from '../Buttons/ButtonForm/ButtonForm';
 
 enum Priority {
   Low = 'low',
@@ -59,7 +59,7 @@ const TaskForm = ({ taskData }: Props) => {
     }
   };
 
-  const updateForm = (key: any, value: any) => {
+  const updateForm = (key: string, value: string) => {
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
@@ -68,7 +68,7 @@ const TaskForm = ({ taskData }: Props) => {
 
   return (
     <form action='' className={styles.taskForm} onSubmit={saveForm}>
-      <p>
+      <p className={styles.formLabelWrap}>
         <span>{title}</span>
         <input
           value={form.title}
@@ -78,7 +78,7 @@ const TaskForm = ({ taskData }: Props) => {
           required
         />
       </p>
-      <p>
+      <p className={styles.formLabelWrap}>
         <span>{cathegory}</span>
         <select
           value={form.category}
@@ -90,7 +90,7 @@ const TaskForm = ({ taskData }: Props) => {
           <option value={categoryOption[2]}>{categoryOption[2]}</option>
         </select>
       </p>
-      <p>
+      <p className={styles.formLabelWrap}>
         <span>{description}</span>
         <input
           value={form.description}
@@ -101,7 +101,7 @@ const TaskForm = ({ taskData }: Props) => {
         />
       </p>
       {/* TO DO add reminder */}
-      <p>
+      <p className={styles.formLabelWrap}>
         <span>{priority}</span>
         <select
           value={form.priority}
@@ -113,8 +113,7 @@ const TaskForm = ({ taskData }: Props) => {
           <option value={priorityOption[2]}>{priorityOption[2]}</option>
         </select>
       </p>
-
-      <button>{taskData ? edit : add}</button>
+      <ButtonForm text={taskData ? edit : add} />
     </form>
   );
 };

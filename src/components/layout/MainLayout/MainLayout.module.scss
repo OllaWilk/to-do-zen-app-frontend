@@ -10,18 +10,24 @@
   transition: transform 0.3s ease-in-out;
   padding: 20px 0;
   background-color: var(--color-dark);
+  z-index: 999;
 }
 
 .cockpit {
   position: absolute;
   border-radius: 30px;
-  width: calc(100vw - 267px);
+  width: calc(100vw - 284px);
   background-color: var(--color-light);
   color: var(--color-dark);
   min-height: calc(100vh - 34px);
-
   top: 17px;
-  right: 0;
+  right: 17px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+  @include md-max {
+    width: calc(100vw - 34px);
+  }
 }
 
 .toggleHorizontal {

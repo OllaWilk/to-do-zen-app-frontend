@@ -9,4 +9,8 @@
   width: 33%;
   height: 100%;
   @include flex(column, center, flex-start);
+
+  @include lg-max {
+    display: none;
+  }
 }

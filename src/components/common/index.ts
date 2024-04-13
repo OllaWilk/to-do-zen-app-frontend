@@ -9,5 +9,7 @@ export { TaskInfo } from './TaskInfo/TaskInfo';
 export { RoundButton } from './Buttons/RoundButton/RoundButton';
 export { ButtonIcon } from './Buttons/ButtonIcon/ButtonIcon';
 export { ButtonDeleteTask } from './Buttons/ButtonDeleteTask/ButtonDeleteTask';
+export { ButtonForm } from './Buttons/ButtonForm/ButtonForm';
 export { Navigation } from './Navigation/Navigation';
 export { HamburgerNavigation } from './HamburgerNavigation/HamburgerNavigation';
+export { SectionHeader } from './SectionHeader/SectionHeader';

@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { logo } from '../../../images';
 import styles from './Logo.module.scss';
-import { Link } from 'react-router-dom';
 
 interface Props {
   text?: string;

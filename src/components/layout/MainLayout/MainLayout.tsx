@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useToggle } from '../../../utils/hooks/useToggle';
 import { HamburgerNavigation, Logo, Navigation } from '../../common/index';
 import styles from './MainLayout.module.scss';
 
-type MainLayout = {
+type MainLayoutProps = {
   children: React.ReactNode;
 };
 
-const MainLayout: React.FC<MainLayout> = ({ children }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const [isOpen, toggleIsOpen] = useToggle(true);
 
   return (

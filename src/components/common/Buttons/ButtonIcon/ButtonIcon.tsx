@@ -1,14 +1,12 @@
 import React from 'react';
+import { FaSearch } from 'react-icons/fa';
+
 import style from './ButtonIcon.module.scss';
 
-interface Props {
-  icon: string;
-}
-
-const ButtonIcon = ({ icon }: Props) => {
+const ButtonIcon = () => {
   return (
     <div className={style.buttonIcon}>
-      <img src={icon} alt={`${icon}-icon`} />
+      <FaSearch />
     </div>
   );
 };

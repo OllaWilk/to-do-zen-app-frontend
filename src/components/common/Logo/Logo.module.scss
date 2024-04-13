@@ -2,10 +2,11 @@
 
 .logo {
   width: 100%;
-  @include flex(row, center, center);
+  @include flex(row, center, flex-start);
   flex-wrap: wrap;
   gap: 10px;
   color: var(--color-light);
+  padding-left: 10px;
 
   .imgWrap {
     width: 56px;

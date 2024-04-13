@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import { TaskEntity } from 'types';
+// import { TaskEntity } from 'types';
 import { deleteTask } from '../../../../utils/apiCalls/taskService';
 import styles from './ButtonDeleteTask.module.scss';
 

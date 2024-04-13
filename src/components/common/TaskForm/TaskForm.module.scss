@@ -1,0 +1,26 @@
+@import '../../../styles/mixins.scss';
+
+.taskForm {
+  width: 100%;
+  @include flex(column, center, center);
+  padding: 25px 0;
+  color: var(--color-main);
+
+  .formLabelWrap {
+    width: 95%;
+    @include flex(column, flex-start, center);
+
+    span:first-letter {
+      text-transform: uppercase;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--color-dark-grey);
+      border-radius: 4px;
+      background-color: var(--color-light);
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TaskEntity } from 'types';
+import { tasksViewContent } from '../../../../data/dataStore';
 import { SearchBar, TaskInfo } from '../../../common';
 import styles from './TasksList.module.scss';
 
@@ -32,7 +33,7 @@ const TasksList = () => {
           </div>
         ))
       ) : (
-        <p>Loading...</p>
+        <p>{tasksViewContent.loading}</p>
       )}
     </div>
   );
