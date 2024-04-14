@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { TaskEntity } from 'types';
-import { hartClaud } from '../../../images';
+import { FaIcons } from 'react-icons/fa';
+import { ButtonDeleteTask, ButtonPurple } from '../index';
 import style from './TaskInfo.module.scss';
-import { Link } from 'react-router-dom';
-import { ButtonDeleteTask } from '../Buttons/ButtonDeleteTask/ButtonDeleteTask';
 
 const TaskInfo = ({
   title,
@@ -19,7 +18,7 @@ const TaskInfo = ({
   return (
     <article className={style.cart} onClick={toggleAcordion}>
       <div className={style.cartImage}>
-        <img src={hartClaud} alt='hart icon' />
+        <FaIcons />
       </div>
       <div className={style.cartText}>
         <h2>{title}</h2>
@@ -28,9 +27,7 @@ const TaskInfo = ({
       <div
         className={`${accordion ? style.cartTasksClosed : style.cartTasksOpen}`}
       >
-        <Link to={`/tasks/${id}`}>
-          <p className={style.buttonIcon}>edit</p>
-        </Link>
+        <ButtonPurple url={`/tasks/${id}`} />
         <ButtonDeleteTask taskId={`${id}`} />
       </div>
     </article>

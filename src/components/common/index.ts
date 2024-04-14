@@ -1,15 +1,12 @@
 export { Logo } from './Logo/Logo';
 export { Paragraph } from './Paragraph/Paragraph';
 export { AnimatedAstronaut } from './AnimatedAstronaut/AnimatedAstronaut';
-export { ButtonBlack } from './Buttons/ButtonBlack/ButtonBlack';
 export { UserPanel } from './UserPanel/UserPanel';
 export { TaskForm } from './TaskForm/TaskForm';
 export { SearchBar } from './SearchBar/SearchBar';
 export { TaskInfo } from './TaskInfo/TaskInfo';
-export { RoundButton } from './Buttons/RoundButton/RoundButton';
-export { ButtonIcon } from './Buttons/ButtonIcon/ButtonIcon';
-export { ButtonDeleteTask } from './Buttons/ButtonDeleteTask/ButtonDeleteTask';
-export { ButtonForm } from './Buttons/ButtonForm/ButtonForm';
+
 export { Navigation } from './Navigation/Navigation';
 export { HamburgerNavigation } from './HamburgerNavigation/HamburgerNavigation';
 export { SectionHeader } from './SectionHeader/SectionHeader';
+export * from './Buttons';
