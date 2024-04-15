@@ -2,6 +2,7 @@ type WelcomeContent = Record<string, string>;
 type TasksContent = Record<string, string>;
 type TaskView = Record<string, string>;
 type FormContent = Record<string, string | string[]>;
+type NotFoundContent = Record<string, string | string[]>;
 
 export const welcomeContent: WelcomeContent = {
   title: 'Start',
@@ -17,6 +18,8 @@ export const tasksViewContent: TasksContent = {
 
 export const taskView: TaskView = {
   userName: 'Hi, Aleksandra Wilk',
+  noTask:
+    'The task you’re looking for isn’t here or doesn’t exist. But don’t worry—just navigate back to the task list page to find your way.',
 };
 
 export const formContent: FormContent = {
@@ -28,4 +31,11 @@ export const formContent: FormContent = {
   description: 'description',
   add: 'add new task',
   edit: 'edit task',
+};
+
+export const notFoundContent: NotFoundContent = {
+  notFoundMessage:
+    'Upss... It looks like you’ve drifted off course into the cosmos!',
+  return: ' Return to the main cockpit',
+  url: 'tasks',
 };

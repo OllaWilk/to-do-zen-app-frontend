@@ -28,4 +28,11 @@
     color: var(--color-error);
     padding: 20px;
   }
+
+  .buttonWrap {
+    @include flex(row, center, space-between);
+    margin-top: 35px;
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
 }

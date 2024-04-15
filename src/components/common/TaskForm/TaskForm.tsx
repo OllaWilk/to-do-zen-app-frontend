@@ -4,6 +4,7 @@ import { TaskEntity } from 'types';
 import { formContent } from '../../../data/dataStore';
 import { ButtonForm } from '../Buttons/ButtonForm/ButtonForm';
 import styles from './TaskForm.module.scss';
+import { ButtonDeleteTask } from '../Buttons';
 
 enum Priority {
   Low = 'low',
@@ -117,7 +118,10 @@ const TaskForm = ({ taskData }: Props) => {
           <option value={priorityOption[2]}>{priorityOption[2]}</option>
         </select>
       </p>
-      <ButtonForm text={taskData ? edit : add} />
+      <div className={styles.buttonWrap}>
+        {taskData && <ButtonDeleteTask taskId={`${taskData.id}`} />}
+        <ButtonForm text={taskData ? edit : add} />
+      </div>
       <p className={styles.message}>{sendInfo}</p>
     </form>
   );
