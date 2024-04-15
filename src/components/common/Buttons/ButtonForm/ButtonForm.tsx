@@ -6,7 +6,11 @@ interface Props {
 }
 
 const ButtonForm = ({ text }: Props) => {
-  return <div className={styles.component}>{text}</div>;
+  return (
+    <button type='submit' className={styles.component}>
+      {text}
+    </button>
+  );
 };
 
 export { ButtonForm };

@@ -43,7 +43,7 @@ const TaskForm = ({ taskData }: Props) => {
 
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
-
+    console.log('kliknięto');
     try {
       const savedTask = await createOrUodateTask(form, taskData?.id);
       console.log('Task saved:', savedTask);
@@ -60,6 +60,7 @@ const TaskForm = ({ taskData }: Props) => {
   };
 
   const updateForm = (key: string, value: string) => {
+    console.log(key, value);
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
