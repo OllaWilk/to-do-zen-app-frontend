@@ -21,7 +21,7 @@ export const createOrUodateTask = async (
       body,
     });
     if (!res.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('Sorry, something went wrong');
     }
     return await res.json();
   } catch (error) {

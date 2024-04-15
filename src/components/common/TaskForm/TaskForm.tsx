@@ -2,8 +2,8 @@ import React, { SyntheticEvent, useState } from 'react';
 import { createOrUodateTask } from '../../../utils/apiCalls/taskService';
 import { TaskEntity } from 'types';
 import { formContent } from '../../../data/dataStore';
-import styles from './TaskForm.module.scss';
 import { ButtonForm } from '../Buttons/ButtonForm/ButtonForm';
+import styles from './TaskForm.module.scss';
 
 enum Priority {
   Low = 'low',
@@ -29,6 +29,7 @@ const TaskForm = ({ taskData }: Props) => {
     priority: Priority.High,
     description: '',
   });
+  const [sendInfo, setSendInfo] = useState<null | string>(null);
 
   const {
     title,
@@ -43,7 +44,7 @@ const TaskForm = ({ taskData }: Props) => {
 
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log('kliknięto');
+
     try {
       const savedTask = await createOrUodateTask(form, taskData?.id);
       console.log('Task saved:', savedTask);
@@ -54,13 +55,14 @@ const TaskForm = ({ taskData }: Props) => {
         priority: Priority.High,
         description: '',
       });
+      setSendInfo('Task saved');
     } catch (error) {
       console.error('Error saving the form', error);
+      setSendInfo(`${error}`);
     }
   };
 
   const updateForm = (key: string, value: string) => {
-    console.log(key, value);
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
@@ -85,6 +87,7 @@ const TaskForm = ({ taskData }: Props) => {
           value={form.category}
           name='category'
           onChange={(e) => updateForm(e.target.name, e.target.value)}
+          required
         >
           <option value={categoryOption[0]}>{categoryOption[0]}</option>
           <option value={categoryOption[1]}>{categoryOption[1]}</option>
@@ -115,6 +118,7 @@ const TaskForm = ({ taskData }: Props) => {
         </select>
       </p>
       <ButtonForm text={taskData ? edit : add} />
+      <p className={styles.message}>{sendInfo}</p>
     </form>
   );
 };
