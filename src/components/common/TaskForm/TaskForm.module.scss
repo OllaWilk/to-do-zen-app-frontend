@@ -30,9 +30,9 @@
   }
 
   .buttonWrap {
-    @include flex(row, center, space-between);
+    @include flex(row, center, center);
     margin-top: 35px;
     gap: 20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
   }
 }

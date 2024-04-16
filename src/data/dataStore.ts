@@ -18,6 +18,8 @@ export const tasksViewContent: TasksContent = {
 
 export const taskView: TaskView = {
   userName: 'Hi, Aleksandra Wilk',
+  cathegoryLabel: 'Cathegory:',
+  priorityLabel: 'Priority: ',
   noTask:
     'The task you’re looking for isn’t here or doesn’t exist. But don’t worry—just navigate back to the task list page to find your way.',
 };
