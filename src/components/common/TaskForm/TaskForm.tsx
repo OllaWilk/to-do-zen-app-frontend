@@ -24,10 +24,10 @@ interface Props {
 const TaskForm = ({ taskData }: Props) => {
   /* TO DO: fix problem with import Category enum from types */
   const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
-    title: '',
-    category: Category.Done,
-    priority: Priority.High,
-    description: '',
+    title: taskData?.title || '',
+    category: taskData?.category || Category.Done,
+    priority: taskData?.priority || Priority.High,
+    description: taskData?.description || '',
   });
   const [sendInfo, setSendInfo] = useState<null | string>(null);
 
@@ -110,7 +110,7 @@ const TaskForm = ({ taskData }: Props) => {
         <select
           value={form.priority}
           name='priority'
-          onChange={(e) => updateForm(e.target.name, 'medium')}
+          onChange={(e) => updateForm(e.target.name, e.target.value)}
         >
           <option value={priorityOption[0]}>{priorityOption[0]}</option>
           <option value={priorityOption[1]}>{priorityOption[1]}</option>
