@@ -2,9 +2,8 @@ import React, { SyntheticEvent, useState } from 'react';
 import { createOrUodateTask } from '../../../utils/apiCalls/taskService';
 import { TaskEntity } from 'types';
 import { formContent } from '../../../data/dataStore';
-import { ButtonForm } from '../Buttons/ButtonForm/ButtonForm';
+import { ButtonDeleteTask, ButtonForm } from '../Buttons';
 import styles from './TaskForm.module.scss';
-import { ButtonDeleteTask } from '../Buttons';
 
 enum Priority {
   Low = 'low',
