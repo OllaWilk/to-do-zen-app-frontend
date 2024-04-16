@@ -1,0 +1,25 @@
+@import '../../../styles/mixins.scss';
+
+.wrap {
+  @include flex(row, center, space-around);
+  width: 100%;
+  height: 97vh;
+  margin: auto;
+
+  img {
+    border-radius: 30px 30px 30px 30px;
+    object-fit: cover;
+    width: 40%;
+    height: 500px;
+  }
+
+  .info {
+    gap: 30px;
+    padding: 30px;
+    width: 50%;
+
+    @include lg-max {
+      margin: 30px auto;
+    }
+  }
+}

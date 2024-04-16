@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './ButtonBlack.module.scss';
 
 interface Props {
-  dynamicPath: string;
+  dynamicPath: string | string[];
   buttonName: string;
 }
 
