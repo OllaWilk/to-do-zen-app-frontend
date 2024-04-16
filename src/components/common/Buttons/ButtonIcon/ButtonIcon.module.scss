@@ -1,0 +1,19 @@
+@import '../../../../styles/mixins.scss';
+
+.buttonIcon {
+  background-color: var(--color-dark);
+  border: 0;
+  padding: 0.7rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  height: auto;
+  width: 50px;
+  height: 50px;
+  color: var(--color-light);
+  @include flex(row, center, center);
+
+  &:hover {
+    background: var(--color-danger);
+  }
+}

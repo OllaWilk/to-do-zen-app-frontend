@@ -1,0 +1,16 @@
+@import '../../../../styles//mixins.scss';
+
+.tasksList {
+  position: absolute;
+  width: calc(100% - 33%);
+  height: 93%;
+  padding: 17px;
+  margin-bottom: 30px;
+  overflow-y: scroll;
+  @include flex(column, stretch, flex-start);
+  gap: 30px;
+
+  @include lg-max {
+    width: 100%;
+  }
+}

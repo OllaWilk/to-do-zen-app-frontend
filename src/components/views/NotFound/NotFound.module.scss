@@ -1,0 +1,25 @@
+@import '../../../styles//mixins.scss';
+
+.componentWrap {
+  @include flex(row, center, space-around);
+  flex-wrap: nowrap;
+  height: 100%;
+  gap: 80px;
+  padding: 0 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .infoWrap {
+    @include flex(column, center, center);
+    gap: 40px;
+  }
+
+  .imgWrap {
+    background-color: var(--color-main);
+    width: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 20px;
+  }
+}

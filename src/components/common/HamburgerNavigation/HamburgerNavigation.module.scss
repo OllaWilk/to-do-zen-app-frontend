@@ -1,0 +1,19 @@
+@import '../../../styles/mixins.scss';
+
+.hamburgerComponent {
+  display: none;
+
+  @include md-max {
+    display: block;
+
+    position: absolute;
+    @include flex(row, center, center);
+    cursor: pointer;
+    width: 50px;
+    height: 90px;
+    right: -50px;
+    top: 0;
+    font-size: 20px;
+    background-color: var(--color-dark);
+  }
+}

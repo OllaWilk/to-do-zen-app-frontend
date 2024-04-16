@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { logo } from '../../../images';
 import styles from './Logo.module.scss';
 
 interface Props {
   text?: string;
+  size?: string;
 }
 
-const Logo = ({ text }: Props) => {
+const Logo = ({ text, size }: Props) => {
   return (
-    <div className={styles.logo}>
+    <Link to={'/tasks'} className={styles.logo}>
       <div className={styles.imgWrap}>
         <img src={logo} alt='logo' />
       </div>
-      {text && <h1 className={styles.text}>{text}</h1>}
-    </div>
+      {text && (
+        <h1 className={styles.text} style={{ fontSize: `${size}` }}>
+          {text}
+        </h1>
+      )}
+    </Link>
   );
 };
 

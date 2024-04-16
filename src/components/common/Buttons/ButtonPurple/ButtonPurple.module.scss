@@ -1,0 +1,11 @@
+@import '../../../../styles/mixins.scss';
+
+.buttonIcon {
+  @include btn;
+  width: 100px;
+  color: var(--color-light-main);
+
+  &:hover {
+    background: var(--color-danger);
+  }
+}
