@@ -6,18 +6,18 @@ import { TbUfo } from 'react-icons/tb';
 import style from './Navigation.module.scss';
 
 const Navigation = () => {
-  const navLinks = [
-    { name: 'Tasks', path: 'tasks', icon: <FaStar /> },
+  const navigation = [
+    { name: 'Home', path: 'home', icon: <FaStar /> },
     { name: 'Info', path: 'info', icon: <FaRocket /> },
     { name: 'About', path: 'about', icon: <TbUfo /> },
   ];
 
   return (
     <nav className={style.component}>
-      {navLinks.map((link) => (
-        <div key={link.name} className={style.navLink}>
-          <div className={style.mark}>{link.icon}</div>
-          <NavLink to={`/${link.path}`}>{link.name}</NavLink>
+      {navigation.map((item) => (
+        <div key={item.name} className={style.navLink}>
+          <div className={style.mark}>{item.icon}</div>
+          <NavLink to={`/${item.path}`}>{item.name}</NavLink>
         </div>
       ))}
     </nav>

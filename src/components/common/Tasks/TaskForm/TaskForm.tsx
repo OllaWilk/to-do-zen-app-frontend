@@ -1,8 +1,8 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { createOrUodateTask } from '../../../utils/apiCalls/taskService';
+import { createOrUodateTask } from '../../../../utils/apiCalls/taskService';
 import { TaskEntity } from 'types';
-import { formContent } from '../../../data/dataStore';
-import { ButtonDeleteTask, ButtonForm } from '../Buttons';
+import { taskForm } from '../../../../data/pages/taskForm';
+import { ButtonDeleteTask, ButtonForm } from '../../Buttons';
 import styles from './TaskForm.module.scss';
 
 enum Priority {
@@ -30,17 +30,6 @@ const TaskForm = ({ taskData }: Props) => {
     description: taskData?.description || '',
   });
   const [sendInfo, setSendInfo] = useState<null | string>(null);
-
-  const {
-    title,
-    cathegory,
-    categoryOption,
-    priority,
-    priorityOption,
-    description,
-    add,
-    edit,
-  } = formContent;
 
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -72,7 +61,7 @@ const TaskForm = ({ taskData }: Props) => {
   return (
     <form action='' className={styles.taskForm} onSubmit={saveForm}>
       <p className={styles.formLabelWrap}>
-        <span>{title}</span>
+        <span>{taskForm.title}</span>
         <input
           value={form.title}
           onChange={(e) => updateForm('title', e.target.value)}
@@ -82,20 +71,26 @@ const TaskForm = ({ taskData }: Props) => {
         />
       </p>
       <p className={styles.formLabelWrap}>
-        <span>{cathegory}</span>
+        <span>{taskForm.cathegory}</span>
         <select
           value={form.category}
           name='category'
           onChange={(e) => updateForm(e.target.name, e.target.value)}
           required
         >
-          <option value={categoryOption[0]}>{categoryOption[0]}</option>
-          <option value={categoryOption[1]}>{categoryOption[1]}</option>
-          <option value={categoryOption[2]}>{categoryOption[2]}</option>
+          <option value={taskForm.categoryOption[0]}>
+            {taskForm.categoryOption[0]}
+          </option>
+          <option value={taskForm.categoryOption[1]}>
+            {taskForm.categoryOption[1]}
+          </option>
+          <option value={taskForm.categoryOption[2]}>
+            {taskForm.categoryOption[2]}
+          </option>
         </select>
       </p>
       <p className={styles.formLabelWrap}>
-        <span>{description}</span>
+        <span>{taskForm.description}</span>
         <input
           value={form.description}
           onChange={(e) => updateForm(e.target.name, e.target.value)}
@@ -106,20 +101,26 @@ const TaskForm = ({ taskData }: Props) => {
       </p>
       {/* TO DO add reminder */}
       <p className={styles.formLabelWrap}>
-        <span>{priority}</span>
+        <span>{taskForm.priority}</span>
         <select
           value={form.priority}
           name='priority'
           onChange={(e) => updateForm(e.target.name, e.target.value)}
         >
-          <option value={priorityOption[0]}>{priorityOption[0]}</option>
-          <option value={priorityOption[1]}>{priorityOption[1]}</option>
-          <option value={priorityOption[2]}>{priorityOption[2]}</option>
+          <option value={taskForm.priorityOption[0]}>
+            {taskForm.priorityOption[0]}
+          </option>
+          <option value={taskForm.priorityOption[1]}>
+            {taskForm.priorityOption[1]}
+          </option>
+          <option value={taskForm.priorityOption[2]}>
+            {taskForm.priorityOption[2]}
+          </option>
         </select>
       </p>
       <div className={styles.buttonWrap}>
         {taskData && <ButtonDeleteTask taskId={`${taskData.id}`} />}
-        <ButtonForm text={taskData ? edit : add} />
+        <ButtonForm text={taskData ? taskForm.edit : taskForm.add} />
       </div>
       <p className={styles.message}>{sendInfo}</p>
     </form>

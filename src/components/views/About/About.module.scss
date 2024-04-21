@@ -2,9 +2,7 @@
 
 .wrap {
   @include flex(row, center, center);
-  width: 100%;
-  min-height: 97vh;
-  margin: auto;
+
   gap: 40px;
   overflow-y: scroll;
 

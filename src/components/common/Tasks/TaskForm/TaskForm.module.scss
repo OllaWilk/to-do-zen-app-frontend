@@ -1,4 +1,4 @@
-@import '../../../styles/mixins.scss';
+@import '../../../../styles/mixins.scss';
 
 .taskForm {
   width: 100%;
@@ -14,8 +14,15 @@
       text-transform: uppercase;
     }
 
-    input,
     select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    input[type='text'],
+    select {
+      display: block;
       width: 100%;
       padding: 8px 10px;
       border: 1px solid var(--color-dark-grey);

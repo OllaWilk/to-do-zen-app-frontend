@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { TaskEntity } from 'types';
-import { tasksViewContent } from '../../../../data/dataStore';
-import { SearchBar, TaskInfo } from '../../../common';
+import { TaskInfo } from '../TaskInfo/TaskInfo';
 import styles from './TasksList.module.scss';
 
-const TasksList = () => {
+interface Props {
+  loadingData: string;
+}
+
+const TasksList = ({ loadingData }: Props) => {
   const [tasks, setTasks] = useState<TaskEntity[]>([]);
 
   useEffect(() => {
@@ -20,10 +23,9 @@ const TasksList = () => {
 
   return (
     <div className={styles.tasksList}>
-      <SearchBar />
       {tasks ? (
         tasks.map((task) => (
-          <div key={task.id}>
+          <div key={task.id} className={styles.task}>
             <h2>{task.category}</h2>
             <TaskInfo
               title={task.title}
@@ -33,7 +35,7 @@ const TasksList = () => {
           </div>
         ))
       ) : (
-        <p>{tasksViewContent.loading}</p>
+        <p>{loadingData}</p>
       )}
     </div>
   );
