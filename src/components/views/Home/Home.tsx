@@ -10,15 +10,15 @@ import {
 } from '../../common';
 
 const Home = () => {
-  const { loadingData, header, user } = home;
+  const { header, user } = home;
   return (
     <MainLayout>
       <SectionCart>
         <SectionHeader text={header} />
-        <TasksList loadingData={loadingData} />
+        <TasksList />
         <ControlPanel>
           <UserPanel userName={user} />
-          <TaskForm />/
+          <TaskForm />
         </ControlPanel>
       </SectionCart>
     </MainLayout>

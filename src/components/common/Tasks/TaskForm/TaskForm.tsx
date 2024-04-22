@@ -1,5 +1,6 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { createOrUodateTask } from '../../../../utils/apiCalls/taskService';
+import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import { TaskEntity } from 'types';
 import { taskForm } from '../../../../data/pages/taskForm';
 import { ButtonDeleteTask, ButtonForm } from '../../Buttons';
@@ -22,7 +23,8 @@ interface Props {
 }
 
 const TaskForm = ({ taskData }: Props) => {
-  /* TO DO: fix problem with import Category enum from types */
+  const { dispatch } = useTasksContext();
+
   const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
     title: taskData?.title || '',
     category: taskData?.category || Category.Done,
@@ -45,6 +47,7 @@ const TaskForm = ({ taskData }: Props) => {
         description: '',
       });
       setSendInfo('Task saved');
+      dispatch({ type: 'CREATE_TASK', payload: savedTask });
     } catch (error) {
       console.error('Error saving the form', error);
       setSendInfo(`${error}`);
@@ -64,7 +67,9 @@ const TaskForm = ({ taskData }: Props) => {
         <span>{taskForm.title}</span>
         <input
           value={form.title}
-          onChange={(e) => updateForm('title', e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            updateForm('title', e.target.value)
+          }
           type='text'
           name='title'
           required
@@ -93,13 +98,14 @@ const TaskForm = ({ taskData }: Props) => {
         <span>{taskForm.description}</span>
         <input
           value={form.description}
-          onChange={(e) => updateForm(e.target.name, e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            updateForm(e.target.name, e.target.value)
+          }
           type='text'
           name='description'
           required
         />
       </p>
-      {/* TO DO add reminder */}
       <p className={styles.formLabelWrap}>
         <span>{taskForm.priority}</span>
         <select

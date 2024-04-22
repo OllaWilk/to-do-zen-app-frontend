@@ -7,17 +7,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 20px;
+  z-index: 1;
 
   @include lg-max {
     width: 100%;
-  }
-
-  .task {
-    h2 {
-      padding: 17px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      text-align: justify;
-    }
   }
 }

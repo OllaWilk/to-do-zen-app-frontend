@@ -20,9 +20,11 @@ export const createOrUodateTask = async (
       headers,
       body,
     });
+
     if (!res.ok) {
       throw new Error('Sorry, something went wrong');
     }
+
     return await res.json();
   } catch (error) {
     console.error('Failded to save the task', error);
