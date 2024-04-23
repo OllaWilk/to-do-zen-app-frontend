@@ -7,7 +7,8 @@ type TasksState = {
 
 type TaskAction =
   | { type: 'SET_TASKS'; payload: TaskEntity[] }
-  | { type: 'CREATE_TASK'; payload: TaskEntity };
+  | { type: 'CREATE_TASK'; payload: TaskEntity }
+  | { type: 'DELETE_TASK'; payload: string };
 
 type Props = {
   children: React.ReactNode;
@@ -30,6 +31,10 @@ export const tasksReducer = (
       };
     case 'CREATE_TASK':
       return { ...state, tasks: [action.payload, ...(state.tasks || [])] };
+    case 'DELETE_TASK':
+      return {
+        tasks: state.tasks?.filter((t) => t.id !== action.payload) || null,
+      };
 
     default:
       return state;
