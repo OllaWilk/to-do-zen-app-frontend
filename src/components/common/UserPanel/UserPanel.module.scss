@@ -1,15 +1,15 @@
 @import '../../../styles/mixins.scss';
 
 .userWrap {
+  position: fixed;
+  z-index: 999;
+  right: 0;
   @include flex(row, flex-end, flex-end);
   gap: 20px;
-  width: 100%;
+  width: calc(100% - 250px);
   flex-wrap: nowrap;
-  padding: 20px 30px;
-
-  .text {
-    color: var(--color-main);
-  }
+  padding: 10px 30px;
+  background-color: var(--color-main);
 
   .imgWrap {
     width: 70px;

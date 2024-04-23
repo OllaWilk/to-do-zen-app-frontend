@@ -1,6 +1,13 @@
 import React from 'react';
 import { useToggle } from '../../../utils/hooks/useToggle';
-import { HamburgerNavigation, Logo, Navigation } from '../../common/index';
+import { home } from '../../../data/pages/home';
+
+import {
+  HamburgerNavigation,
+  Logo,
+  Navigation,
+  UserPanel,
+} from '../../common/index';
 import styles from './MainLayout.module.scss';
 
 type MainLayoutProps = {
@@ -12,6 +19,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <>
+      <UserPanel userName={home.user} />
       <header
         className={
           !isOpen

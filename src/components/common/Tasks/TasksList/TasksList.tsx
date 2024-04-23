@@ -9,7 +9,6 @@ const TasksList = () => {
     state: { tasks },
     dispatch,
   } = useTasksContext();
-  // const [tasks, setTasks] = useState<TaskEntity[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -17,7 +16,6 @@ const TasksList = () => {
       const data = await res.json();
 
       if (res.ok && data.taskRecord && Array.isArray(data.taskRecord)) {
-        // setTasks(data.taskRecord);
         dispatch({ type: 'SET_TASKS', payload: data.taskRecord });
       }
     })();
