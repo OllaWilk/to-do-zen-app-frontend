@@ -36,22 +36,19 @@ const TaskForm = ({ taskData }: Props) => {
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    try {
-      const savedTask = await createOrUodateTask(form, taskData?.id);
-      console.log('Task saved:', savedTask);
+    const savedTask = await createOrUodateTask(form, taskData?.id);
 
-      setForm({
-        title: '',
-        category: Category.Done,
-        priority: Priority.High,
-        description: '',
-      });
-      setSendInfo('Task saved');
-      dispatch({ type: 'CREATE_TASK', payload: savedTask });
-    } catch (error) {
-      console.error('Error saving the form', error);
-      setSendInfo(`${error}`);
-    }
+    setForm({
+      title: '',
+      category: Category.Done,
+      priority: Priority.High,
+      description: '',
+    });
+    setSendInfo('Task saved');
+    dispatch({
+      type: taskData ? 'UPDATE_TASK' : 'CREATE_TASK',
+      payload: savedTask,
+    });
   };
 
   const updateForm = (key: string, value: string) => {

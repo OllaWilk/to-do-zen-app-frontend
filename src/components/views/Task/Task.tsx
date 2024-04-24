@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TaskEntity } from 'types';
+import { useTasksContext } from '../../../utils/hooks/useTasksContext';
 import { oneTask } from '../../../data/pages/task';
 import backgrounImg from '../../../images/space.png';
 import { ControlPanel, MainLayout } from '../../layout/index';
@@ -15,6 +16,7 @@ import styles from './Task.module.scss';
 
 const Task = () => {
   const { noTask, cathegoryLabel, priorityLabel } = oneTask;
+  const { state } = useTasksContext();
 
   const [task, setTask] = useState<TaskEntity | null>(null);
   const { id } = useParams();
@@ -23,9 +25,10 @@ const Task = () => {
     (async () => {
       const res = await fetch(`http://localhost:3001/tasks/${id}`);
       const data = await res.json();
+
       setTask(data);
     })();
-  }, [id]);
+  }, [id, state]);
 
   if (task === null) {
     return <p>Loading...</p>;

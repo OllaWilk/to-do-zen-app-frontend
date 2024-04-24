@@ -9,14 +9,11 @@ interface Props {
 
 const ButtonDeleteTask = ({ taskId }: Props) => {
   const { dispatch } = useTasksContext();
+
   const deleteItem = async (e: SyntheticEvent) => {
     e.preventDefault();
-    try {
-      await deleteTask(taskId);
-      dispatch({ type: 'DELETE_TASK', payload: taskId });
-    } catch (error) {
-      console.log('Something went wrong. Failed to delete the task');
-    }
+    await deleteTask(taskId);
+    dispatch({ type: 'DELETE_TASK', payload: taskId });
   };
 
   return (
