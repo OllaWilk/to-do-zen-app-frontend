@@ -5,6 +5,7 @@ import { SectionCart, SectionHeader, TaskForm, TasksList } from '../../common';
 
 const Home = () => {
   const { header } = home;
+
   return (
     <MainLayout>
       <SectionCart>
