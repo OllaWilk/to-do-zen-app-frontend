@@ -23,7 +23,7 @@ const TasksList = () => {
 
   if (!data || resStatus === 'fetching') {
     return <Spiner />;
-  } else if (data.taskRecord.length === 0) {
+  } else if (!tasks || tasks.length === 0) {
     return <NoDataAlert />;
   } else {
     return (

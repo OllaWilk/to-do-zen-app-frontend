@@ -9,7 +9,8 @@ type TaskAction =
   | { type: 'SET_TASKS'; payload: TaskEntity[] }
   | { type: 'CREATE_TASK'; payload: TaskEntity }
   | { type: 'DELETE_TASK'; payload: string }
-  | { type: 'UPDATE_TASK'; payload: TaskEntity };
+  | { type: 'UPDATE_TASK'; payload: TaskEntity }
+  | { type: 'SET_TASKS_EMPTY'; payload?: [] };
 
 type Props = {
   children: React.ReactNode;
@@ -34,7 +35,12 @@ export const tasksReducer = (
       return { ...state, tasks: [action.payload, ...(state.tasks || [])] };
     case 'DELETE_TASK':
       return {
-        tasks: state.tasks?.filter((t) => t.id !== action.payload) || null,
+        ...state,
+        tasks:
+          state.tasks?.filter((task) => task.id !== action.payload) ||
+          [].length > 0
+            ? state.tasks?.filter((task) => task.id !== action.payload) || []
+            : null,
       };
     case 'UPDATE_TASK':
       return {
