@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { JsonCommunicationType } from '../types/JsonCommunicationType';
 
 export enum HttpMethods {
   GET = 'GET',
@@ -9,53 +8,49 @@ export enum HttpMethods {
   PATCH = 'PATCH',
 }
 
-const initialOptions = {
-  method: HttpMethods.GET,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: {},
-};
+interface FetchState<T> {
+  data: T | null;
+  resStatus: 'idle' | 'fetching' | 'fetched' | 'error';
+}
 
-export const useFetch = (url = '', value = initialOptions) => {
-  const cache = useRef<any>({});
-  const [address, setAddress] = useState<string>(url);
-  const [status, setStatus] = useState<string>('idle');
-  const [form, setForm] = useState(value);
-  const [data, setData] = useState<JsonCommunicationType>();
-
-  const fetchData = (url: string, value: typeof initialOptions) => {
-    setAddress(url);
-    setForm(value);
-  };
+const useFetch = <T,>(url = ''): FetchState<T> => {
+  const dataCache = useRef<{ [key: string]: T }>({});
+  const [data, setData] = useState<T | null>(null);
+  const [resStatus, setResStatus] =
+    useState<FetchState<T>['resStatus']>('idle');
 
   useEffect(() => {
-    if (!address || !address.trim()) return;
+    if (!url || !url.trim()) return;
 
-    const fetchDataGet = async () => {
-      setStatus('fetching');
+    (async () => {
+      setResStatus('fetching');
 
-      if (cache.current[address]) {
-        const data = cache.current[address];
-        setData(data);
-        setStatus('fetched');
+      if (dataCache.current[url]) {
+        const json = dataCache.current[url];
+        setData(json);
+        setResStatus('fetched');
       } else {
-        const res = await fetch(address, {
-          method: form.method,
-          credentials: 'include',
-          headers: form.headers,
-          body:
-            form.method === HttpMethods.GET ? null : JSON.stringify(form.body),
-        });
-
-        const data = await res.json();
-        cache.current[address] = data;
-        setData(data);
-        setStatus('fetched');
+        try {
+          const response = await fetch(url, {
+            method: HttpMethods.GET,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const json = await response.json();
+          dataCache.current[url] = json;
+          setData(json);
+          setResStatus('fetched');
+        } catch (error) {
+          console.error('Failded to save the task', error);
+          setResStatus('error');
+          throw error;
+        }
       }
-    };
-    fetchDataGet();
-  }, [address, form.method]);
+    })();
+  }, [url]);
 
-  return [data, status, fetchData, cache] as const;
+  return { data, resStatus };
 };
+
+export { useFetch };

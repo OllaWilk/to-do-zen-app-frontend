@@ -1,0 +1,35 @@
+@import '../../../styles//mixins.scss';
+
+@keyframes spinner {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinerWraper {
+  @include flex(column, center, center);
+  position: relative;
+  gap: 20px;
+
+  .spinner {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--color-main);
+    border-top: 10px solid transparent;
+    border-radius: 50%;
+    animation: spinner 4s infinite;
+  }
+
+  p {
+    @include flex(row, center, center);
+    gap: 10px;
+
+    svg {
+      font-size: 30px;
+    }
+  }
+}
