@@ -1,6 +1,5 @@
 import React from 'react';
 import { GoSidebarExpand, GoSidebarCollapse } from 'react-icons/go';
-
 import { useToggle } from '../../../utils/hooks/useToggle';
 import styles from './ControlPanel.module.scss';
 

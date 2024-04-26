@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { TasksContextProvider } from './context/tasks';
 import { App } from './App';
 import './styles/normalize.scss';
 import './styles/global.scss';
@@ -9,6 +10,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <TasksContextProvider>
+      <App />
+    </TasksContextProvider>
   </React.StrictMode>
 );

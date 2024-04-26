@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TaskEntity } from 'types';
 import { FaIcons } from 'react-icons/fa';
-import { ButtonDeleteTask, ButtonPurple } from '../index';
+import { ButtonDeleteTask, ButtonPurple } from '../../index';
 import style from './TaskInfo.module.scss';
 
 const TaskInfo = ({

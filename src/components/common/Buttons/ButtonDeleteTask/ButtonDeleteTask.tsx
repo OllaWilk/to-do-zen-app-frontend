@@ -1,5 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { deleteTask } from '../../../../utils/apiCalls/taskService';
+import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import styles from './ButtonDeleteTask.module.scss';
 
 interface Props {
@@ -7,13 +8,12 @@ interface Props {
 }
 
 const ButtonDeleteTask = ({ taskId }: Props) => {
+  const { dispatch } = useTasksContext();
+
   const deleteItem = async (e: SyntheticEvent) => {
     e.preventDefault();
-    try {
-      await deleteTask(taskId);
-    } catch (error) {
-      console.log('Something went wrong. Failed to delete the task');
-    }
+    await deleteTask(taskId);
+    dispatch({ type: 'DELETE_TASK', payload: taskId });
   };
 
   return (

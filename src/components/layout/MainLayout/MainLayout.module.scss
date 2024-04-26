@@ -15,18 +15,17 @@
 
 .cockpit {
   position: absolute;
-  border-radius: 30px;
-  width: calc(100vw - 284px);
-  background-color: var(--color-light);
+  width: calc(100vw - 250px);
+  min-height: 100vh;
+  right: 0;
+  padding: 17px;
   color: var(--color-dark);
-  min-height: calc(100vh - 34px);
-  top: 17px;
-  right: 17px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  @include flex(column, stretch, flex-start);
+  gap: 17px;
+  margin-top: 80px;
 
   @include md-max {
-    width: calc(100vw - 34px);
+    width: 100%;
   }
 }
 

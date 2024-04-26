@@ -1,59 +1,39 @@
-@import '../../../styles/mixins.scss';
+@import '../../../../styles/mixins.scss';
 
 .cart {
   width: 100%;
   border-radius: 30px;
-  @include flex(row, center, space-between);
-  flex-wrap: wrap;
   cursor: pointer;
-  z-index: 888;
-  margin: 20px 0;
+
+  background-color: var(--color-light-main);
+  color: var(--color-main);
+  z-index: 1;
 
   &:hover {
     @include shadow;
     z-index: 999;
   }
 
-  .cartImage {
-    @include flex(column, center, center);
-    border-radius: 30px 0 0 30px;
-    width: 250px;
-    height: 100px;
-    min-height: 100%;
-    padding: 20px;
-    font-size: 4.5rem;
-  }
-
   .cartText {
-    min-height: 100px;
-
-    width: calc(100% - 250px);
+    width: 100%;
+    min-height: 200px;
     padding: 0px 30px;
-    text-align: justify;
-    @include flex(column, center, center);
 
     h2 {
-      font-size: 1.2rem;
+      font-size: 1rem;
       text-transform: uppercase;
+      margin-top: 20px;
     }
   }
-}
-
-.cart {
-  background-color: var(--color-light-main);
-  color: var(--color-main);
 
   .cartImage {
     background-color: darken($color: #f4f4fe, $amount: 8);
-  }
-
-  .cartTasksOpen {
-    p {
-      background-color: var(--color-main);
-      &:hover {
-        background: var(--color-danger);
-      }
-    }
+    @include flex(column, center, center);
+    border-radius: 30px 30px;
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    font-size: 4.5rem;
   }
 }
 
@@ -78,4 +58,11 @@
   @include flex(row, center, flex-end);
   padding: 20px 20px 20px 0;
   gap: 20px;
+
+  p {
+    background-color: var(--color-main);
+    &:hover {
+      background: var(--color-danger);
+    }
+  }
 }

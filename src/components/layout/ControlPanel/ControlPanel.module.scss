@@ -13,6 +13,7 @@
 
   @include lg-max {
     width: 100%;
+    z-index: 888;
   }
 }
 
@@ -32,6 +33,7 @@
     font-size: 2rem;
     cursor: pointer;
     transition: var(--transition);
+    z-index: 999;
 
     &:hover {
       background-color: var(--color-danger);
