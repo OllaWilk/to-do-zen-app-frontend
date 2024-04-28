@@ -28,8 +28,6 @@ const Task = () => {
     dispatch,
   } = useTasksContext();
 
-  console.log(data);
-
   useEffect(() => {
     if (data) {
       dispatch({ type: 'SET_CURRENT_TASK', payload: data });

@@ -8,7 +8,7 @@ export const createOrUodateTask = async (
 ) => {
   const url = taskId ? `${BASE_URL}${taskId}` : BASE_URL;
 
-  const body = JSON.stringify({ ...task });
+  const body = JSON.stringify(task);
 
   try {
     const res = await fetch(url, {

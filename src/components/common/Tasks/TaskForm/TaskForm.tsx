@@ -25,30 +25,35 @@ interface Props {
 const TaskForm = ({ taskData }: Props) => {
   const { dispatch } = useTasksContext();
 
+  const [sendInfo, setSendInfo] = useState<null | string>(null);
   const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
     title: taskData?.title || '',
     category: taskData?.category || Category.Done,
     priority: taskData?.priority || Priority.High,
     description: taskData?.description || '',
   });
-  const [sendInfo, setSendInfo] = useState<null | string>(null);
 
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const savedTask = await createOrUodateTask(form, taskData?.id);
+    if (taskData) {
+      const json = await createOrUodateTask(form, taskData?.id);
+      dispatch({
+        type: 'UPDATE_TASK',
+        payload: {
+          ...json,
+          id: taskData.id,
+          time: new Date(),
+        },
+      });
+    }
 
-    setForm({
-      title: '',
-      category: Category.Done,
-      priority: Priority.High,
-      description: '',
-    });
-    setSendInfo('Task saved');
+    const savedTask = await createOrUodateTask(form, taskData?.id);
     dispatch({
       type: taskData ? 'UPDATE_TASK' : 'CREATE_TASK',
       payload: savedTask,
     });
+    setSendInfo('Task saved');
   };
 
   const updateForm = (key: string, value: string) => {

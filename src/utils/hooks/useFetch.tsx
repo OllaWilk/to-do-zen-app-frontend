@@ -49,7 +49,6 @@ const useFetch = <T,>(url = ''): FetchState<T> => {
       }
     })();
   }, [url]);
-
   return { data, resStatus };
 };
 

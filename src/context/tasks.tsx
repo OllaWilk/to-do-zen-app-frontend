@@ -44,20 +44,22 @@ export const tasksReducer = (
             ? state.tasks?.filter((task) => task.id !== action.payload) || []
             : null,
       };
-    case 'UPDATE_TASK':
-      return {
-        ...state,
-        tasks:
-          state.tasks?.map((t) =>
-            t.id === action.payload.id ? action.payload : t
-          ) || null,
-      };
     case 'SET_CURRENT_TASK':
       return {
         ...state,
         task: action.payload,
       };
+    case 'UPDATE_TASK': {
+      const updatedTasks = state.tasks?.map((task) =>
+        task.id === action.payload.id ? action.payload : task
+      );
 
+      return {
+        ...state,
+        task: action.payload,
+        tasks: updatedTasks || state.tasks,
+      };
+    }
     default:
       return state;
   }
