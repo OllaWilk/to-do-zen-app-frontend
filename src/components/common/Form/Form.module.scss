@@ -1,0 +1,8 @@
+@import '../../../styles/mixins.scss';
+
+.componentForm {
+  width: 100%;
+  @include flex(column, center, center);
+  padding: 25px 0;
+  color: var(--color-main);
+}

@@ -1,39 +1,45 @@
 import React, { useEffect } from 'react';
-import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import { TaskEntity } from 'types';
-import { TaskInfo } from '../TaskInfo/TaskInfo';
+import { useFetch } from '../../../../utils/hooks/useFetch';
+import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
+import { NoDataAlert, Spiner, TaskInfo } from '../../../common';
 import styles from './TasksList.module.scss';
 
 const TasksList = () => {
+  const { data, resStatus } = useFetch<{ taskRecord: TaskEntity[] }>(
+    'http://localhost:3001/tasks'
+  );
+
   const {
     state: { tasks },
     dispatch,
   } = useTasksContext();
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch('http://localhost:3001/tasks');
-      const data = await res.json();
+    if (data) {
+      dispatch({ type: 'SET_TASKS', payload: data.taskRecord });
+    }
+  }, [dispatch, data, resStatus]);
 
-      if (res.ok && data.taskRecord && Array.isArray(data.taskRecord)) {
-        dispatch({ type: 'SET_TASKS', payload: data.taskRecord });
-      }
-    })();
-  }, [dispatch]);
-
-  return (
-    <div className={styles.tasksList}>
-      {tasks &&
-        tasks.map((task: TaskEntity) => (
-          <TaskInfo
-            key={task.id}
-            title={task.title}
-            description={task.description}
-            id={task.id}
-          />
-        ))}
-    </div>
-  );
+  if (!data || resStatus === 'fetching') {
+    return <Spiner />;
+  } else if (!tasks || tasks.length === 0) {
+    return <NoDataAlert />;
+  } else {
+    return (
+      <div className={styles.tasksList}>
+        {tasks &&
+          tasks.map((task) => (
+            <TaskInfo
+              key={task.id}
+              title={task.title}
+              description={task.description}
+              id={task.id}
+            />
+          ))}
+      </div>
+    );
+  }
 };
 
 export { TasksList };

@@ -11,6 +11,10 @@
   padding: 10px 30px;
   background-color: var(--color-main);
 
+  @include md-max {
+    width: 100%;
+  }
+
   .imgWrap {
     width: 70px;
     height: 70px;

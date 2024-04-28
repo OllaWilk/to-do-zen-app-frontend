@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { TaskEntity } from 'types';
 import { useTasksContext } from '../../../utils/hooks/useTasksContext';
+import { useFetch } from '../../../utils/hooks/useFetch';
 import { oneTask } from '../../../data/pages/task';
 import backgrounImg from '../../../images/space.png';
 import { ControlPanel, MainLayout } from '../../layout/index';
@@ -10,28 +11,31 @@ import {
   Paragraph,
   SectionCart,
   SectionHeader,
+  Spiner,
   TaskForm,
 } from '../../common/index';
 import styles from './Task.module.scss';
 
 const Task = () => {
   const { noTask, cathegoryLabel, priorityLabel } = oneTask;
-  const { state } = useTasksContext();
-
-  const [task, setTask] = useState<TaskEntity | null>(null);
   const { id } = useParams();
+  const { data, resStatus } = useFetch<TaskEntity>(
+    `http://localhost:3001/tasks/${id}`
+  );
+
+  const {
+    state: { task },
+    dispatch,
+  } = useTasksContext();
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch(`http://localhost:3001/tasks/${id}`);
-      const data = await res.json();
+    if (data) {
+      dispatch({ type: 'SET_CURRENT_TASK', payload: data });
+    }
+  }, [dispatch, data]);
 
-      setTask(data);
-    })();
-  }, [id, state]);
-
-  if (task === null) {
-    return <p>Loading...</p>;
+  if (!task || resStatus === 'fetching') {
+    return <Spiner />;
   }
 
   return (

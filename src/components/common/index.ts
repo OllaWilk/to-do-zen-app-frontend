@@ -9,5 +9,7 @@ export { HamburgerNavigation } from './HamburgerNavigation/HamburgerNavigation';
 export { SectionHeader } from './SectionHeader/SectionHeader';
 export { SectionCart } from './SectionCart/SectionCart';
 export { Column } from './Column/Column';
+export { Spiner } from './Spiner/Spiner';
+export { NoDataAlert } from './NoDataAlert/NoDataAlert';
 export * from './Buttons';
 export * from './Tasks';
