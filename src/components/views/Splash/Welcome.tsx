@@ -1,16 +1,16 @@
 import React from 'react';
-import { welcomeContent } from '../../../data/dataStore';
+import { welcome } from '../../../data/pages/welcome';
 import { Logo, Paragraph, AnimatedAstronaut } from '../../common/index';
 
 import styles from './Welcome.module.scss';
 
 const Welcome = () => {
-  const { text } = welcomeContent;
+  const { header } = welcome;
   return (
     <section className={styles.welcome}>
       <article>
         <Logo text={'SpaceSteps'} />
-        <Paragraph text={text} />
+        <Paragraph text={header} />
       </article>
       <AnimatedAstronaut />
     </section>
