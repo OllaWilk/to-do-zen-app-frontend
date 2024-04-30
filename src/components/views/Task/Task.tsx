@@ -19,9 +19,7 @@ import styles from './Task.module.scss';
 const Task = () => {
   const { noTask, cathegoryLabel, priorityLabel } = oneTask;
   const { id } = useParams();
-  const { data, resStatus } = useFetch<TaskEntity>(
-    `http://localhost:3001/tasks/${id}`
-  );
+  const { data, loading, fetchData } = useFetch<TaskEntity>();
 
   const {
     state: { task },
@@ -29,12 +27,13 @@ const Task = () => {
   } = useTasksContext();
 
   useEffect(() => {
+    fetchData(`http://localhost:3001/tasks/${id}`);
     if (data) {
       dispatch({ type: 'SET_CURRENT_TASK', payload: data });
     }
-  }, [dispatch, data]);
+  }, [dispatch, data, fetchData, id]);
 
-  if (!task || resStatus === 'fetching') {
+  if (!task || loading === 'fetching') {
     return <Spiner />;
   }
 

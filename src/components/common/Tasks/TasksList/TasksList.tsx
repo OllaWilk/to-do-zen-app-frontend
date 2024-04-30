@@ -6,9 +6,7 @@ import { NoDataAlert, Spiner, TaskInfo } from '../../../common';
 import styles from './TasksList.module.scss';
 
 const TasksList = () => {
-  const { data, resStatus } = useFetch<{ taskRecord: TaskEntity[] }>(
-    'http://localhost:3001/tasks'
-  );
+  const { data, loading, fetchData } = useFetch<{ taskRecord: TaskEntity[] }>();
 
   const {
     state: { tasks },
@@ -16,12 +14,13 @@ const TasksList = () => {
   } = useTasksContext();
 
   useEffect(() => {
+    fetchData('http://localhost:3001/tasks');
     if (data) {
       dispatch({ type: 'SET_TASKS', payload: data.taskRecord });
     }
-  }, [dispatch, data, resStatus]);
+  }, [dispatch, data, loading, fetchData]);
 
-  if (!data || resStatus === 'fetching') {
+  if (!data || loading === 'fetching') {
     return <Spiner />;
   } else if (!tasks || tasks.length === 0) {
     return <NoDataAlert />;

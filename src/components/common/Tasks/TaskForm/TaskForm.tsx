@@ -1,7 +1,7 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { createOrUodateTask } from '../../../../utils/apiCalls/taskService';
-import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { TaskEntity } from 'types';
+import { HttpMethods, useFetch } from '../../../../utils/hooks/useFetch';
+import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import { taskForm } from '../../../../data/pages/taskForm';
 import { ButtonDeleteTask, ButtonForm } from '../../Buttons';
 import styles from './TaskForm.module.scss';
@@ -23,8 +23,8 @@ interface Props {
 }
 
 const TaskForm = ({ taskData }: Props) => {
+  const { data, fetchData, loading } = useFetch<TaskEntity>();
   const { dispatch } = useTasksContext();
-
   const [sendInfo, setSendInfo] = useState<null | string>(null);
   const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
     title: taskData?.title || '',
@@ -33,27 +33,47 @@ const TaskForm = ({ taskData }: Props) => {
     description: taskData?.description || '',
   });
 
+  useEffect(() => {
+    if (data && loading === 'fetched') {
+      dispatch({
+        type: 'CREATE_TASK',
+        payload: {
+          ...data,
+          time: new Date(),
+        },
+      });
+
+      setSendInfo('Task saved');
+    }
+  }, [data, loading, dispatch, taskData, form]);
+
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
 
+    const initialOptions = {
+      method: taskData?.id ? HttpMethods.PATCH : HttpMethods.POST,
+      header: {
+        'Content-Type': 'application/json',
+      },
+      body: taskData?.id ? { ...form } : form,
+    };
+
+    const url = taskData?.id
+      ? `http://localhost:3001/tasks/${taskData?.id}`
+      : `http://localhost:3001/tasks`;
+
+    fetchData(url, initialOptions);
+
     if (taskData) {
-      const json = await createOrUodateTask(form, taskData?.id);
       dispatch({
         type: 'UPDATE_TASK',
         payload: {
-          ...json,
-          id: taskData.id,
+          ...form,
+          id: taskData?.id,
           time: new Date(),
         },
       });
     }
-
-    const savedTask = await createOrUodateTask(form, taskData?.id);
-    dispatch({
-      type: taskData ? 'UPDATE_TASK' : 'CREATE_TASK',
-      payload: savedTask,
-    });
-    setSendInfo('Task saved');
   };
 
   const updateForm = (key: string, value: string) => {
