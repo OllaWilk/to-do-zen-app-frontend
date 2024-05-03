@@ -1,12 +1,13 @@
 @import '../../../../styles/mixins.scss';
 
-.component {
-  @include btn;
-  width: 120px;
-  background-color: var(--color-dark);
-  color: var(--color-light);
+.icon {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  transition: var(--transition);
+  cursor: pointer;
 
   &:hover {
-    background: var(--color-danger);
+    color: var(--color-danger);
   }
 }

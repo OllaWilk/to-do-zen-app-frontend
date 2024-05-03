@@ -1,6 +1,8 @@
 import React, { SyntheticEvent } from 'react';
-import { deleteTask } from '../../../../utils/apiCalls/taskService';
+import { FaTrash } from 'react-icons/fa';
+
 import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
+import { HttpMethods, useFetch } from '../../../../utils/hooks/useFetch';
 import styles from './ButtonDeleteTask.module.scss';
 
 interface Props {
@@ -9,18 +11,21 @@ interface Props {
 
 const ButtonDeleteTask = ({ taskId }: Props) => {
   const { dispatch } = useTasksContext();
+  const { fetchData } = useFetch();
 
   const deleteItem = async (e: SyntheticEvent) => {
     e.preventDefault();
-    await deleteTask(taskId);
+
+    fetchData(`http://localhost:3001/tasks/${taskId}`, {
+      method: HttpMethods.DELETE,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     dispatch({ type: 'DELETE_TASK', payload: taskId });
   };
 
-  return (
-    <div onClick={deleteItem} className={styles.component}>
-      Delete
-    </div>
-  );
+  return <FaTrash className={styles.icon} onClick={deleteItem} />;
 };
 
 export { ButtonDeleteTask };

@@ -11,19 +11,23 @@ export enum HttpMethods {
 
 interface FetchOption {
   method: HttpMethods;
-  header: Record<string, string>;
+  headers: Record<string, string>;
   body?: TaskEntity | Omit<TaskEntity, 'id' | 'time'> | any;
 }
 
 interface FetchState<T> {
   data: T | null;
   loading: 'idle' | 'fetching' | 'fetched' | 'error';
-  fetchData: (url: string, options?: FetchOption) => Promise<void>;
+  fetchData: (
+    url: string,
+    options?: FetchOption,
+    onSuccess?: (data: T) => void
+  ) => Promise<void>;
 }
 
 const getOption: FetchOption = {
   method: HttpMethods.GET,
-  header: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'application/json' },
 };
 
 const useFetch = <T,>(): FetchState<T> => {
@@ -32,12 +36,13 @@ const useFetch = <T,>(): FetchState<T> => {
   const [loading, setLoading] = useState<FetchState<T>['loading']>('idle');
 
   const fetchData = useCallback(
-    async (url: string, initialOptions: FetchOption = getOption) => {
-      if (!url || !url.trim()) return;
-
+    async (
+      url: string,
+      initialOptions: FetchOption = getOption,
+      onSuccess?: (data: T) => void
+    ) => {
       setLoading('fetching');
-
-      if (dataCache.current[url]) {
+      if (dataCache.current[url] && initialOptions.method === HttpMethods.GET) {
         const json = dataCache.current[url];
         setData(json);
         setLoading('fetched');
@@ -45,7 +50,7 @@ const useFetch = <T,>(): FetchState<T> => {
         try {
           const response = await fetch(url, {
             method: initialOptions.method,
-            headers: initialOptions.header,
+            headers: initialOptions.headers,
             body:
               initialOptions.method === HttpMethods.GET
                 ? null
@@ -57,9 +62,11 @@ const useFetch = <T,>(): FetchState<T> => {
           }
 
           const json = await response.json();
+
           dataCache.current[url] = json;
           setData(json);
           setLoading('fetched');
+          onSuccess?.(json);
         } catch (error) {
           console.error('Failded to save the task', error);
           setLoading('error');
@@ -69,7 +76,6 @@ const useFetch = <T,>(): FetchState<T> => {
     },
     []
   );
-
   return { data, loading, fetchData };
 };
 
