@@ -36,14 +36,17 @@ const TaskForm = ({ taskData }: Props) => {
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
 
+    const method = taskData?.id ? HttpMethods.PATCH : HttpMethods.POST;
+    const body = taskData?.id
+      ? { ...form, id: taskData.id, time: new Date() }
+      : form;
+
     const initialOptions = {
-      method: taskData?.id ? HttpMethods.PATCH : HttpMethods.POST,
+      method,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: taskData?.id
-        ? { ...form, id: taskData.id, time: new Date() }
-        : form,
+      body,
     };
 
     const url = taskData?.id

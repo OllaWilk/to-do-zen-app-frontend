@@ -12,7 +12,7 @@ export enum HttpMethods {
 interface FetchOption {
   method: HttpMethods;
   headers: Record<string, string>;
-  body?: TaskEntity | Omit<TaskEntity, 'id' | 'time'> | any;
+  body?: TaskEntity | Omit<TaskEntity, 'id' | 'time'> | unknown;
 }
 
 interface FetchState<T> {
@@ -42,7 +42,7 @@ const useFetch = <T,>(): FetchState<T> => {
       onSuccess?: (data: T) => void
     ) => {
       setLoading('fetching');
-      if (dataCache.current[url] && initialOptions.method === HttpMethods.GET) {
+      if (initialOptions.method === HttpMethods.GET && dataCache.current[url]) {
         const json = dataCache.current[url];
         setData(json);
         setLoading('fetched');
@@ -68,7 +68,7 @@ const useFetch = <T,>(): FetchState<T> => {
           setLoading('fetched');
           onSuccess?.(json);
         } catch (error) {
-          console.error('Failded to save the task', error);
+          console.error('Failed to save the task', error);
           setLoading('error');
           throw error;
         }
