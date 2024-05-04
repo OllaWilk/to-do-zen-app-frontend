@@ -1,9 +1,9 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { createOrUodateTask } from '../../../../utils/apiCalls/taskService';
-import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import { TaskEntity } from 'types';
+import { HttpMethods, useFetch } from '../../../../utils/hooks/useFetch';
+import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import { taskForm } from '../../../../data/pages/taskForm';
-import { ButtonDeleteTask, ButtonForm } from '../../Buttons';
+import { ButtonBlack } from '../../Buttons';
 import styles from './TaskForm.module.scss';
 
 enum Priority {
@@ -23,8 +23,8 @@ interface Props {
 }
 
 const TaskForm = ({ taskData }: Props) => {
+  const { fetchData } = useFetch<TaskEntity>();
   const { dispatch } = useTasksContext();
-
   const [sendInfo, setSendInfo] = useState<null | string>(null);
   const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
     title: taskData?.title || '',
@@ -36,24 +36,40 @@ const TaskForm = ({ taskData }: Props) => {
   const saveForm = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    if (taskData) {
-      const json = await createOrUodateTask(form, taskData?.id);
-      dispatch({
-        type: 'UPDATE_TASK',
-        payload: {
-          ...json,
-          id: taskData.id,
-          time: new Date(),
-        },
-      });
-    }
+    const method = taskData?.id ? HttpMethods.PATCH : HttpMethods.POST;
+    const body = taskData?.id
+      ? { ...form, id: taskData.id, time: new Date() }
+      : form;
 
-    const savedTask = await createOrUodateTask(form, taskData?.id);
-    dispatch({
-      type: taskData ? 'UPDATE_TASK' : 'CREATE_TASK',
-      payload: savedTask,
+    const initialOptions = {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    };
+
+    const url = taskData?.id
+      ? `http://localhost:3001/tasks/${taskData?.id}`
+      : `http://localhost:3001/tasks`;
+
+    fetchData(url, initialOptions, (newData) => {
+      setSendInfo('Task saved');
+
+      dispatch({
+        type: !taskData?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
+        payload: !taskData?.id
+          ? newData
+          : { ...newData, id: taskData?.id, time: new Date() },
+      });
     });
-    setSendInfo('Task saved');
+
+    setForm({
+      title: '',
+      category: Category.Done,
+      priority: Priority.High,
+      description: '',
+    });
   };
 
   const updateForm = (key: string, value: string) => {
@@ -127,12 +143,10 @@ const TaskForm = ({ taskData }: Props) => {
         </select>
       </p>
       <div className={styles.buttonWrap}>
-        {taskData && <ButtonDeleteTask taskId={`${taskData.id}`} />}
-        <ButtonForm text={taskData ? taskForm.edit : taskForm.add} />
+        <ButtonBlack buttonName={taskData ? taskForm.edit : taskForm.add} />
       </div>
       <p className={styles.message}>{sendInfo}</p>
     </form>
   );
 };
-
 export { TaskForm };
