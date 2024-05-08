@@ -1,0 +1,28 @@
+@import '../../../../styles/mixins.scss';
+
+.formLabelWrap {
+  width: 100%;
+  @include flex(column, flex-start, center);
+  color: var(--color-main);
+
+  label:first-letter {
+    text-transform: uppercase;
+  }
+
+  label {
+    margin: 10px 0;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--color-dark-grey);
+    border-radius: 4px;
+    background-color: var(--color-light);
+  }
+}

@@ -7,6 +7,7 @@ import { oneTask } from '../../../data/pages/task';
 import backgrounImg from '../../../images/space.png';
 import { ControlPanel, MainLayout } from '../../layout/index';
 import { NotFound } from '../NotFound/NotFound';
+
 import {
   Paragraph,
   SectionCart,
@@ -61,7 +62,7 @@ const Task = () => {
           )}
           {task.id === id && (
             <ControlPanel>
-              <TaskForm taskData={task} />
+              <TaskForm task={task} />
             </ControlPanel>
           )}
         </div>
