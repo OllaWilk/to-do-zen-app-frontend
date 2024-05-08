@@ -1,9 +1,12 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { TaskEntity } from 'types';
-import { HttpMethods, useFetch } from '../../../../utils/hooks/useFetch';
-import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
+import React, { useState } from 'react';
+import { TaskEntity, CreateTaskReq } from 'types';
 import { taskForm } from '../../../../data/pages/taskForm';
-import { ButtonBlack } from '../../Buttons';
+import {
+  HttpMethods,
+  useFetch,
+  useTasksContext,
+} from '../../../../utils/hooks';
+import { Form, Input, Select, Textarea } from '../../Form';
 import styles from './TaskForm.module.scss';
 
 enum Priority {
@@ -19,134 +22,103 @@ enum Category {
 }
 
 interface Props {
-  taskData?: TaskEntity;
+  task?: TaskEntity;
 }
 
-const TaskForm = ({ taskData }: Props) => {
+const TaskForm = ({ task }: Props) => {
   const { fetchData } = useFetch<TaskEntity>();
   const { dispatch } = useTasksContext();
-  const [sendInfo, setSendInfo] = useState<null | string>(null);
-  const [form, setForm] = useState<Omit<TaskEntity, 'id' | 'time'>>({
-    title: taskData?.title || '',
-    category: taskData?.category || Category.Done,
-    priority: taskData?.priority || Priority.High,
-    description: taskData?.description || '',
-  });
+  const [message, setMessage] = useState<null | string>(null);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  const saveForm = async (e: SyntheticEvent) => {
-    e.preventDefault();
-
-    const method = taskData?.id ? HttpMethods.PATCH : HttpMethods.POST;
-    const body = taskData?.id
-      ? { ...form, id: taskData.id, time: new Date() }
-      : form;
-
-    const initialOptions = {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body,
-    };
-
-    const url = taskData?.id
-      ? `http://localhost:3001/tasks/${taskData?.id}`
-      : `http://localhost:3001/tasks`;
-
-    fetchData(url, initialOptions, (newData) => {
-      setSendInfo('Task saved');
-
-      dispatch({
-        type: !taskData?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
-        payload: !taskData?.id
-          ? newData
-          : { ...newData, id: taskData?.id, time: new Date() },
-      });
-    });
-
-    setForm({
-      title: '',
-      category: Category.Done,
-      priority: Priority.High,
-      description: '',
-    });
+  /* FORM TASK VALUES */
+  const initialValues: CreateTaskReq = {
+    title: '',
+    category: Category.Done,
+    priority: Priority.High,
+    description: '',
   };
 
-  const updateForm = (key: string, value: string) => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      [key]: value,
-    }));
+  /* VALIDATION */
+  const validateForm = (form: CreateTaskReq): string | null => {
+    if (form.title.trim().length <= 2 || form.title.trim().length >= 99) {
+      return `Your title currently has ${form.title.length} characters, it should be between 3 and 100 characters long`;
+    } else if (!Object.values(Category).includes(form.category)) {
+      return 'Please select one of the three available categories: "To Do", "In Progress", or "Done".';
+    } else if (!Object.values(Priority).includes(form.priority as Priority)) {
+      return 'Please select one of the three available priorities: "low", "medium", or "high".';
+    } else if (form.description && form.description.trim().length >= 1001) {
+      return `Description should be at least 1000 characters long. Your description currently has ${form.description.length} characters,`;
+    }
+    return null;
+  };
+  /* SUBMIT FORM */
+  const submit = async (form: CreateTaskReq) => {
+    /* CHECK FORM BEFORE SUBMIT */
+    const ErrorMessage = validateForm(form);
+
+    if (ErrorMessage) {
+      setMessage(ErrorMessage);
+      setIsError(true);
+    } else {
+      const method = task?.id ? HttpMethods.PATCH : HttpMethods.POST;
+      const body = task?.id ? { ...form, id: task.id, time: new Date() } : form;
+      const url = task?.id
+        ? `http://localhost:3001/tasks/${task?.id}`
+        : `http://localhost:3001/tasks`;
+      const initialOptions = {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      };
+      fetchData(url, initialOptions, (newData) => {
+        setMessage('Task saved');
+        setIsError(false);
+        dispatch({
+          type: !task?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
+          payload: !task?.id
+            ? newData
+            : { ...newData, id: task?.id, time: new Date() },
+        });
+      });
+    }
   };
 
   return (
-    <form action='' className={styles.taskForm} onSubmit={saveForm}>
-      <p className={styles.formLabelWrap}>
-        <span>{taskForm.title}</span>
-        <input
-          value={form.title}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            updateForm('title', e.target.value)
-          }
-          type='text'
-          name='title'
-          required
-        />
-      </p>
-      <p className={styles.formLabelWrap}>
-        <span>{taskForm.cathegory}</span>
-        <select
-          value={form.category}
+    <div className={styles.componentWrap}>
+      <Form
+        submit={submit}
+        initialValues={initialValues}
+        buttonName={task?.id ? 'edit' : 'add'}
+      >
+        <Input label={taskForm.title} name='title' />
+        <Select
+          label='category'
           name='category'
-          onChange={(e) => updateForm(e.target.name, e.target.value)}
-          required
-        >
-          <option value={taskForm.categoryOption[0]}>
-            {taskForm.categoryOption[0]}
-          </option>
-          <option value={taskForm.categoryOption[1]}>
-            {taskForm.categoryOption[1]}
-          </option>
-          <option value={taskForm.categoryOption[2]}>
-            {taskForm.categoryOption[2]}
-          </option>
-        </select>
-      </p>
-      <p className={styles.formLabelWrap}>
-        <span>{taskForm.description}</span>
-        <input
-          value={form.description}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            updateForm(e.target.name, e.target.value)
-          }
-          type='text'
-          name='description'
-          required
+          options={[
+            `${Category.Done}`,
+            `${Category.InProgress}`,
+            `${Category.ToDo}`,
+          ]}
         />
-      </p>
-      <p className={styles.formLabelWrap}>
-        <span>{taskForm.priority}</span>
-        <select
-          value={form.priority}
+        <Textarea label={taskForm.description} name='description' />
+        <Select
+          label='priority'
           name='priority'
-          onChange={(e) => updateForm(e.target.name, e.target.value)}
-        >
-          <option value={taskForm.priorityOption[0]}>
-            {taskForm.priorityOption[0]}
-          </option>
-          <option value={taskForm.priorityOption[1]}>
-            {taskForm.priorityOption[1]}
-          </option>
-          <option value={taskForm.priorityOption[2]}>
-            {taskForm.priorityOption[2]}
-          </option>
-        </select>
-      </p>
-      <div className={styles.buttonWrap}>
-        <ButtonBlack buttonName={taskData ? taskForm.edit : taskForm.add} />
-      </div>
-      <p className={styles.message}>{sendInfo}</p>
-    </form>
+          options={[
+            `${Priority.High}`,
+            `${Priority.Low}`,
+            `${Priority.Medium}`,
+          ]}
+        />
+        <p className={`${isError ? styles.error : styles.success}`}>
+          {message}
+        </p>
+      </Form>
+    </div>
   );
 };
+
 export { TaskForm };

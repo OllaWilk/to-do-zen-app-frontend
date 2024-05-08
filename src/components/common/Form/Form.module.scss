@@ -1,8 +1,12 @@
 @import '../../../styles/mixins.scss';
 
-.componentForm {
+.component {
+  @include btn;
+  background-color: var(--color-dark);
+  color: var(--color-light);
   width: 100%;
-  @include flex(column, center, center);
-  padding: 25px 0;
-  color: var(--color-main);
+
+  &:hover {
+    background: var(--color-danger);
+  }
 }

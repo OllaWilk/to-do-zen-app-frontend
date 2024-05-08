@@ -1,40 +1,10 @@
 @import '../../../../styles/mixins.scss';
 
-.taskForm {
+.componentWrap {
   width: 100%;
-  @include flex(column, center, center);
-  padding: 25px 0;
+  @include flex(column, stretch, flex-end);
+  padding: 25px;
   color: var(--color-main);
-
-  .formLabelWrap {
-    width: 95%;
-    @include flex(column, flex-start, center);
-
-    span:first-letter {
-      text-transform: uppercase;
-    }
-
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-    }
-
-    input[type='text'],
-    select {
-      display: block;
-      width: 100%;
-      padding: 8px 10px;
-      border: 1px solid var(--color-dark-grey);
-      border-radius: 4px;
-      background-color: var(--color-light);
-    }
-  }
-
-  .message {
-    color: var(--color-error);
-    padding: 20px;
-  }
 
   .buttonWrap {
     @include flex(row, center, center);
@@ -42,4 +12,12 @@
     gap: 20px;
     flex-wrap: wrap;
   }
+}
+.error {
+  color: var(--color-error);
+  padding: 20px;
+}
+
+.success {
+  color: green;
 }
