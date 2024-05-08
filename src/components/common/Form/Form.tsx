@@ -1,65 +1,50 @@
-import React, { ReactElement, useState, useContext, useCallback } from 'react';
+import React, { useState, ReactElement, ChangeEvent } from 'react';
+import { FormContext, FormValues } from '../../../utils/hooks';
+
 import styles from './Form.module.scss';
 
-interface FormValues {
-  [key: string]: string | number | boolean | string[] | number[];
+interface FormProviderProps<T> {
+  children: ReactElement[] | ReactElement;
+  initialValues: FormValues<T>;
+  submit: (form: FormValues<T>) => void;
+  buttonName: string;
 }
 
-interface FormContectType {
-  form: FormValues;
-  handleFormChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-interface Props {
-  children: ReactElement[];
-  formInitialValues: FormValues;
-  functionToForm: (form: FormValues) => void;
-}
+export function Form<T>({
+  children,
+  submit,
+  initialValues,
+  buttonName,
+}: FormProviderProps<T>) {
+  const [form, setForm] = useState<FormValues<T>>(initialValues);
 
-const FormContext = React.createContext<FormContectType | undefined>(undefined);
+  const handleFormChange = (
+    event: ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = event.target;
 
-export function useFormContext() {
-  const context = useContext(FormContext);
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
 
-  if (!context)
-    throw new Error('useFormContext must be used within a FormProvider');
-
-  return context;
-}
-
-function Form({ children, formInitialValues, functionToForm }: Props) {
-  const [form, setForm] = useState<FormValues>(formInitialValues);
-
-  const handleFormChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event.target;
-      const updatedForm = {
-        ...form,
-        [name]: value,
-      };
-      setForm(updatedForm);
-    },
-    [form]
-  );
-
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    console.log(form, 'form w FORM');
-    functionToForm(form);
-    setForm(formInitialValues);
+  const handleSubmit = () => {
+    submit(form);
+    setForm(initialValues);
   };
 
   return (
-    <FormContext.Provider
-      value={{
-        form,
-        handleFormChange,
-      }}
-    >
-      <div className={styles.componentForm}>
-        <form onSubmit={handleSubmit}>{children}</form>
-      </div>
-    </FormContext.Provider>
+    <form>
+      <FormContext.Provider value={{ form, handleFormChange }}>
+        {children}
+      </FormContext.Provider>
+
+      <button className={styles.component} type='button' onClick={handleSubmit}>
+        {buttonName}
+      </button>
+    </form>
   );
 }
-
-export { Form };

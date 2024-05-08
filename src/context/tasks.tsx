@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, Dispatch, useReducer } from 'react';
 import { TaskEntity } from 'types';
 
 type TasksState = {
@@ -20,7 +20,7 @@ type Props = {
 
 export const TasksContext = createContext<{
   state: TasksState;
-  dispatch: React.Dispatch<TaskAction>;
+  dispatch: Dispatch<TaskAction>;
 } | null>(null);
 
 export const tasksReducer = (

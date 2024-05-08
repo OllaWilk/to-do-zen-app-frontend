@@ -13,3 +13,4 @@ export { Spiner } from './Spiner/Spiner';
 export { NoDataAlert } from './NoDataAlert/NoDataAlert';
 export * from './Buttons';
 export * from './Tasks';
+export * from './Form';
