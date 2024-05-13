@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import { useToggle } from '../../../utils/hooks/useToggle';
 import { home } from '../../../data/pages/home';
 
@@ -10,11 +11,7 @@ import {
 } from '../../common/index';
 import styles from './MainLayout.module.scss';
 
-type MainLayoutProps = {
-  children: React.ReactNode;
-};
-
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout = () => {
   const [isOpen, toggleIsOpen] = useToggle(true);
 
   return (
@@ -31,7 +28,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <Navigation />
         <HamburgerNavigation isOpen={isOpen} handleClick={toggleIsOpen} />
       </header>
-      <section className={styles.cockpit}>{children}</section>
+      <section className={styles.cockpit}>
+        <Outlet />
+      </section>
     </>
   );
 };

@@ -5,7 +5,7 @@ import { useTasksContext } from '../../../utils/hooks/useTasksContext';
 import { useFetch } from '../../../utils/hooks/useFetch';
 import { oneTask } from '../../../data/pages/task';
 import backgrounImg from '../../../images/space.png';
-import { ControlPanel, MainLayout } from '../../layout/index';
+import { ControlPanel } from '../../layout/index';
 import { NotFound } from '../NotFound/NotFound';
 
 import {
@@ -39,35 +39,33 @@ const Task = () => {
   }
 
   return (
-    <MainLayout>
-      <SectionCart>
-        <div className={styles.height}>
-          {task.id === id ? (
-            <div className={styles.task}>
-              <div className={styles.imgWrap}>
-                <img src={backgrounImg} alt='woman in space' />
-              </div>
-              <SectionHeader text={task.title} />
-              <Paragraph text={`${task.description}`} />
-              <p className={styles.taskLabel}>
-                {cathegoryLabel} <span>{task.category}</span>
-              </p>
-              <p className={styles.taskLabel}>
-                {priorityLabel}
-                <span>{task.priority}</span>
-              </p>
+    <SectionCart>
+      <div className={styles.height}>
+        {task.id === id ? (
+          <div className={styles.task}>
+            <div className={styles.imgWrap}>
+              <img src={backgrounImg} alt='woman in space' />
             </div>
-          ) : (
-            <NotFound message={noTask} />
-          )}
-          {task.id === id && (
-            <ControlPanel>
-              <TaskForm task={task} />
-            </ControlPanel>
-          )}
-        </div>
-      </SectionCart>
-    </MainLayout>
+            <SectionHeader text={task.title} />
+            <Paragraph text={`${task.description}`} />
+            <p className={styles.taskLabel}>
+              {cathegoryLabel} <span>{task.category}</span>
+            </p>
+            <p className={styles.taskLabel}>
+              {priorityLabel}
+              <span>{task.priority}</span>
+            </p>
+          </div>
+        ) : (
+          <NotFound message={noTask} />
+        )}
+        {task.id === id && (
+          <ControlPanel>
+            <TaskForm task={task} />
+          </ControlPanel>
+        )}
+      </div>
+    </SectionCart>
   );
 };
 
