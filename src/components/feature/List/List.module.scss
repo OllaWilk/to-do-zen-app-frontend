@@ -1,0 +1,24 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/settings.scss';
+
+.columns {
+  @include flex(row, flex-start, space-between);
+  overflow: auto;
+  padding: 1rem 0;
+}
+
+.creator {
+  width: calc(100% - 12px);
+  margin: 1rem auto;
+}
+
+@media (max-width: 767px) {
+  .columns {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .creator {
+    width: 100%;
+  }
+}

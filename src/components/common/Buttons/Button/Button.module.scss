@@ -1,0 +1,21 @@
+@import '../../../../styles/mixins.scss';
+@import '../../../../styles/settings.scss';
+
+.component {
+  @include btn;
+  background: darken(#5955b3, 0%);
+  border: 0;
+  color: var(--color-light);
+  padding: 1rem;
+
+  &:hover {
+    background: darken(#5955b3, 10%);
+  }
+
+  &.danger {
+    background: darken(#eeedf1, 40%);
+    &:hover {
+      background: darken(#eeedf1, 60%);
+    }
+  }
+}

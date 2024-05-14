@@ -1,0 +1,41 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/settings.scss';
+
+.component {
+  width: 100%;
+
+  input {
+    width: 100%;
+    background: var(--color-light);
+    border: 1px solid lighten(black, 60%);
+    padding: 1rem (1rem * 1.5);
+    margin: 0 0 1rem 0;
+    border-radius: var(--radius);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  height: 0;
+  transition: all 200ms;
+
+  &.buttonsShown {
+    opacity: 1;
+    height: auto;
+  }
+
+  > * {
+    flex-grow: 1;
+    flex-basis: 0;
+
+    &:first-child {
+      margin: 0;
+
+      ~ * {
+        margin: 0 0 0 1rem;
+      }
+    }
+  }
+}

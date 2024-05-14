@@ -1,0 +1,25 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/settings.scss';
+
+.component {
+  @include flex(row, center, space-between);
+  gap: 20px;
+  background: var(--color-light);
+  border: 1px solid lighten(#5955b3, 30%);
+  padding: 0.5rem 1rem;
+  margin: 0 0 1rem 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+span {
+  color: var(--color-main);
+  display: none;
+  font-weight: bold;
+}
+
+.component:hover {
+  span {
+    display: block;
+  }
+}
