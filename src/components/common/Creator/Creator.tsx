@@ -11,7 +11,6 @@ const Creator = ({ text, children, action }: Props) => {
   const [newItem, setNewItem] = useState({ value: '', visibleButtons: false });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log('handleChange');
     setNewItem({
       value: event.target.value,
       visibleButtons: event.target.value.length > 0,
@@ -19,7 +18,6 @@ const Creator = ({ text, children, action }: Props) => {
   };
 
   const handleOK = () => {
-    console.log('handleOk');
     if (newItem.value !== '') {
       action?.(newItem.value);
     }
@@ -31,7 +29,10 @@ const Creator = ({ text, children, action }: Props) => {
   };
 
   const handleCancel = () => {
-    console.log('handle Cancel');
+    setNewItem({
+      value: '',
+      visibleButtons: false,
+    });
   };
 
   return (
