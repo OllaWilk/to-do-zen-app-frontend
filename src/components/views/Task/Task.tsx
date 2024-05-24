@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { TaskEntity } from 'types';
+import { EventEntity } from 'types';
 import { useTasksContext } from '../../../utils/hooks/useTasksContext';
 import { useFetch } from '../../../utils/hooks/useFetch';
 import { oneTask } from '../../../data/pages/task';
@@ -17,10 +17,10 @@ import {
 } from '../../common/index';
 import styles from './Task.module.scss';
 
-const Task = () => {
-  const { noTask, cathegoryLabel, priorityLabel } = oneTask;
+export const Task = () => {
+  const { noTask, cathegoryLabel } = oneTask;
   const { id } = useParams();
-  const { data, loading, fetchData } = useFetch<TaskEntity>();
+  const { data, loading, fetchData } = useFetch<EventEntity>();
 
   const {
     state: { task },
@@ -28,7 +28,7 @@ const Task = () => {
   } = useTasksContext();
 
   useEffect(() => {
-    fetchData(`http://localhost:3001/tasks/${id}`);
+    fetchData(`http://localhost:3001/events/${id}`);
     if (data) {
       dispatch({ type: 'SET_CURRENT_TASK', payload: data });
     }
@@ -52,8 +52,7 @@ const Task = () => {
               {cathegoryLabel} <span>{task.category}</span>
             </p>
             <p className={styles.taskLabel}>
-              {priorityLabel}
-              <span>{task.priority}</span>
+              <span>{task.status}</span>
             </p>
           </div>
         ) : (
@@ -68,5 +67,3 @@ const Task = () => {
     </SectionCart>
   );
 };
-
-export { Task };

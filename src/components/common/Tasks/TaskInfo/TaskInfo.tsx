@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TaskEntity } from 'types';
-import { FaIcons } from 'react-icons/fa';
+import { EventEntity } from 'types';
+
 import { ButtonDeleteTask, ButtonPurple } from '../../index';
 import style from './TaskInfo.module.scss';
 
@@ -8,7 +8,7 @@ const TaskInfo = ({
   title,
   description,
   id,
-}: Pick<TaskEntity, 'title' | 'description' | 'id'>) => {
+}: Pick<EventEntity, 'title' | 'description' | 'id'>) => {
   const [accordion, setAccordion] = useState(true);
 
   const toggleAcordion = () => {
@@ -17,9 +17,6 @@ const TaskInfo = ({
 
   return (
     <article className={style.cart} onClick={toggleAcordion}>
-      <div className={style.cartImage}>
-        <FaIcons />
-      </div>
       <div className={style.cartText}>
         <h2>{title}</h2>
         <p>{description}</p>

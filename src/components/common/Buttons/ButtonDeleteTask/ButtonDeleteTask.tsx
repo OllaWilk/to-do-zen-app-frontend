@@ -16,7 +16,7 @@ const ButtonDeleteTask = ({ taskId }: Props) => {
   const deleteItem = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    fetchData(`http://localhost:3001/tasks/${taskId}`, {
+    fetchData(`http://localhost:3001/events/${taskId}`, {
       method: HttpMethods.DELETE,
       headers: {
         'Content-Type': 'application/json',

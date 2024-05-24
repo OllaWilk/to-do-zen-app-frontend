@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { TaskEntity } from 'types';
+import { EventEntity } from 'types';
 
 export enum HttpMethods {
   GET = 'GET',
@@ -12,7 +12,7 @@ export enum HttpMethods {
 interface FetchOption {
   method: HttpMethods;
   headers: Record<string, string>;
-  body?: TaskEntity | Omit<TaskEntity, 'id' | 'time'> | unknown;
+  body?: EventEntity | Omit<EventEntity, 'id' | 'time'> | unknown;
 }
 
 interface FetchState<T> {

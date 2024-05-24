@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import { TaskEntity } from 'types';
+import { EventEntity } from 'types';
 import { useFetch } from '../../../../utils/hooks/useFetch';
 import { useTasksContext } from '../../../../utils/hooks/useTasksContext';
 import { NoDataAlert, Spiner, TaskInfo } from '../../../common';
 import styles from './TasksList.module.scss';
 
 const TasksList = () => {
-  const { data, loading, fetchData } = useFetch<{ taskRecord: TaskEntity[] }>();
+  const { data, loading, fetchData } = useFetch<{
+    taskRecord: EventEntity[];
+  }>();
 
   const {
     state: { tasks },
@@ -14,7 +16,7 @@ const TasksList = () => {
   } = useTasksContext();
 
   useEffect(() => {
-    fetchData('http://localhost:3001/tasks');
+    fetchData('http://localhost:3001/events');
     if (data) {
       dispatch({ type: 'SET_TASKS', payload: data.taskRecord });
     }

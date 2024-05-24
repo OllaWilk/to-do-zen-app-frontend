@@ -11,7 +11,7 @@ function App() {
 
         <Route element={<MainLayout />}>
           <Route path='/home' element={<Home />} />
-          <Route path='/tasks/:id' element={<Task />} />
+          <Route path='/events/:id' element={<Task />} />
           <Route path='/info' element={<Info />} />
           <Route path='/about' element={<About />} />
         </Route>

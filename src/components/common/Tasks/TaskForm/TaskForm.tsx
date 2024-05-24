@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TaskEntity, CreateTaskReq } from 'types';
+import { EventEntity } from 'types';
 import { taskForm } from '../../../../data/pages/taskForm';
 import {
   HttpMethods,
@@ -9,51 +9,43 @@ import {
 import { Form, Input, Select, Textarea } from '../../Form';
 import styles from './TaskForm.module.scss';
 
-enum Priority {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-}
-
-enum Category {
-  ToDo = 'to do',
-  InProgress = 'in progress',
-  Done = 'done',
-}
-
 interface Props {
-  task?: TaskEntity;
+  task?: EventEntity;
 }
 
-const TaskForm = ({ task }: Props) => {
-  const { fetchData } = useFetch<TaskEntity>();
+export const TaskForm = ({ task }: Props) => {
+  const { fetchData } = useFetch<EventEntity>();
   const { dispatch } = useTasksContext();
   const [message, setMessage] = useState<null | string>(null);
   const [isError, setIsError] = useState<boolean>(false);
 
   /* FORM TASK VALUES */
-  const initialValues: CreateTaskReq = {
+  const initialValues: EventEntity = {
     title: '',
-    category: Category.Done,
-    priority: Priority.High,
+    creator_id: '',
+    price: 'free',
+    date: new Date(),
+    status: 'planed',
     description: '',
+    url: '',
+    lat: 0,
+    lon: 0,
+    category: '',
+    duration: '',
+    reminder: 0,
   };
 
   /* VALIDATION */
-  const validateForm = (form: CreateTaskReq): string | null => {
+  const validateForm = (form: EventEntity): string | null => {
     if (form.title.trim().length <= 2 || form.title.trim().length >= 99) {
       return `Your title currently has ${form.title.length} characters, it should be between 3 and 100 characters long`;
-    } else if (!Object.values(Category).includes(form.category)) {
-      return 'Please select one of the three available categories: "To Do", "In Progress", or "Done".';
-    } else if (!Object.values(Priority).includes(form.priority as Priority)) {
-      return 'Please select one of the three available priorities: "low", "medium", or "high".';
     } else if (form.description && form.description.trim().length >= 1001) {
       return `Description should be at least 1000 characters long. Your description currently has ${form.description.length} characters,`;
     }
     return null;
   };
   /* SUBMIT FORM */
-  const submit = async (form: CreateTaskReq) => {
+  const submit = async (form: EventEntity) => {
     /* CHECK FORM BEFORE SUBMIT */
     const ErrorMessage = validateForm(form);
 
@@ -64,8 +56,8 @@ const TaskForm = ({ task }: Props) => {
       const method = task?.id ? HttpMethods.PATCH : HttpMethods.POST;
       const body = task?.id ? { ...form, id: task.id, time: new Date() } : form;
       const url = task?.id
-        ? `http://localhost:3001/tasks/${task?.id}`
-        : `http://localhost:3001/tasks`;
+        ? `http://localhost:3001/events/${task?.id}`
+        : `http://localhost:3001/events`;
       const initialOptions = {
         method,
         headers: {
@@ -80,7 +72,7 @@ const TaskForm = ({ task }: Props) => {
           type: !task?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
           payload: !task?.id
             ? newData
-            : { ...newData, id: task?.id, time: new Date() },
+            : { ...newData, id: task?.id, created_at: new Date() },
         });
       });
     }
@@ -94,24 +86,12 @@ const TaskForm = ({ task }: Props) => {
         buttonName={task?.id ? 'edit' : 'add'}
       >
         <Input label={taskForm.title} name='title' />
-        <Select
-          label='category'
-          name='category'
-          options={[
-            `${Category.Done}`,
-            `${Category.InProgress}`,
-            `${Category.ToDo}`,
-          ]}
-        />
+
         <Textarea label={taskForm.description} name='description' />
         <Select
           label='priority'
           name='priority'
-          options={[
-            `${Priority.High}`,
-            `${Priority.Low}`,
-            `${Priority.Medium}`,
-          ]}
+          options={[`planed`, `ongoind`, `completed`]}
         />
         <p className={`${isError ? styles.error : styles.success}`}>
           {message}
@@ -120,5 +100,3 @@ const TaskForm = ({ task }: Props) => {
     </div>
   );
 };
-
-export { TaskForm };

@@ -1,18 +1,18 @@
 import React, { createContext, Dispatch, useReducer } from 'react';
-import { TaskEntity } from 'types';
+import { EventEntity } from 'types';
 
 type TasksState = {
-  tasks: TaskEntity[] | null;
-  task: TaskEntity | null;
+  tasks: EventEntity[] | null;
+  task: EventEntity | null;
 };
 
 type TaskAction =
-  | { type: 'SET_TASKS'; payload: TaskEntity[] }
-  | { type: 'CREATE_TASK'; payload: TaskEntity }
+  | { type: 'SET_TASKS'; payload: EventEntity[] }
+  | { type: 'CREATE_TASK'; payload: EventEntity }
   | { type: 'DELETE_TASK'; payload: string }
-  | { type: 'UPDATE_TASK'; payload: TaskEntity }
+  | { type: 'UPDATE_TASK'; payload: EventEntity }
   | { type: 'SET_TASKS_EMPTY'; payload?: [] }
-  | { type: 'SET_CURRENT_TASK'; payload: TaskEntity };
+  | { type: 'SET_CURRENT_TASK'; payload: EventEntity };
 
 type Props = {
   children: React.ReactNode;

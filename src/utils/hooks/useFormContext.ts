@@ -1,33 +1,25 @@
 import { createContext, ChangeEvent } from 'react';
-import { TaskEntity } from 'types';
+import { EventEntity } from 'types';
 
-/* DO USUNIECIA */
-export enum Priority {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-}
-
-export enum Category {
-  ToDo = 'to do',
-  InProgress = 'in progress',
-  Done = 'done',
-}
-
-export interface FormValues<T> extends Omit<TaskEntity, 'id' | 'time'> {
+export interface FormValues<T> extends Omit<EventEntity, 'id' | 'time'> {
   [key: string]:
     | string
     | number
-    | Category
-    | Priority
     | string[]
     | number[]
     | undefined
+    | Date
+    | 'planed'
+    | 'ongoing'
+    | 'completed'
+    | 'free'
+    | unknown
+    | any
     | T;
 }
 
-interface FormContextType<T> {
-  form: FormValues<T>;
+interface FormContextType {
+  form: any;
   handleFormChange: (
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -35,8 +27,8 @@ interface FormContextType<T> {
   ) => void;
 }
 
-export const FormContext = createContext<FormContextType<any>>({
-  form: { title: '', category: Category.Done },
+export const FormContext = createContext<FormContextType>({
+  form: { title: '', category: '' },
   handleFormChange: () => {
     console.log('');
   },
