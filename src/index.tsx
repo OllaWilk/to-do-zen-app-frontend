@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { TasksContextProvider } from './context/tasks';
+import { AuthContextProvider } from './context/auth';
 import { App } from './App';
 import './styles/normalize.scss';
 import './styles/global.scss';
@@ -10,8 +11,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <TasksContextProvider>
-      <App />
-    </TasksContextProvider>
+    <AuthContextProvider>
+      <TasksContextProvider>
+        <App />
+      </TasksContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
