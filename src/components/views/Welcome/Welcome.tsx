@@ -18,8 +18,8 @@ const Welcome = () => {
           }
         />
         <div className={styles.btns}>
-          <ButtonBlack dynamicPath={'login'} buttonName={'Login'} />
           <ButtonBlack dynamicPath={'signup'} buttonName={'Signup'} />
+          <ButtonBlack dynamicPath={'login'} buttonName={'Login'} />
         </div>
       </article>
       <AnimatedAstronaut />

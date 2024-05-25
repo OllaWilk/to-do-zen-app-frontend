@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { MdAlternateEmail } from 'react-icons/md';
-
 import { UserEntityForm } from 'types';
 import { useSignup, useToggle } from '../../../utils/hooks/index';
 import { Logo, AnimatedAstronaut, ButtonBlack } from '../../common/index';
@@ -13,6 +12,7 @@ export const Signup = () => {
     email: '',
     password: '',
   };
+
   const [data, setData] = useState(formValues);
   const { signup, error, isLoading } = useSignup();
   const [isToggled, toggle] = useToggle(false);
