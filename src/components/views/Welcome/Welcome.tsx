@@ -9,14 +9,17 @@ import {
 import styles from './Welcome.module.scss';
 
 const Welcome = () => {
-  const { header, button } = welcome;
+  const { header } = welcome;
 
   return (
-    <section className={styles.welcome}>
+    <section className={`${styles.welcome} `}>
       <article>
-        <Logo text={'SpaceSteps'} size='3rem' />
+        <Logo text={'SpaceSteps'} />
         <Paragraph text={header} />
-        <ButtonBlack dynamicPath={button.path} buttonName={button.name} />
+        <div className={styles.btns}>
+          <ButtonBlack dynamicPath={'login'} buttonName={'Login'} />
+          <ButtonBlack dynamicPath={'signup'} buttonName={'Signup'} />
+        </div>
       </article>
       <AnimatedAstronaut />
     </section>

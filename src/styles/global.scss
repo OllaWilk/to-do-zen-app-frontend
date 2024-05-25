@@ -26,8 +26,8 @@ body {
   min-height: 100vh;
   @include flex(column, center, center);
 
-  @media screen and (max-width: 1200px) {
-    width: 92%;
+  @include sm-max {
+    width: 95%;
   }
 }
 

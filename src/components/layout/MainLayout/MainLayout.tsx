@@ -24,7 +24,7 @@ const MainLayout = () => {
             : `${styles.navigation} ${styles.toggleHorizontal}`
         }
       >
-        <Logo text={'SpaceSteps'} size='20px' />
+        <Logo text={'SpaceSteps'} />
         <Navigation />
         <HamburgerNavigation isOpen={isOpen} handleClick={toggleIsOpen} />
       </header>

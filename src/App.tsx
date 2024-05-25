@@ -1,6 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Welcome, Home, NotFound, Task, Info, About } from './components/views';
+import {
+  Welcome,
+  Home,
+  NotFound,
+  Task,
+  Info,
+  About,
+  Login,
+} from './components/views';
 import { MainLayout } from './components/layout';
 
 function App() {
@@ -8,9 +16,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Welcome />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Welcome />} />
 
         <Route element={<MainLayout />}>
-          <Route path='/home' element={<Home />} />
+          <Route path='/cockpit' element={<Home />} />
           <Route path='/events/:id' element={<Task />} />
           <Route path='/info' element={<Info />} />
           <Route path='/about' element={<About />} />
