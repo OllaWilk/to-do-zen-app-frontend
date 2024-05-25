@@ -1,6 +1,6 @@
 @import '../../../styles/mixins.scss';
 
-.welcome {
+.signup {
   width: 80%;
   max-width: 1400px;
   margin: 0 auto;
@@ -17,24 +17,11 @@
     width: 95%;
   }
 
-  article {
+  form {
     width: 50%;
 
     @include lg-max {
       width: 100%;
-    }
-  }
-
-  .btns {
-    @include flex(row, center, space-between);
-    gap: 20px;
-    padding: 40px 0;
-
-    a {
-      width: 50%;
-    }
-    @include sm-max {
-      flex-direction: column;
     }
   }
 }

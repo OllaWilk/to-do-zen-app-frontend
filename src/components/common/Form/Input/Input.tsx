@@ -1,8 +1,15 @@
-import React, { useContext } from 'react';
-import { FormContext } from '../../../../utils/hooks';
+import React from 'react';
 import styles from './Input.module.scss';
 
-type Type = 'text' | 'number' | 'password' | 'radio' | 'submit' | 'file';
+type Type =
+  | 'text'
+  | 'number'
+  | 'password'
+  | 'radio'
+  | 'submit'
+  | 'file'
+  | 'email'
+  | any;
 
 interface Props {
   name: string;
@@ -12,6 +19,7 @@ interface Props {
   maxLength?: number;
   minLength?: number;
   disabled?: boolean;
+  value?: Type;
 }
 
 const Input = ({
@@ -22,10 +30,8 @@ const Input = ({
   maxLength,
   minLength,
   disabled,
+  value,
 }: Props) => {
-  const formContext = useContext(FormContext);
-  const { form, handleFormChange } = formContext;
-
   return (
     <div
       className={disabled ? `${styles.disabled}` : `${styles.formLabelWrap}`}
@@ -34,13 +40,11 @@ const Input = ({
       <input
         type={type}
         name={name}
-        value={String(form[name])}
-        onChange={handleFormChange}
+        value={value}
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}
         disabled={!disabled ? disabled : false}
-        checked={form[name]}
       />
     </div>
   );

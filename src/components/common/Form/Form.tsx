@@ -1,22 +1,22 @@
-import React, { useState, ReactElement, ChangeEvent } from 'react';
-import { FormContext, FormValues } from '../../../utils/hooks';
-
+import React, { useState, ReactElement, ChangeEvent, FormEvent } from 'react';
+import { EventEntity, UserEntityForm } from 'types';
+import { FormContext } from '../../../utils/hooks';
 import styles from './Form.module.scss';
 
 interface FormProviderProps<T> {
   children: ReactElement[] | ReactElement;
-  initialValues: FormValues<T>;
-  submit: (form: FormValues<T>) => void;
+  formValues: T;
+  submit: (form: T) => void;
   buttonName: string;
 }
 
-export function Form<T>({
+export function Form<T extends UserEntityForm | EventEntity>({
   children,
   submit,
-  initialValues,
+  formValues,
   buttonName,
 }: FormProviderProps<T>) {
-  const [form, setForm] = useState<FormValues<T>>(initialValues);
+  const [form, setForm] = useState(formValues);
 
   const handleFormChange = (
     event: ChangeEvent<
@@ -31,18 +31,18 @@ export function Form<T>({
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     submit(form);
-    setForm(initialValues);
+    setForm(formValues);
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <FormContext.Provider value={{ form, handleFormChange }}>
         {children}
       </FormContext.Provider>
-
-      <button className={styles.component} type='button' onClick={handleSubmit}>
+      <button className={styles.component} type='button'>
         {buttonName}
       </button>
     </form>

@@ -20,7 +20,7 @@ export const TaskForm = ({ task }: Props) => {
   const [isError, setIsError] = useState<boolean>(false);
 
   /* FORM TASK VALUES */
-  const initialValues: EventEntity = {
+  const formValues: EventEntity = {
     title: '',
     creator_id: '',
     price: 'free',
@@ -82,7 +82,7 @@ export const TaskForm = ({ task }: Props) => {
     <div className={styles.componentWrap}>
       <Form
         submit={submit}
-        initialValues={initialValues}
+        formValues={formValues}
         buttonName={task?.id ? 'edit' : 'add'}
       >
         <Input label={taskForm.title} name='title' />

@@ -8,6 +8,7 @@ import {
   Info,
   About,
   Login,
+  Signup,
 } from './components/views';
 import { MainLayout } from './components/layout';
 
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Welcome />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Welcome />} />
+        <Route path='/signup' element={<Signup />} />
 
         <Route element={<MainLayout />}>
           <Route path='/cockpit' element={<Home />} />

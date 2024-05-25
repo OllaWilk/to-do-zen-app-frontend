@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { FormContext } from '../../../../utils/hooks';
+import React from 'react';
+// import { FormContext } from '../../../../utils/hooks';
 import style from './Textarea.module.scss';
 
 interface Props {
@@ -21,8 +21,8 @@ const Textarea = ({
   disabled,
   placeholder,
 }: Props) => {
-  const formContext = useContext(FormContext);
-  const { form, handleFormChange } = formContext;
+  // const formContext = useContext(FormContext);
+  // const { form, handleFormChange } = formContext;
   const styleCss = {
     maxHeight: `${maxHeight}px`,
   };
@@ -34,9 +34,8 @@ const Textarea = ({
         name={name}
         style={styleCss}
         maxLength={maxLength}
-        value={String(form[name])}
         disabled={disabled ? disabled : false}
-        onChange={handleFormChange}
+        // onChange={handleFormChange}
         placeholder={placeholder}
         minLength={minLength}
       />

@@ -6,15 +6,24 @@ import styles from './ButtonBlack.module.scss';
 interface Props {
   dynamicPath?: string | string[];
   buttonName: string;
+  disabled?: boolean | null | undefined;
   onClick?: () => void;
 }
 
-const ButtonBlack = ({ dynamicPath, buttonName, onClick }: Props) => {
-  if (!dynamicPath)
-    return <button className={styles.component}> {parse(buttonName)}</button>;
+const ButtonBlack = ({ dynamicPath, buttonName, onClick, disabled }: Props) => {
+  const className = `${styles.component} ${disabled ? styles.disabled : ''}`;
 
-  return (
-    <Link to={`/${dynamicPath}`} className={styles.component} onClick={onClick}>
+  if (!dynamicPath)
+    return (
+      <button className={className} disabled={!!disabled}>
+        {parse(buttonName)}
+      </button>
+    );
+
+  return disabled ? (
+    <span className={className}>{parse(buttonName)}</span>
+  ) : (
+    <Link to={`/${dynamicPath}`} className={className} onClick={onClick}>
       {parse(buttonName)}
     </Link>
   );

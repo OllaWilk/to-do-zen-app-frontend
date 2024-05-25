@@ -1,5 +1,4 @@
 import React from 'react';
-import { welcome } from '../../../data/pages/welcome';
 import {
   Logo,
   Paragraph,
@@ -9,13 +8,15 @@ import {
 import styles from './Welcome.module.scss';
 
 const Welcome = () => {
-  const { header } = welcome;
-
   return (
     <section className={`${styles.welcome} `}>
       <article>
         <Logo text={'SpaceSteps'} />
-        <Paragraph text={header} />
+        <Paragraph
+          text={
+            'Discover the power of small steps leading to great achievements. With SpaceSteps, your daily to-do list and habits aren’t just tasks – they’re your journey through a universe of possibilities. Start creating, organizing, and tracking your goals today. Master your universe, one step at a time. Share and plan your time with friends to make every moment of your journey more satisfying and full of unforgettable memories.'
+          }
+        />
         <div className={styles.btns}>
           <ButtonBlack dynamicPath={'login'} buttonName={'Login'} />
           <ButtonBlack dynamicPath={'signup'} buttonName={'Signup'} />
