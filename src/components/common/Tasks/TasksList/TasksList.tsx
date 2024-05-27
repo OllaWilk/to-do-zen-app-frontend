@@ -7,7 +7,7 @@ import styles from './TasksList.module.scss';
 
 const TasksList = () => {
   const { data, loading, fetchData } = useFetch<{
-    taskRecord: EventEntity[];
+    eventRecord: EventEntity[];
   }>();
 
   const {
@@ -18,7 +18,7 @@ const TasksList = () => {
   useEffect(() => {
     fetchData('http://localhost:3001/events');
     if (data) {
-      dispatch({ type: 'SET_TASKS', payload: data.taskRecord });
+      dispatch({ type: 'SET_TASKS', payload: data.eventRecord });
     }
   }, [dispatch, data, loading, fetchData]);
 

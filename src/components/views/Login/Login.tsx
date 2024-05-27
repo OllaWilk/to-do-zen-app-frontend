@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { MdAlternateEmail } from 'react-icons/md';
 import { UserEntityForm } from 'types';
-import { useSignup, useToggle } from '../../../utils/hooks/index';
+import { useUserAuth, useToggle } from '../../../utils/hooks/index';
 import { Logo, AnimatedAstronaut, ButtonBlack } from '../../common/index';
 import styles from './Login.module.scss';
 
@@ -14,8 +14,8 @@ export const Login = () => {
   };
 
   const [data, setData] = useState(formValues);
-  const { error, isLoading } = useSignup();
-  const [isToggled, toggle] = useToggle(false);
+  const { auth, error, isLoading } = useUserAuth();
+  const [isToggled, toggle] = useToggle(true);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,7 +28,8 @@ export const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submit', data);
+
+    await auth(data.email, data.password, 'login');
   };
 
   return (
@@ -61,7 +62,7 @@ export const Login = () => {
             onClick={toggle}
             className={`${styles.eyeIcon} ${styles.passwordIcon}`}
           >
-            {!isToggled ? <FaRegEyeSlash /> : <FaRegEye />}
+            {isToggled ? <FaRegEyeSlash /> : <FaRegEye />}
           </span>
         </div>
         <ButtonBlack buttonName={'LogIn'} disabled={!!isLoading} />

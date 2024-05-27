@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuthContext } from '../../../utils/hooks';
 import {
   Logo,
   Paragraph,
@@ -8,6 +9,8 @@ import {
 import styles from './Welcome.module.scss';
 
 const Welcome = () => {
+  const { user } = useAuthContext();
+
   return (
     <section className={`${styles.welcome} `}>
       <article>
@@ -18,8 +21,17 @@ const Welcome = () => {
           }
         />
         <div className={styles.btns}>
-          <ButtonBlack dynamicPath={'signup'} buttonName={'Signup'} />
-          <ButtonBlack dynamicPath={'login'} buttonName={'Login'} />
+          {!user ? (
+            <>
+              <ButtonBlack dynamicPath={'signup'} buttonName={'Signup'} />
+              <ButtonBlack dynamicPath={'login'} buttonName={'Login'} />
+            </>
+          ) : (
+            <ButtonBlack
+              dynamicPath={'info'}
+              buttonName={'Launch to Cockpit'}
+            />
+          )}
         </div>
       </article>
       <AnimatedAstronaut />
