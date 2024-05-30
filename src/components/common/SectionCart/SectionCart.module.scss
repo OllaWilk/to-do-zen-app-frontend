@@ -3,8 +3,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   border-radius: 30px;
   padding: 17px;
-  margin-left: 17px;
   position: relative;
   overflow: hidden;
-  min-height: 90vh;
+  min-height: calc(100vh - 34px);
 }

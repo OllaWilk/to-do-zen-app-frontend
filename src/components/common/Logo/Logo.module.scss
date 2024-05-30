@@ -1,8 +1,8 @@
 @import '../../../styles/mixins.scss';
 
 .logo {
-  @include flex(row, center, flex-start);
-  gap: 15px;
+  @include flex(row, center, center);
+  gap: 10px;
   color: var(--color-light);
 
   @include sm-max {
@@ -12,13 +12,11 @@
   }
 
   .imgWrap {
-    width: 50px;
-    height: 50px;
+    @include flex(row, center, center);
 
     img {
       width: 100%;
-      max-width: 80px;
-      height: auto;
+      height: 100%;
       object-fit: cover;
 
       @include sm-max {
@@ -28,8 +26,6 @@
   }
 
   .text {
-    font-size: 2.5rem;
-
     @include sm-max {
       font-size: 1.5rem;
     }

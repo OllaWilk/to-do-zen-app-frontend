@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { TasksContextProvider } from './context/tasks';
+import { EventsContextProvider } from './context/events';
 import { AuthContextProvider } from './context/auth';
 import { App } from './App';
 import './styles/normalize.scss';
@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <TasksContextProvider>
+      <EventsContextProvider>
         <App />
-      </TasksContextProvider>
+      </EventsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, Dispatch, useEffect } from 'react';
-import { UserEntity } from 'types';
+import { UserEntity, CompleteUserEntity } from 'types';
 import { UserActions } from '../utils/types/JsonCommunicationType';
 
 type UserState = {
@@ -11,7 +11,7 @@ type UserAction =
   | { type: UserActions.LOGOUT };
 
 type AuthContextType = {
-  user: UserEntity | null;
+  user: CompleteUserEntity | null;
   dispatch: Dispatch<UserAction>;
 };
 
@@ -48,7 +48,6 @@ export const AuthContextProvider = ({ children }: Props) => {
     }
   }, []);
 
-  console.log('authContext state', state);
   return (
     <AuthContext.Provider value={{ user: state.user, dispatch }}>
       {children}

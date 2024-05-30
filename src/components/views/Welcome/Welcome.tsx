@@ -28,7 +28,7 @@ const Welcome = () => {
             </>
           ) : (
             <ButtonBlack
-              dynamicPath={'info'}
+              dynamicPath={'cockpit'}
               buttonName={'Launch to Cockpit'}
             />
           )}

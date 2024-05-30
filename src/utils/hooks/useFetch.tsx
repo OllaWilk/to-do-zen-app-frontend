@@ -1,16 +1,9 @@
 import { useState, useRef, useCallback } from 'react';
+import { HttpMethod } from '../types/JsonCommunicationType';
 import { EventEntity } from 'types';
 
-export enum HttpMethods {
-  GET = 'GET',
-  POST = 'POST',
-  DELETE = 'DELETE',
-  PUT = 'PUT',
-  PATCH = 'PATCH',
-}
-
 interface FetchOption {
-  method: HttpMethods;
+  method: HttpMethod;
   headers: Record<string, string>;
   body?: EventEntity | Omit<EventEntity, 'id' | 'time'> | unknown;
 }
@@ -26,7 +19,7 @@ interface FetchState<T> {
 }
 
 const getOption: FetchOption = {
-  method: HttpMethods.GET,
+  method: HttpMethod.GET,
   headers: { 'Content-Type': 'application/json' },
 };
 
@@ -42,7 +35,7 @@ const useFetch = <T,>(): FetchState<T> => {
       onSuccess?: (data: T) => void
     ) => {
       setLoading('fetching');
-      if (initialOptions.method === HttpMethods.GET && dataCache.current[url]) {
+      if (initialOptions.method === HttpMethod.GET && dataCache.current[url]) {
         const json = dataCache.current[url];
         setData(json);
         setLoading('fetched');
@@ -52,7 +45,7 @@ const useFetch = <T,>(): FetchState<T> => {
             method: initialOptions.method,
             headers: initialOptions.headers,
             body:
-              initialOptions.method === HttpMethods.GET
+              initialOptions.method === HttpMethod.GET
                 ? null
                 : JSON.stringify(initialOptions.body),
           });

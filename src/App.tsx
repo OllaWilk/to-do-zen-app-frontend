@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from './utils/hooks';
 import {
   Welcome,
-  Home,
+  Cockpit,
   NotFound,
-  Task,
+  Event,
   Info,
   About,
   Login,
@@ -22,16 +22,16 @@ function App() {
         <Route path='/' element={<Welcome />} />
         <Route
           path='/login'
-          element={!user ? <Login /> : <Navigate to='/home' />}
+          element={!user ? <Login /> : <Navigate to='/cockpit' />}
         />
         <Route
           path='/signup'
-          element={!user ? <Signup /> : <Navigate to='/home' />}
+          element={!user ? <Signup /> : <Navigate to='/cockpit' />}
         />
         {user ? (
           <Route element={<MainLayout />}>
-            <Route path='/home' element={<Home />} />
-            <Route path='/events/:id' element={<Task />} />
+            <Route path='/cockpit' element={<Cockpit />} />
+            <Route path='/events/:id' element={<Event />} />
             <Route path='/info' element={<Info />} />
             <Route path='/about' element={<About />} />
           </Route>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { EventEntity } from 'types';
+import { HttpMethod } from '../../../../utils/types/JsonCommunicationType';
 import { taskForm } from '../../../../data/pages/taskForm';
 import {
-  HttpMethods,
   useFetch,
-  useTasksContext,
+  // useTasksContext,
 } from '../../../../utils/hooks';
 import { Form, Input, Select, Textarea } from '../../Form';
 import styles from './TaskForm.module.scss';
@@ -15,7 +15,7 @@ interface Props {
 
 export const TaskForm = ({ task }: Props) => {
   const { fetchData } = useFetch<EventEntity>();
-  const { dispatch } = useTasksContext();
+  // const { dispatch } = useTasksContext();
   const [message, setMessage] = useState<null | string>(null);
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -53,7 +53,7 @@ export const TaskForm = ({ task }: Props) => {
       setMessage(ErrorMessage);
       setIsError(true);
     } else {
-      const method = task?.id ? HttpMethods.PATCH : HttpMethods.POST;
+      const method = task?.id ? HttpMethod.PATCH : HttpMethod.POST;
       const body = task?.id ? { ...form, id: task.id, time: new Date() } : form;
       const url = task?.id
         ? `http://localhost:3001/events/${task?.id}`
@@ -68,12 +68,12 @@ export const TaskForm = ({ task }: Props) => {
       fetchData(url, initialOptions, (newData) => {
         setMessage('Task saved');
         setIsError(false);
-        dispatch({
-          type: !task?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
-          payload: !task?.id
-            ? newData
-            : { ...newData, id: task?.id, created_at: new Date() },
-        });
+        // dispatch({
+        //   type: !task?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
+        //   payload: !task?.id
+        //     ? newData
+        //     : { ...newData, id: task?.id, created_at: new Date() },
+        // });
       });
     }
   };

@@ -11,6 +11,7 @@ export { SectionCart } from './SectionCart/SectionCart';
 export { Column } from './Column/Column';
 export { Spiner } from './Spiner/Spiner';
 export { NoDataAlert } from './NoDataAlert/NoDataAlert';
+export { DateDisplay } from './DateDisplay/DateDisplay';
 export * from './Buttons';
-export * from './Tasks';
+export * from './Events';
 export * from './Form';
