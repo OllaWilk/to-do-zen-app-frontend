@@ -1,7 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useToggle } from '../../../utils/hooks/useToggle';
-import { HamburgerNavigation, Logo, Navigation } from '../../common/index';
+import {
+  Footer,
+  HamburgerNavigation,
+  Logo,
+  Navigation,
+} from '../../common/index';
 import styles from './MainLayout.module.scss';
 
 const MainLayout = () => {
@@ -28,6 +33,7 @@ const MainLayout = () => {
       </header>
       <section className={styles.cockpit}>
         <Outlet />
+        <Footer />
       </section>
     </>
   );

@@ -22,7 +22,7 @@
   width: calc(100vw - 267px);
   min-height: 100vh;
   right: 0;
-  padding: 17px;
+  padding: 17px 17px 0 17px;
   color: var(--color-dark);
   @include flex(column, stretch, center);
 

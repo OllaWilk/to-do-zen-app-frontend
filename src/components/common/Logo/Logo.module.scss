@@ -1,7 +1,7 @@
 @import '../../../styles/mixins.scss';
 
 .logo {
-  @include flex(row, center, center);
+  @include flex(row, center, flex-start);
   gap: 10px;
   color: var(--color-light);
 

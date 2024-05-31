@@ -1,0 +1,30 @@
+@import '../../../styles/mixins.scss';
+
+.footer {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px 0;
+  @include flex(row, center, space-between);
+  flex-wrap: wrap;
+  color: var(--color-dark);
+
+  @include sm-max {
+    width: 95%;
+  }
+
+  .links {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+    gap: 15px;
+
+    a {
+      color: var(--color-dark);
+      height: 20px;
+
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
+}

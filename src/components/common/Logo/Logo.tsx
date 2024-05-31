@@ -10,7 +10,7 @@ interface Props {
 
 const Logo = ({
   text,
-  fontSize = '2rem',
+  fontSize = '2.3rem',
   imgSize = { width: '50px', height: '50px' },
 }: Props) => {
   return (
