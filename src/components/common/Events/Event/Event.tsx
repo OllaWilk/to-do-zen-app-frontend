@@ -46,7 +46,7 @@ export const Event = ({
               </>
               <div>
                 <ButtonEdit url={`/events/${id}`} />
-                <ButtonDelete taskId={`${id}`} />
+                <ButtonDelete eventId={`${id}`} />
               </div>
             </div>
           </div>

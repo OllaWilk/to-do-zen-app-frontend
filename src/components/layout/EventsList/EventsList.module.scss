@@ -1,14 +1,18 @@
 @import '../../../styles//mixins.scss';
 
 .tasksList {
-  width: calc(100% - 33%);
+  width: calc(100% - 31%);
   padding: 17px 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   grid-gap: 20px;
   z-index: 1;
 
   @include lg-max {
-    width: calc(100% - 33%);
+    width: calc(100%);
+  }
+
+  @include sm-max {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }

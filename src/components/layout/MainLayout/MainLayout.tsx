@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useToggle } from '../../../utils/hooks/useToggle';
 import {
+  ButtonLogout,
   Footer,
   HamburgerNavigation,
   Logo,
@@ -30,6 +31,7 @@ const MainLayout = () => {
         </div>
         <Navigation />
         <HamburgerNavigation isOpen={isOpen} handleClick={toggleIsOpen} />
+        <ButtonLogout />
       </header>
       <section className={styles.cockpit}>
         <Outlet />

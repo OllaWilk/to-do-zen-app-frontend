@@ -1,10 +1,10 @@
-import React, { createContext, Dispatch, useReducer } from 'react';
+import React, { createContext, Dispatch, useReducer, ReactNode } from 'react';
 import { EventEntity } from 'types';
 
-type EventsState = {
+interface EventsState {
   events: EventEntity[] | null;
   event: EventEntity | null;
-};
+}
 
 type EventAction =
   | { type: 'SET_EVENTS'; payload: EventEntity[] }
@@ -14,14 +14,7 @@ type EventAction =
   | { type: 'SET_EVENTS_EMPTY'; payload?: [] }
   | { type: 'SET_CURRENT_EVENT'; payload: EventEntity };
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export const EventsContext = createContext<{
-  state: EventsState;
-  dispatch: Dispatch<EventAction>;
-} | null>(null);
+const initialState: EventsState = { events: [], event: null };
 
 export const eventsReducer = (
   state: EventsState,
@@ -39,10 +32,7 @@ export const eventsReducer = (
       return {
         ...state,
         events:
-          state.events?.filter((event) => event.id !== action.payload) ||
-          [].length > 0
-            ? state.events?.filter((event) => event.id !== action.payload) || []
-            : null,
+          state.events?.filter((event) => event.id !== action.payload) || [],
       };
     case 'SET_CURRENT_EVENT':
       return {
@@ -65,9 +55,12 @@ export const eventsReducer = (
   }
 };
 
-export const EventsContextProvider = ({ children }: Props) => {
-  const initialState: EventsState = { events: [], event: null };
+const EventsContext = createContext<{
+  state: EventsState;
+  dispatch: Dispatch<EventAction>;
+}>({ state: initialState, dispatch: () => null });
 
+const EventsContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(eventsReducer, initialState);
 
   return (
@@ -76,3 +69,5 @@ export const EventsContextProvider = ({ children }: Props) => {
     </EventsContext.Provider>
   );
 };
+
+export { EventsContext, EventsContextProvider };

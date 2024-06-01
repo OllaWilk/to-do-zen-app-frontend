@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { EventEntity } from 'types';
 import { HttpMethod } from '../../../../utils/types/JsonCommunicationType';
-import { taskForm } from '../../../../data/pages/taskForm';
-import {
-  useFetch,
-  // useTasksContext,
-} from '../../../../utils/hooks';
+import { useFetch, useEventsContext } from '../../../../utils/hooks';
 import { Form, Input, Select, Textarea } from '../../Form';
-import styles from './TaskForm.module.scss';
+import styles from './EventForm.module.scss';
 
 interface Props {
   task?: EventEntity;
 }
 
-export const TaskForm = ({ task }: Props) => {
+export const EventForm = ({ task }: Props) => {
   const { fetchData } = useFetch<EventEntity>();
-  // const { dispatch } = useTasksContext();
+  const { dispatch } = useEventsContext();
   const [message, setMessage] = useState<null | string>(null);
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -66,14 +62,14 @@ export const TaskForm = ({ task }: Props) => {
         body,
       };
       fetchData(url, initialOptions, (newData) => {
-        setMessage('Task saved');
+        setMessage('Event saved');
         setIsError(false);
-        // dispatch({
-        //   type: !task?.id ? 'CREATE_TASK' : 'UPDATE_TASK',
-        //   payload: !task?.id
-        //     ? newData
-        //     : { ...newData, id: task?.id, created_at: new Date() },
-        // });
+        dispatch({
+          type: !task?.id ? 'CREATE_EVENT' : 'UPDATE_EVENT',
+          payload: !task?.id
+            ? newData
+            : { ...newData, id: task?.id, created_at: new Date() },
+        });
       });
     }
   };
@@ -85,9 +81,9 @@ export const TaskForm = ({ task }: Props) => {
         formValues={formValues}
         buttonName={task?.id ? 'edit' : 'add'}
       >
-        <Input label={taskForm.title} name='title' />
+        <Input label={'taskForm.title'} name='title' />
 
-        <Textarea label={taskForm.description} name='description' />
+        <Textarea label={'taskForm.description'} name='description' />
         <Select
           label='priority'
           name='priority'
