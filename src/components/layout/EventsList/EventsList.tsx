@@ -25,11 +25,10 @@ export const EventsList = () => {
     })();
   }, [dispatch, user]);
 
+  console.log(events);
   if (!events) {
     return <Spiner />;
-  }
-
-  if (events.length === 0) {
+  } else if (events.length === 0) {
     return <NoDataAlert />;
   }
 

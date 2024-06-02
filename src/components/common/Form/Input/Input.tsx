@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FormContext } from '../../../../utils/hooks';
 import styles from './Input.module.scss';
 
 type Type =
@@ -9,7 +10,7 @@ type Type =
   | 'submit'
   | 'file'
   | 'email'
-  | any;
+  | 'datetime-local';
 
 interface Props {
   name: string;
@@ -19,10 +20,10 @@ interface Props {
   maxLength?: number;
   minLength?: number;
   disabled?: boolean;
-  value?: Type;
+  date?: boolean;
 }
 
-const Input = ({
+export const Input = ({
   label,
   name,
   type = 'text',
@@ -30,24 +31,25 @@ const Input = ({
   maxLength,
   minLength,
   disabled,
-  value,
 }: Props) => {
+  const { form, handleFormChange } = useContext(FormContext);
+
   return (
     <div
       className={disabled ? `${styles.disabled}` : `${styles.formLabelWrap}`}
     >
-      {label && <label>{label}</label>}
+      {label && <label htmlFor={name}>{label}</label>}
       <input
         type={type}
         name={name}
-        value={value}
+        value={form[name as keyof typeof form] || ''}
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}
+        onChange={handleFormChange}
         disabled={!disabled ? disabled : false}
+        id={name}
       />
     </div>
   );
 };
-
-export { Input };

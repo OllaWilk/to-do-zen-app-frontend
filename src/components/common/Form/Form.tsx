@@ -1,5 +1,5 @@
 import React, { useState, ReactElement, ChangeEvent, FormEvent } from 'react';
-import { EventEntity, UserEntityForm } from 'types';
+import { UserEntityForm, NewEventEntity } from 'types';
 import { FormContext } from '../../../utils/hooks';
 import styles from './Form.module.scss';
 
@@ -10,7 +10,7 @@ interface FormProviderProps<T> {
   buttonName: string;
 }
 
-export function Form<T extends UserEntityForm | EventEntity>({
+export function Form<T extends UserEntityForm | NewEventEntity>({
   children,
   submit,
   formValues,
@@ -32,6 +32,7 @@ export function Form<T extends UserEntityForm | EventEntity>({
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    console.log(form);
     e.preventDefault();
     submit(form);
     setForm(formValues);
@@ -42,7 +43,7 @@ export function Form<T extends UserEntityForm | EventEntity>({
       <FormContext.Provider value={{ form, handleFormChange }}>
         {children}
       </FormContext.Provider>
-      <button className={styles.component} type='button'>
+      <button className={styles.component} type='submit'>
         {buttonName}
       </button>
     </form>

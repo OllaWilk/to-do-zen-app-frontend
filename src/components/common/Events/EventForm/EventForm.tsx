@@ -1,76 +1,41 @@
-import React, { useState } from 'react';
-import { EventEntity } from 'types';
-import { HttpMethod } from '../../../../utils/types/JsonCommunicationType';
-import { useFetch, useEventsContext } from '../../../../utils/hooks';
-import { Form, Input, Select, Textarea } from '../../Form';
+import React from 'react';
+import { EventEntity, NewEventEntity } from 'types';
+import { useEventFetch } from '../../../../utils/hooks';
+import { EventStatus } from '../../../../utils/types';
+import { Form, Input, Textarea, Select } from '../../Form';
 import styles from './EventForm.module.scss';
 
 interface Props {
-  task?: EventEntity;
+  event?: EventEntity;
 }
 
-export const EventForm = ({ task }: Props) => {
-  const { fetchData } = useFetch<EventEntity>();
-  const { dispatch } = useEventsContext();
-  const [message, setMessage] = useState<null | string>(null);
-  const [isError, setIsError] = useState<boolean>(false);
+export const EventForm = ({ event }: Props) => {
+  const { eventInsert, error } = useEventFetch();
 
   /* FORM TASK VALUES */
-  const formValues: EventEntity = {
+  const formValues: NewEventEntity = {
     title: '',
-    creator_id: '',
-    price: 'free',
-    date: new Date(),
-    status: 'planed',
-    description: '',
-    url: '',
-    lat: 0,
-    lon: 0,
+    status: EventStatus.PLANED,
     category: '',
+    description: '',
     duration: '',
-    reminder: 0,
+    price: 0,
+    date: null,
+    reminder: 1,
+
+    creator_id: '2c4ec2b4-29d7-48b8-bafd-ed71eb093a9f',
   };
 
-  /* VALIDATION */
-  const validateForm = (form: EventEntity): string | null => {
-    if (form.title.trim().length <= 2 || form.title.trim().length >= 99) {
-      return `Your title currently has ${form.title.length} characters, it should be between 3 and 100 characters long`;
-    } else if (form.description && form.description.trim().length >= 1001) {
-      return `Description should be at least 1000 characters long. Your description currently has ${form.description.length} characters,`;
-    }
-    return null;
-  };
   /* SUBMIT FORM */
-  const submit = async (form: EventEntity) => {
-    /* CHECK FORM BEFORE SUBMIT */
-    const ErrorMessage = validateForm(form);
-
-    if (ErrorMessage) {
-      setMessage(ErrorMessage);
-      setIsError(true);
-    } else {
-      const method = task?.id ? HttpMethod.PATCH : HttpMethod.POST;
-      const body = task?.id ? { ...form, id: task.id, time: new Date() } : form;
-      const url = task?.id
-        ? `http://localhost:3001/events/${task?.id}`
-        : `http://localhost:3001/events`;
-      const initialOptions = {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body,
-      };
-      fetchData(url, initialOptions, (newData) => {
-        setMessage('Event saved');
-        setIsError(false);
-        dispatch({
-          type: !task?.id ? 'CREATE_EVENT' : 'UPDATE_EVENT',
-          payload: !task?.id
-            ? newData
-            : { ...newData, id: task?.id, created_at: new Date() },
-        });
+  const submit = async (form: NewEventEntity) => {
+    if (event) {
+      await eventInsert({
+        ...form,
+        id: event.id,
+        created_at: event.created_at,
       });
+    } else {
+      await eventInsert(form);
     }
   };
 
@@ -79,19 +44,30 @@ export const EventForm = ({ task }: Props) => {
       <Form
         submit={submit}
         formValues={formValues}
-        buttonName={task?.id ? 'edit' : 'add'}
+        buttonName={event?.id ? 'edit' : 'add'}
       >
-        <Input label={'taskForm.title'} name='title' />
+        <Input label={'title'} name='title' />
+        <Input label={'Date'} name='date' type='datetime-local' />
 
-        <Textarea label={'taskForm.description'} name='description' />
         <Select
-          label='priority'
-          name='priority'
-          options={[`planed`, `ongoind`, `completed`]}
+          label={'status'}
+          name='status'
+          options={[
+            EventStatus.PLANED,
+            EventStatus.ONGOING,
+            EventStatus.COMPLETED,
+          ]}
         />
-        <p className={`${isError ? styles.error : styles.success}`}>
-          {message}
-        </p>
+        <Input label={'category'} name='category' />
+        <Input label={'price'} name='price' />
+        <Input label={'duration'} name='duration' />
+        <Textarea label={'description'} name='description' />
+        <Input
+          label={'Remind me (days before event)'}
+          name='reminder'
+          type='number'
+        />
+        <p className={`${error ? styles.error : styles.success}`}>{error}</p>
       </Form>
     </div>
   );
