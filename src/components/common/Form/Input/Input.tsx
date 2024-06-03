@@ -21,6 +21,7 @@ interface Props {
   minLength?: number;
   disabled?: boolean;
   date?: boolean;
+  required?: boolean;
 }
 
 export const Input = ({
@@ -31,14 +32,19 @@ export const Input = ({
   maxLength,
   minLength,
   disabled,
+  required,
 }: Props) => {
   const { form, handleFormChange } = useContext(FormContext);
 
+  const astrid = required && ' *';
   return (
-    <div
-      className={disabled ? `${styles.disabled}` : `${styles.formLabelWrap}`}
-    >
-      {label && <label htmlFor={name}>{label}</label>}
+    <div className={`${disabled ? styles.disabled : styles.formLabelWrap}`}>
+      {label && (
+        <label htmlFor={name}>
+          {label}
+          <span>{astrid}</span>
+        </label>
+      )}
       <input
         type={type}
         name={name}
@@ -49,6 +55,7 @@ export const Input = ({
         onChange={handleFormChange}
         disabled={!disabled ? disabled : false}
         id={name}
+        required={required}
       />
     </div>
   );

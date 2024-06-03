@@ -1,13 +1,9 @@
 @import '../../../styles/mixins.scss';
 
 .task {
-  width: 67%;
+  width: 65%;
   padding: 17px;
   @include flex(column, stretch, space-around);
-
-  @include lg-max {
-    width: 100%;
-  }
 
   .imgWrap {
     height: 300px;

@@ -31,10 +31,10 @@ export function Form<T extends UserEntityForm | NewEventEntity>({
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    console.log(form);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    submit(form);
+
+    await submit(form);
     setForm(formValues);
   };
 

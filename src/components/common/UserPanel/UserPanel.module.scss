@@ -6,12 +6,17 @@
   flex-wrap: wrap-reverse;
   gap: 20px;
 
+  @include lg-max {
+    flex-direction: row-reverse;
+  }
+
   .text {
     width: 200px;
     background-color: var(--color-light);
-    padding: 20px;
+    padding: 10px 0;
     border-radius: 30px;
     position: relative;
+    text-align: center;
 
     &::after {
       content: '';

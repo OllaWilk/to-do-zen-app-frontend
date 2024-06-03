@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 .sectionComponent {
   background-color: var(--color-light);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -6,4 +8,8 @@
   position: relative;
   overflow: hidden;
   min-height: calc(100vh - 34px);
+
+  @media screen and (max-width: 1111px) {
+    min-height: 105vh;
+  }
 }

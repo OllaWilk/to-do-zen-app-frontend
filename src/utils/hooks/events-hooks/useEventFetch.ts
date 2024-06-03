@@ -23,7 +23,7 @@ export const useEventFetch = () => {
     const json = await res.json();
 
     if (!res.ok) {
-      setError(json.error);
+      setError(json.message);
     }
 
     if (res.ok) {
@@ -33,8 +33,9 @@ export const useEventFetch = () => {
         type: EventActions.CREATE_EVENT,
         payload: json,
       });
+      setError(null);
     }
   };
 
-  return { eventInsert, error };
+  return { eventInsert, error, setError };
 };

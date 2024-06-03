@@ -11,9 +11,7 @@ interface Props {
 
 export const EventForm = ({ event }: Props) => {
   const { eventInsert, error } = useEventFetch();
-
-  /* FORM TASK VALUES */
-  const formValues: NewEventEntity = {
+  const formValues = {
     title: '',
     status: EventStatus.PLANED,
     category: '',
@@ -22,7 +20,6 @@ export const EventForm = ({ event }: Props) => {
     price: 0,
     date: null,
     reminder: 1,
-
     creator_id: '2c4ec2b4-29d7-48b8-bafd-ed71eb093a9f',
   };
 
@@ -46,9 +43,15 @@ export const EventForm = ({ event }: Props) => {
         formValues={formValues}
         buttonName={event?.id ? 'edit' : 'add'}
       >
-        <Input label={'title'} name='title' />
-        <Input label={'Date'} name='date' type='datetime-local' />
-
+        <Input
+          label={'title'}
+          name='title'
+          required
+          minLength={3}
+          maxLength={100}
+          placeholder={'title'}
+        />
+        <Input label={'Date'} name='date' type='datetime-local' required />
         <Select
           label={'status'}
           name='status'
@@ -58,10 +61,16 @@ export const EventForm = ({ event }: Props) => {
             EventStatus.COMPLETED,
           ]}
         />
-        <Input label={'category'} name='category' />
+        <Input label={'category'} name='category' required />
         <Input label={'price'} name='price' />
-        <Input label={'duration'} name='duration' />
-        <Textarea label={'description'} name='description' />
+        <Input label={'duration'} name='duration' required />
+        <Textarea
+          label={'description'}
+          name='description'
+          required
+          minLength={2}
+          maxHeight={100}
+        />
         <Input
           label={'Remind me (days before event)'}
           name='reminder'

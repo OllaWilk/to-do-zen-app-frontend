@@ -25,7 +25,6 @@ export const EventsList = () => {
     })();
   }, [dispatch, user]);
 
-  console.log(events);
   if (!events) {
     return <Spiner />;
   } else if (events.length === 0) {
