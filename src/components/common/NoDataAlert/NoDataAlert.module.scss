@@ -1,9 +1,12 @@
 .noDataAlert {
   min-height: 50vh;
-  width: 66%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
