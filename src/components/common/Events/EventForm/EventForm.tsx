@@ -27,6 +27,11 @@ export const EventForm = ({ event }: Props) => {
   const submit = async (form: NewEventEntity) => {
     if (event) {
       await eventInsert({
+        ...event,
+        id: event.id,
+        created_at: event.created_at,
+      });
+      console.log('EVENT jeśli jest event ', {
         ...form,
         id: event.id,
         created_at: event.created_at,

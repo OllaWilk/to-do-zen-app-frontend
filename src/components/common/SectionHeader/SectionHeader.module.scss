@@ -2,13 +2,17 @@
 
 .sectionHeader {
   text-transform: uppercase;
-  font-size: 17px;
+
   padding: 17px;
   border-bottom: 1px var(--color-grey) solid;
-  width: 100%;
+  @include flex(row, center, space-between);
 
   @include md-max {
     text-align: center;
     width: 95%;
+  }
+
+  h2 {
+    font-size: 17px;
   }
 }

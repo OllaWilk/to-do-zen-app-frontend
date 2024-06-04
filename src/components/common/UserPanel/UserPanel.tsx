@@ -11,7 +11,7 @@ interface Props {
 const UserPanel = ({ userName }: Props) => {
   return (
     <div className={styles.userWrap}>
-      <p className={styles.text}>Hi, you can make it {userName}</p>
+      <p className={styles.text}>Add event you want to go {userName}</p>
       <div className={styles.imgWrap}>
         <img src={userAvatar} alt='avatar' />
       </div>

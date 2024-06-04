@@ -14,4 +14,5 @@ export { SearchBar } from './SearchBar/SearchBar';
 export { SectionCart } from './SectionCart/SectionCart';
 export { SectionHeader } from './SectionHeader/SectionHeader';
 export { Spiner } from './Spiner/Spiner';
+export { Tag } from './Tag/Tag';
 export { UserPanel } from './UserPanel/UserPanel';

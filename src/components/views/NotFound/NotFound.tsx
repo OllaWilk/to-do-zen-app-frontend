@@ -6,7 +6,7 @@ import styles from './NotFound.module.scss';
 interface Props {
   message?: string;
 }
-const NotFound = ({ message }: Props) => {
+export const NotFound = ({ message }: Props) => {
   const { header, button } = notFound;
   return (
     <div className={styles.componentWrap}>
@@ -24,5 +24,3 @@ const NotFound = ({ message }: Props) => {
     </div>
   );
 };
-
-export { NotFound };

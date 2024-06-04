@@ -1,29 +1,21 @@
 import React, { useEffect } from 'react';
 import { EventEntity } from 'types';
-import { useAuthContext, useEventsContext } from '../../../utils/hooks';
+import { useEventFetch, useEventsContext } from '../../../utils/hooks';
 import { NoDataAlert, Spiner, Event } from '../../common';
 import styles from './EventsList.module.scss';
 
 export const EventsList = () => {
   const {
     state: { events },
-    dispatch,
   } = useEventsContext();
 
-  const { user } = useAuthContext();
+  const { getEvents } = useEventFetch<EventEntity[]>();
+
   useEffect(() => {
     (async () => {
-      const response = await fetch('http://localhost:3001/events', {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      });
-      const json = await response.json();
-
-      if (response.ok) {
-        const eventRefords = json.eventRecord;
-        dispatch({ type: 'SET_EVENTS', payload: eventRefords });
-      }
+      await getEvents();
     })();
-  }, [dispatch, user]);
+  }, [getEvents]);
 
   if (!events) {
     return <Spiner />;

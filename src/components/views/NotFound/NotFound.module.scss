@@ -1,14 +1,24 @@
 @import '../../../styles//mixins.scss';
 
 .componentWrap {
-  @include flex(row, center, space-around);
+  @include flex(column-reverse, center, center);
   flex-wrap: nowrap;
-  height: 100%;
-  gap: 80px;
+  background-color: var(--color-main);
   padding: 0 40px;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+
+  width: calc(95%);
+  gap: 0px;
+
+  @include xl-min {
+    gap: 80px;
+    @include flex(row, center, space-around);
+  }
+
+  @include sm-max {
+    width: 90%;
+    padding: 10px;
+  }
 
   .infoWrap {
     @include flex(column, center, center);
@@ -18,8 +28,16 @@
   .imgWrap {
     background-color: var(--color-main);
     width: 50%;
-    border-radius: 50%;
     overflow: hidden;
     padding: 20px;
+
+    @include lg-max {
+      width: 100%;
+    }
+
+    @include sm-max {
+      width: 90%;
+      padding: 10px;
+    }
   }
 }
