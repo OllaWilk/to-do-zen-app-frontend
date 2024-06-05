@@ -8,17 +8,25 @@ import { SectionCart, Spiner, EventForm } from '../../common/index';
 import styles from './Event.module.scss';
 
 export const Event = () => {
+  //get id from URL
   const { id } = useParams();
   const {
     state: { event },
   } = useEventsContext();
   const { getEvents } = useEventFetch<EventEntity>();
 
+  //get event witch id
   useEffect(() => {
     (async () => {
       await getEvents(id);
     })();
   }, [getEvents, id]);
+
+  useEffect(() => {
+    if (event?.id !== id) {
+      getEvents(id);
+    }
+  }, [event, id, getEvents]);
 
   if (!event) {
     return (

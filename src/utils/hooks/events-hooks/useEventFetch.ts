@@ -20,9 +20,15 @@ export const useEventFetch = <T>(): FetchState<T> => {
 
   const eventInsert = async (data: NewEventEntity | EventEntity) => {
     setError(null);
-    console.log('DATA Z FETCHA', { ...data });
-    const res = await fetch(`http://localhost:3001/events`, {
-      method: HttpMethod.POST,
+
+    const method = 'id' in data ? HttpMethod.PATCH : HttpMethod.POST;
+    const url =
+      'id' in data
+        ? `http://localhost:3001/events/${data.id}`
+        : `http://localhost:3001/events`;
+
+    const res = await fetch(url, {
+      method,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${user?.token}`,
@@ -39,8 +45,10 @@ export const useEventFetch = <T>(): FetchState<T> => {
     if (res.ok) {
       //update EventContext
       dispatch({
-        // type: event?.id ? 'UPDATE_EVENT' : 'CREATE_EVENT',
-        type: EventActions.CREATE_EVENT,
+        type:
+          method === HttpMethod.POST
+            ? EventActions.CREATE_EVENT
+            : EventActions.UPDATE_EVENT,
         payload: json,
       });
       setError(null);

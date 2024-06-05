@@ -12,14 +12,14 @@ interface Props {
 export const EventForm = ({ event }: Props) => {
   const { eventInsert, error } = useEventFetch();
   const formValues = {
-    title: '',
-    status: EventStatus.PLANED,
-    category: '',
-    description: '',
-    duration: '',
-    price: 0,
+    title: event?.title || '',
+    status: event?.status || EventStatus.PLANED,
+    category: event?.category || '',
+    description: event?.description || '',
+    duration: event?.duration || '',
+    price: event?.price || 0,
     date: null,
-    reminder: 1,
+    reminder: event?.reminder || 1,
     creator_id: '2c4ec2b4-29d7-48b8-bafd-ed71eb093a9f',
   };
 
@@ -28,13 +28,7 @@ export const EventForm = ({ event }: Props) => {
     if (event) {
       await eventInsert({
         ...event,
-        id: event.id,
-        created_at: event.created_at,
-      });
-      console.log('EVENT jeśli jest event ', {
         ...form,
-        id: event.id,
-        created_at: event.created_at,
       });
     } else {
       await eventInsert(form);
