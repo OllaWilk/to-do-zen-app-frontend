@@ -1,7 +1,6 @@
 import React from 'react';
-import { EventEntity, NewEventEntity } from 'types';
+import { EventEntity, NewEventEntity, EventStatus } from 'types';
 import { useEventFetch } from '../../../../utils/hooks';
-import { EventStatus } from '../../../../utils/types';
 import { Form, Input, Textarea, Select } from '../../Form';
 import styles from './EventForm.module.scss';
 
@@ -13,14 +12,14 @@ export const EventForm = ({ event }: Props) => {
   const { eventInsert, error } = useEventFetch();
   const formValues = {
     title: event?.title || '',
-    status: event?.status || EventStatus.PLANED,
+    status: event?.status || ('planned' as EventStatus),
     category: event?.category || '',
     description: event?.description || '',
     duration: event?.duration || '',
     price: event?.price || 0,
-    date: null,
+    event_date: event?.event_date,
     reminder: event?.reminder || 1,
-    creator_id: '2c4ec2b4-29d7-48b8-bafd-ed71eb093a9f',
+    creator_id: event?.creator_id || '',
   };
 
   /* SUBMIT FORM */
@@ -50,15 +49,11 @@ export const EventForm = ({ event }: Props) => {
           maxLength={100}
           placeholder={'title'}
         />
-        <Input label={'Date'} name='date' type='datetime-local' required />
+        <Input label={'Date'} name='date' type='datetime-local' />
         <Select
           label={'status'}
           name='status'
-          options={[
-            EventStatus.PLANED,
-            EventStatus.ONGOING,
-            EventStatus.COMPLETED,
-          ]}
+          options={['planned', 'ongoing', 'completed'] as EventStatus[]}
         />
         <Input label={'category'} name='category' required />
         <Input label={'price'} name='price' />

@@ -45,7 +45,7 @@ export const Event = () => {
       <div className={styles.event}>
         <EventDetails
           title={event.title}
-          date={event.date}
+          date={event.event_date}
           description={event.description}
         />
         <EventTags

@@ -9,7 +9,7 @@ import styles from './EventTags.module.scss';
 interface Props {
   status: string;
   category: string;
-  price?: number | null;
+  price?: number | null | 'free';
   duration?: string;
   reminder?: number | null;
 }

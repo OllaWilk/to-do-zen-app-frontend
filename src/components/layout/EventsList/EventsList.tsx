@@ -22,6 +22,7 @@ export const EventsList = () => {
   } else if (events.length === 0) {
     return <NoDataAlert />;
   }
+  console.log(events);
 
   return (
     <div className={styles.tasksList}>
@@ -31,7 +32,7 @@ export const EventsList = () => {
           title,
           created_at,
           price,
-          date,
+          event_date,
           status,
           description,
           creator_id,
@@ -43,7 +44,7 @@ export const EventsList = () => {
             title={title}
             created_at={created_at}
             price={price}
-            date={date}
+            event_date={event_date}
             status={status}
             description={description}
             creator_id={creator_id}

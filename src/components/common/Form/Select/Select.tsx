@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { EventStatus } from '../../../../utils/types';
+import { EventStatus } from 'types';
 import { FormContext } from '../../../../utils/hooks';
 import styles from './Select.module.scss';
 

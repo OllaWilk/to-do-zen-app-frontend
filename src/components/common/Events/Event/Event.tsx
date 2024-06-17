@@ -14,7 +14,7 @@ export const Event = ({
   id,
   title,
   price,
-  date,
+  event_date,
   status,
   description,
 }: EventEntity) => {
@@ -28,7 +28,7 @@ export const Event = ({
     <article className={style.cart} onClick={toggleAcordion}>
       <div className={style.cartImage}>
         <h2>{title}</h2>
-        {date && <DateDisplay date={date} />}
+        {event_date && <DateDisplay date={event_date} />}
       </div>
       <div
         className={`${style.acordion} ${
