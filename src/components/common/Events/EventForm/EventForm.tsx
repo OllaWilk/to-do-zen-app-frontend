@@ -1,6 +1,6 @@
 import React from 'react';
 import { EventEntity, NewEventEntity, EventStatus } from 'types';
-import { useEventFetch } from '../../../../utils/hooks';
+import { formatDate, useEventFetch } from '../../../../utils/hooks';
 import { Form, Input, Textarea, Select } from '../../Form';
 import styles from './EventForm.module.scss';
 
@@ -10,16 +10,20 @@ interface Props {
 
 export const EventForm = ({ event }: Props) => {
   const { eventInsert, error } = useEventFetch();
+  const eventDataFormat = formatDate(`${event?.event_date}`);
+
   const formValues = {
     title: event?.title || '',
-    status: event?.status || ('planned' as EventStatus),
+    status: event?.status || ('planed' as EventStatus),
     category: event?.category || '',
     description: event?.description || '',
     duration: event?.duration || '',
-    price: event?.price || 0,
-    event_date: event?.event_date,
+    price: Number(event?.price || 0),
+    event_date: event?.event_date ? (eventDataFormat as Date) : null,
     reminder: event?.reminder || 1,
     creator_id: event?.creator_id || '',
+    lat: 51.107883,
+    lon: 17.038538,
   };
 
   /* SUBMIT FORM */
@@ -49,20 +53,20 @@ export const EventForm = ({ event }: Props) => {
           maxLength={100}
           placeholder={'title'}
         />
-        <Input label={'Date'} name='date' type='datetime-local' />
+        <Input label={'Date'} name='event_date' type='date' />
         <Select
           label={'status'}
           name='status'
-          options={['planned', 'ongoing', 'completed'] as EventStatus[]}
+          options={['planed', 'ongoing', 'completed'] as EventStatus[]}
         />
         <Input label={'category'} name='category' required />
-        <Input label={'price'} name='price' />
+        <Input label={'price'} name='price' type='number' />
         <Input label={'duration'} name='duration' required />
         <Textarea
           label={'description'}
           name='description'
           required
-          minLength={2}
+          minLength={3}
           maxHeight={100}
         />
         <Input

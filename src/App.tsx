@@ -19,6 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes */}
         <Route path='/' element={<Welcome />} />
         <Route
           path='/login'
@@ -28,6 +29,7 @@ function App() {
           path='/signup'
           element={!user ? <Signup /> : <Navigate to='/cockpit' />}
         />
+        {/* Protected routes */}
         {user ? (
           <Route element={<MainLayout />}>
             <Route path='/cockpit' element={<Cockpit />} />
@@ -36,8 +38,10 @@ function App() {
             <Route path='/about' element={<About />} />
           </Route>
         ) : (
+          // Redirect to Welcome page if user is not authenticated
           <Route path='/*' element={<Welcome />} />
         )}
+        {/* Fallback route */}
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

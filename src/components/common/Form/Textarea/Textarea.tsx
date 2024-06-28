@@ -28,10 +28,16 @@ const Textarea = ({
   const styleCss = {
     height: `${maxHeight}px`,
   };
+  const astrid = required && ' *';
 
   return (
     <div className={style.formLabelWrap}>
-      {label && <label>{label}</label>}
+      {label && (
+        <label>
+          {label}
+          <span>{astrid}</span>
+        </label>
+      )}
       <textarea
         name={name}
         style={styleCss}

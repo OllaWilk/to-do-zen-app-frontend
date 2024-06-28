@@ -10,6 +10,7 @@ import {
 import styles from './Welcome.module.scss';
 
 const Welcome = () => {
+  // Retrieve the authenticated user from context
   const { user } = useAuthContext();
 
   return (

@@ -39,7 +39,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
     const json = await res.json();
 
     if (!res.ok) {
-      setError(json.message);
+      setError(json.error || 'An error occurred');
     }
 
     if (res.ok) {

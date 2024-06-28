@@ -22,7 +22,6 @@ export const EventsList = () => {
   } else if (events.length === 0) {
     return <NoDataAlert />;
   }
-  console.log(events);
 
   return (
     <div className={styles.tasksList}>

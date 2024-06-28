@@ -10,7 +10,7 @@ type Type =
   | 'submit'
   | 'file'
   | 'email'
-  | 'datetime-local';
+  | 'date';
 
 interface Props {
   name: string;
@@ -24,6 +24,15 @@ interface Props {
   required?: boolean;
 }
 
+const getCurrentDate = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = (now.getMonth() + 1).toString().padStart(2, '0');
+  const day = now.getDate().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
 export const Input = ({
   label,
   name,
@@ -35,6 +44,11 @@ export const Input = ({
   required,
 }: Props) => {
   const { form, handleFormChange } = useContext(FormContext);
+
+  const inputValue =
+    type === 'date' && !form[name as keyof typeof form]
+      ? getCurrentDate()
+      : form[name as keyof typeof form] || '';
 
   const astrid = required && ' *';
   return (
@@ -48,7 +62,7 @@ export const Input = ({
       <input
         type={type}
         name={name}
-        value={form[name as keyof typeof form] || ''}
+        value={inputValue}
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}
