@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
+import { EventStatus } from 'types';
 import { FormContext } from '../../../../utils/hooks';
 import styles from './Select.module.scss';
 
 interface Props {
   label?: string;
   name: string;
-  options?: string[];
+  options?: EventStatus[];
 }
-const Select = ({ label, name, options }: Props) => {
+
+export const Select = ({ label, name, options }: Props) => {
   const formContext = useContext(FormContext);
   const { form, handleFormChange } = formContext;
 
@@ -15,18 +17,14 @@ const Select = ({ label, name, options }: Props) => {
     <div className={styles.formLabelWrap}>
       {label && <label>{label}</label>}
       <select
-        value={String(form[name])}
-        onChange={handleFormChange}
         name={name}
+        value={(form as Record<string, any>)[name]}
+        onChange={handleFormChange}
       >
         {options?.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
+          <option key={index}>{option}</option>
         ))}
       </select>
     </div>
   );
 };
-
-export { Select };

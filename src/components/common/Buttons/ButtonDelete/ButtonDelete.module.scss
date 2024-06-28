@@ -1,0 +1,12 @@
+@import '../../../../styles/mixins.scss';
+
+.icon {
+  font-size: 28px;
+  padding: 3px;
+  transition: var(--transition);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-danger);
+  }
+}

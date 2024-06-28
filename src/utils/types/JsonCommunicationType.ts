@@ -1,3 +1,16 @@
+export enum HttpMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  PATCH = 'PATCH',
+}
+
+export enum UserActions {
+  LOGIN = 'LOGIN',
+  LOGOUT = 'LOGOUT',
+}
+
 type TypeData = 'element' | 'array' | 'status';
 
 type InfoArrayData = {

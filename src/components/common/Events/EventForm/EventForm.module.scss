@@ -1,0 +1,15 @@
+@import '../../../../styles/mixins.scss';
+
+.componentWrap {
+  width: 100%;
+  @include flex(column, stretch, flex-end);
+  color: var(--color-main);
+}
+.error {
+  color: var(--color-error);
+  padding: 20px 0;
+}
+
+.success {
+  color: green;
+}

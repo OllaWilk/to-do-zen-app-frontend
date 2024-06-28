@@ -8,21 +8,23 @@
   width: 250px;
   height: 100vh;
   transition: transform 0.3s ease-in-out;
-  padding: 20px 0;
+  padding: 17px 0;
   background-color: var(--color-dark);
   z-index: 999;
 }
 
+.logoWrap {
+  margin: 17px 0 0px 25px;
+}
+
 .cockpit {
   position: absolute;
-  width: calc(100vw - 250px);
+  width: calc(100vw - 267px);
   min-height: 100vh;
   right: 0;
-  padding: 17px;
+  padding: 17px 17px 0 17px;
   color: var(--color-dark);
-  @include flex(column, stretch, flex-start);
-  gap: 17px;
-  margin-top: 80px;
+  @include flex(column, stretch, center);
 
   @include md-max {
     width: 100%;

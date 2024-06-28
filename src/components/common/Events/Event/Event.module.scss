@@ -1,0 +1,85 @@
+@import '../../../../styles/mixins.scss';
+
+.cart {
+  width: 100%;
+  cursor: pointer;
+  color: var(--color-main);
+  z-index: 1;
+  @include flex(column, stretch, flex-start);
+
+  .cartImage {
+    background-color: darken($color: #f4f4fe, $amount: 8);
+    @include flex(row, center, space-between);
+    border-radius: 30px;
+    width: 100%;
+    padding: 17px;
+    overflow: hidden;
+    position: relative;
+
+    @include sm-max {
+      flex-direction: column;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.acordion {
+  gap: 17px;
+  padding: 17px;
+  max-height: 0;
+  background-color: var(--color-light-main);
+  border-radius: 30px;
+  overflow: hidden;
+  transition: max-height 0.25s ease-in-out, diaply ease-in-out 0s,
+    transform 0.3s ease-in-out;
+
+  &:hover {
+    @include shadow;
+    z-index: 999;
+  }
+
+  .acordionWrap {
+    @include flex(column, stretch, space-between);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .status {
+    border-bottom: 1px solid darken($color: #f4f4fe, $amount: 8);
+    padding: 10px 0;
+  }
+
+  .description,
+  .price {
+    padding: 15px 0;
+  }
+
+  .buttonsWrap {
+    @include flex(row, center, space-between);
+    border-top: 1px solid darken($color: #f4f4fe, $amount: 8);
+    padding: 15px 0;
+
+    div {
+      @include flex(row, center, space-between);
+      gap: 8px;
+    }
+  }
+}
+
+.cartOpen {
+  max-height: 500px;
+  padding: 17px;
+}
+
+.cartClosed {
+  position: absolute;
+  max-height: 0;
+  opacity: 0;
+  top: 0;
+}

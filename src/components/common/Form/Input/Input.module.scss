@@ -18,7 +18,7 @@
     appearance: none;
   }
 
-  input[type='text'],
+  input,
   select {
     display: block;
     width: 100%;
@@ -27,4 +27,8 @@
     border-radius: 4px;
     background-color: var(--color-light);
   }
+}
+
+.error input {
+  border-color: red;
 }

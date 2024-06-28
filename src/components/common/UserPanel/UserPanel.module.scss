@@ -1,18 +1,36 @@
 @import '../../../styles/mixins.scss';
 
 .userWrap {
-  position: fixed;
   z-index: 999;
-  right: 0;
   @include flex(row, flex-end, flex-end);
+  flex-wrap: wrap-reverse;
   gap: 20px;
-  width: calc(100% - 250px);
-  flex-wrap: nowrap;
-  padding: 10px 30px;
-  background-color: var(--color-main);
 
-  @include md-max {
-    width: 100%;
+  @include lg-max {
+    flex-direction: row-reverse;
+  }
+
+  .text {
+    width: auto;
+    background-color: var(--color-light);
+    padding: 10px;
+    border-radius: 30px;
+    position: relative;
+    text-align: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+
+      right: -12px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid var(--color-light);
+      transform: translateY(-50%) rotate(-90deg);
+    }
   }
 
   .imgWrap {
@@ -24,7 +42,7 @@
 
     img {
       @include img;
-      object-fit: contain;
+      object-fit: cover;
     }
   }
 }

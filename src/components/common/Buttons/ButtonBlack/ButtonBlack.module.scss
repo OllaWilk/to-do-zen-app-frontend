@@ -4,9 +4,13 @@
   @include btn;
   background-color: var(--color-dark);
   color: var(--color-light);
-  width: 100%;
 
   &:hover {
     background: var(--color-danger);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }

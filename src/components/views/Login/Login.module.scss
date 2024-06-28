@@ -1,0 +1,70 @@
+@import '../../../styles/mixins.scss';
+
+.login {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 60px);
+  @include flex(row-reverse, center, space-between);
+  gap: 20px;
+
+  @include lg-max {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  @include sm-max {
+    width: 95%;
+  }
+
+  form {
+    padding: 90px 50px;
+    @include flex(column, stretch, flex-start);
+    width: 45%;
+    background-color: darken($color: #5955b3, $amount: 5);
+    border-radius: 30px;
+    gap: 25px;
+
+    @include lg-max {
+      width: 100%;
+      padding: 40px 30px;
+      margin-bottom: 20px;
+    }
+
+    @include sm-max {
+      padding: 40px 20px;
+    }
+  }
+
+  .inputWrapper {
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--color-dark-grey);
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .eyeIcon {
+      position: absolute;
+      @include flex(row, center, center);
+      top: 0;
+      right: 0px;
+      height: 100%;
+      width: 40px;
+      font-size: 1.2rem;
+      background-color: var(--color-dark);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .passwordIcon {
+      cursor: pointer;
+    }
+  }
+
+  .error {
+    text-align: justify;
+  }
+}

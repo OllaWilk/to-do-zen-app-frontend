@@ -2,7 +2,15 @@ import React, { useContext } from 'react';
 import { FormContext } from '../../../../utils/hooks';
 import styles from './Input.module.scss';
 
-type Type = 'text' | 'number' | 'password' | 'radio' | 'submit' | 'file';
+type Type =
+  | 'text'
+  | 'number'
+  | 'password'
+  | 'radio'
+  | 'submit'
+  | 'file'
+  | 'email'
+  | 'date';
 
 interface Props {
   name: string;
@@ -12,9 +20,20 @@ interface Props {
   maxLength?: number;
   minLength?: number;
   disabled?: boolean;
+  date?: boolean;
+  required?: boolean;
 }
 
-const Input = ({
+const getCurrentDate = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = (now.getMonth() + 1).toString().padStart(2, '0');
+  const day = now.getDate().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
+export const Input = ({
   label,
   name,
   type = 'text',
@@ -22,28 +41,36 @@ const Input = ({
   maxLength,
   minLength,
   disabled,
+  required,
 }: Props) => {
-  const formContext = useContext(FormContext);
-  const { form, handleFormChange } = formContext;
+  const { form, handleFormChange } = useContext(FormContext);
 
+  const inputValue =
+    type === 'date' && !form[name as keyof typeof form]
+      ? getCurrentDate()
+      : form[name as keyof typeof form] || '';
+
+  const astrid = required && ' *';
   return (
-    <div
-      className={disabled ? `${styles.disabled}` : `${styles.formLabelWrap}`}
-    >
-      {label && <label>{label}</label>}
+    <div className={`${disabled ? styles.disabled : styles.formLabelWrap}`}>
+      {label && (
+        <label htmlFor={name}>
+          {label}
+          <span>{astrid}</span>
+        </label>
+      )}
       <input
         type={type}
         name={name}
-        value={String(form[name])}
-        onChange={handleFormChange}
+        value={inputValue}
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}
+        onChange={handleFormChange}
         disabled={!disabled ? disabled : false}
-        checked={form[name]}
+        id={name}
+        required={required}
       />
     </div>
   );
 };
-
-export { Input };

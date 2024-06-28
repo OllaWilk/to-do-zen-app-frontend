@@ -1,16 +1,47 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Welcome, Home, NotFound, Task, Info, About } from './components/views';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuthContext } from './utils/hooks';
+import {
+  Welcome,
+  Cockpit,
+  NotFound,
+  Event,
+  Info,
+  About,
+  Login,
+  Signup,
+} from './components/views';
+import { MainLayout } from './components/layout';
 
 function App() {
+  const { user } = useAuthContext();
+
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes */}
         <Route path='/' element={<Welcome />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/tasks/:id' element={<Task />} />
-        <Route path='/info' element={<Info />} />
-        <Route path='/about' element={<About />} />
+        <Route
+          path='/login'
+          element={!user ? <Login /> : <Navigate to='/cockpit' />}
+        />
+        <Route
+          path='/signup'
+          element={!user ? <Signup /> : <Navigate to='/cockpit' />}
+        />
+        {/* Protected routes */}
+        {user ? (
+          <Route element={<MainLayout />}>
+            <Route path='/cockpit' element={<Cockpit />} />
+            <Route path='/events/:id' element={<Event />} />
+            <Route path='/info' element={<Info />} />
+            <Route path='/about' element={<About />} />
+          </Route>
+        ) : (
+          // Redirect to Welcome page if user is not authenticated
+          <Route path='/*' element={<Welcome />} />
+        )}
+        {/* Fallback route */}
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -6,21 +6,21 @@
   right: 0;
   top: 0;
   border-radius: 0 30px 30px 0;
-  width: 33%;
+  width: 40%;
   height: 100%;
-  @include flex(column, center, flex-start);
   transition: transform 0.3s ease-in-out;
+  padding: 17px;
+  z-index: 988;
 
-  @include lg-max {
+  @media screen and (max-width: 1111px) {
     width: 100%;
-    z-index: 888;
   }
 }
 
 .buttonAdd {
   display: none;
 
-  @include lg-max {
+  @media screen and (max-width: 1111px) {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -44,7 +44,7 @@
 .toggleHorizontal {
   transform: translate(0);
 
-  @include lg-max {
+  @media screen and (max-width: 1111px) {
     transform: translateX(100%);
   }
 }

@@ -4,12 +4,13 @@ import style from './ButtonPurple.module.scss';
 
 interface Props {
   url: string;
+  text?: string;
 }
 
-const ButtonPurple = ({ url }: Props) => {
+const ButtonPurple = ({ url, text }: Props) => {
   return (
     <Link to={url}>
-      <p className={style.buttonIcon}>edit</p>
+      <p className={style.buttonIcon}>{text}</p>
     </Link>
   );
 };

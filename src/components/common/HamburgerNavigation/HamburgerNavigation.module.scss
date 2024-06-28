@@ -16,4 +16,8 @@
     font-size: 20px;
     background-color: var(--color-dark);
   }
+
+  @include sm-max {
+    right: -40px;
+  }
 }

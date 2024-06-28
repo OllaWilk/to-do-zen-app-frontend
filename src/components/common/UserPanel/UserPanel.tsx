@@ -1,15 +1,17 @@
 import React from 'react';
+
 import { userAvatar } from '../../../images';
+
 import styles from './UserPanel.module.scss';
 
 interface Props {
-  userName: string;
+  userName?: string;
 }
 
 const UserPanel = ({ userName }: Props) => {
   return (
     <div className={styles.userWrap}>
-      <p className={styles.text}>{userName}</p>
+      <p className={styles.text}>Add event you want to go {userName}</p>
       <div className={styles.imgWrap}>
         <img src={userAvatar} alt='avatar' />
       </div>

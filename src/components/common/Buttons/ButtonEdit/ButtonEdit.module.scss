@@ -1,0 +1,19 @@
+@import '../../../../styles/mixins.scss';
+
+.icon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 30px;
+
+  svg {
+    font-size: 28px;
+    transition: var(--transition);
+    cursor: pointer;
+    color: var(--color-main);
+
+    &:hover {
+      color: var(--color-danger);
+    }
+  }
+}

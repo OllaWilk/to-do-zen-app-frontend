@@ -9,6 +9,7 @@ interface Props {
   maxLength?: number;
   maxHeight?: number;
   disabled?: boolean;
+  required?: boolean;
   placeholder?: string;
 }
 
@@ -17,28 +18,36 @@ const Textarea = ({
   label,
   minLength = 0,
   maxLength = 1000,
-  maxHeight = 500,
+  maxHeight = 200,
   disabled,
   placeholder,
+  required,
 }: Props) => {
   const formContext = useContext(FormContext);
   const { form, handleFormChange } = formContext;
   const styleCss = {
-    maxHeight: `${maxHeight}px`,
+    height: `${maxHeight}px`,
   };
+  const astrid = required && ' *';
 
   return (
     <div className={style.formLabelWrap}>
-      {label && <label>{label}</label>}
+      {label && (
+        <label>
+          {label}
+          <span>{astrid}</span>
+        </label>
+      )}
       <textarea
         name={name}
         style={styleCss}
         maxLength={maxLength}
-        value={String(form[name])}
         disabled={disabled ? disabled : false}
         onChange={handleFormChange}
         placeholder={placeholder}
         minLength={minLength}
+        value={(form as Record<string, any>)[name]}
+        required={required}
       />
     </div>
   );

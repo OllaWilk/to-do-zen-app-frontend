@@ -1,25 +1,20 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import { useToggle } from '../../../utils/hooks/useToggle';
-import { home } from '../../../data/pages/home';
-
 import {
+  ButtonLogout,
+  Footer,
   HamburgerNavigation,
   Logo,
   Navigation,
-  UserPanel,
 } from '../../common/index';
 import styles from './MainLayout.module.scss';
 
-type MainLayoutProps = {
-  children: React.ReactNode;
-};
-
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout = () => {
   const [isOpen, toggleIsOpen] = useToggle(true);
 
   return (
     <>
-      <UserPanel userName={home.user} />
       <header
         className={
           !isOpen
@@ -27,11 +22,21 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             : `${styles.navigation} ${styles.toggleHorizontal}`
         }
       >
-        <Logo text={'SpaceSteps'} size='20px' />
+        <div className={styles.logoWrap}>
+          <Logo
+            text={'SpaceSteps'}
+            fontSize='20px'
+            imgSize={{ width: '40px', height: '40px' }}
+          />
+        </div>
         <Navigation />
         <HamburgerNavigation isOpen={isOpen} handleClick={toggleIsOpen} />
+        <ButtonLogout />
       </header>
-      <section className={styles.cockpit}>{children}</section>
+      <section className={styles.cockpit}>
+        <Outlet />
+        <Footer />
+      </section>
     </>
   );
 };
