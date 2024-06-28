@@ -46,6 +46,7 @@ const Textarea = ({
         onChange={handleFormChange}
         placeholder={placeholder}
         minLength={minLength}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value={(form as Record<string, any>)[name]}
         required={required}
       />

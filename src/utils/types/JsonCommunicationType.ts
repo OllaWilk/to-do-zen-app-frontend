@@ -1,11 +1,3 @@
-export enum HttpMethod {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
-  PATCH = 'PATCH',
-}
-
 export enum UserActions {
   LOGIN = 'LOGIN',
   LOGOUT = 'LOGOUT',
@@ -20,11 +12,13 @@ type InfoArrayData = {
 
 interface ArrayData {
   info: InfoArrayData;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any[];
 }
 
 export interface ElementData {
   type: 'string' | 'number' | 'boolean' | 'object';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuthContext } from './useAuthContext';
-import { HttpMethod, UserActions } from '../../types/JsonCommunicationType';
+import { UserActions } from '../../types/JsonCommunicationType';
 
 export const useUserAuth = () => {
   const [error, setError] = useState<null | string>(null);
@@ -12,7 +12,7 @@ export const useUserAuth = () => {
     setError(null);
 
     const res = await fetch(`http://localhost:3001/user/${url}`, {
-      method: HttpMethod.POST,
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });

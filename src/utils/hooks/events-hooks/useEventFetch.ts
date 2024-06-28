@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { EventEntity, NewEventEntity } from 'types';
 import { useAuthContext, useEventsContext } from '../index';
-import { HttpMethod, EventActions } from '../../types';
+import { EventActions } from '../../types';
 
 interface FetchState<T> {
   event: T | null;
@@ -21,7 +21,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
   const eventInsert = async (data: NewEventEntity | EventEntity) => {
     setError(null);
 
-    const method = 'id' in data ? HttpMethod.PATCH : HttpMethod.POST;
+    const method = 'id' in data ? 'PATCH' : 'POST';
     const url =
       'id' in data
         ? `http://localhost:3001/events/${data.id}`
@@ -46,7 +46,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
       //update EventContext
       dispatch({
         type:
-          method === HttpMethod.POST
+          method === 'POST'
             ? EventActions.CREATE_EVENT
             : EventActions.UPDATE_EVENT,
         payload: json,
@@ -60,7 +60,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
     setError(null);
 
     const res = await fetch(`http://localhost:3001/events/${id}`, {
-      method: HttpMethod.DELETE,
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${user?.token}`,

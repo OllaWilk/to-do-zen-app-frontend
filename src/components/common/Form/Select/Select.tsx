@@ -18,6 +18,7 @@ export const Select = ({ label, name, options }: Props) => {
       {label && <label>{label}</label>}
       <select
         name={name}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value={(form as Record<string, any>)[name]}
         onChange={handleFormChange}
       >
