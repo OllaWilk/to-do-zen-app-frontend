@@ -7,6 +7,7 @@ export { Footer } from './Footer/Footer';
 export * from './Form';
 export { HamburgerNavigation } from './HamburgerNavigation/HamburgerNavigation';
 export { Logo } from './Logo/Logo';
+export { Map } from './Map/Map';
 export { Navigation } from './Navigation/Navigation';
 export { NoDataAlert } from './NoDataAlert/NoDataAlert';
 export { Paragraph } from './Paragraph/Paragraph';
