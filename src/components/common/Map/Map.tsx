@@ -11,6 +11,7 @@ const Map = () => {
         style={{ height: '100%' }}
         center={[51.110929, 17.0357957, 15.42]}
         zoom={13}
+        zoomControl={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -18,12 +19,7 @@ const Map = () => {
         />
         <Marker position={[51.110929, 17.0357957, 15.42]}>
           <Popup>
-            <h2>Wrocłąw</h2>
-          </Popup>
-        </Marker>
-        <Marker position={[51.110929, 17.0357957, 15.42]}>
-          <Popup>
-            <h2>Wrocłąw</h2>
+            <h2>Wrocław</h2>
           </Popup>
         </Marker>
       </MapContainer>

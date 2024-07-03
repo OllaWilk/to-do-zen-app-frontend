@@ -50,6 +50,7 @@ export const eventsReducer = (
         events: updatedEvents || state.events,
       };
     }
+
     default:
       return state;
   }

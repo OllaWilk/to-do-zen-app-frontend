@@ -2,13 +2,16 @@ import React from 'react';
 import { TbUfo } from 'react-icons/tb';
 import style from './Spiner.module.scss';
 
-const Spiner = () => {
+interface Props {
+  message?: string;
+}
+const Spiner = ({ message }: Props) => {
   return (
     <div className={style.spinerWraper}>
       <div className={style.spinner}></div>
       <p>
         <TbUfo />
-        Loading...
+        {message ? 'Loading...' : message}
       </p>
     </div>
   );

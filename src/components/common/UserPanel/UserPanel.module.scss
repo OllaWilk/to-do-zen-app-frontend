@@ -2,18 +2,19 @@
 
 .userWrap {
   z-index: 999;
-  @include flex(row, flex-end, flex-end);
+  @include flex(row, center, flex-end);
   flex-wrap: wrap-reverse;
   gap: 20px;
+  width: 100%;
 
-  @include lg-max {
-    flex-direction: row-reverse;
+  @media screen and (max-width: 1111px) {
+    justify-content: center;
   }
 
   .text {
     width: auto;
     background-color: var(--color-light);
-    padding: 10px;
+    padding: 15px;
     border-radius: 30px;
     position: relative;
     text-align: center;

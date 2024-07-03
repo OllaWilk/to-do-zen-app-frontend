@@ -5,9 +5,9 @@ import style from './ButtonIcon.module.scss';
 
 const ButtonIcon = () => {
   return (
-    <div className={style.buttonIcon}>
+    <button className={style.buttonIcon}>
       <FaSearch />
-    </div>
+    </button>
   );
 };
 

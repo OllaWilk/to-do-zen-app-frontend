@@ -1,4 +1,42 @@
+@import '../../../styles/mixins.scss';
 .search {
   width: calc(100% - 42%);
+  @include flex(column, stretch, space-between);
   padding: 1.7rem 0 1rem 0;
+  gap: 20px;
+
+  @media screen and (max-width: 1111px) {
+    width: 100%;
+  }
+
+  @include md-max {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.toggleHorizontal {
+  transform: translate(0);
+}
+
+.openForm {
+  position: absolute;
+  transform: translate(110%);
+}
+
+.controlPanel {
+  background-color: var(--color-grey);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+  padding: 17px;
+  z-index: 999;
+
+  @media screen and (max-width: 1111px) {
+    right: 0;
+    @include flex(column, flex-end, center);
+  }
 }

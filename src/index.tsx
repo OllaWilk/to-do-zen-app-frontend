@@ -5,8 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 
 // Context providers
-import { EventsContextProvider } from './context/events';
-import { AuthContextProvider } from './context/auth';
+import { MainContextProvider } from './context/mainContext';
 
 // External styles
 import './styles/normalize.scss';
@@ -18,10 +17,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <EventsContextProvider>
-        <App />
-      </EventsContextProvider>
-    </AuthContextProvider>
+    <MainContextProvider>
+      <App />
+    </MainContextProvider>
   </React.StrictMode>
 );

@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { EventEntity } from 'types';
 import { useEventFetch, useEventsContext } from '../../../utils/hooks';
+import { SearchContext } from '../../../context/search';
 import { NoDataAlert, Spiner, Event } from '../../common';
 import styles from './EventsList.module.scss';
 
@@ -9,18 +10,23 @@ export const EventsList = () => {
     state: { events },
   } = useEventsContext();
 
+  const { search } = useContext(SearchContext);
   const { getEvents } = useEventFetch<EventEntity[]>();
 
   useEffect(() => {
+    console.log('reequest do bazy danych', search);
+
     (async () => {
       await getEvents();
     })();
-  }, [getEvents]);
+  }, [getEvents, search]);
 
   if (!events) {
     return <Spiner />;
   } else if (events.length === 0) {
-    return <NoDataAlert />;
+    return <NoDataAlert message='Brak wydarzeń do wyświetlenia' />;
+  } else if (events === null) {
+    return <NoDataAlert message='Nie znaleziono wydarzenia' />;
   }
 
   return (
