@@ -10,7 +10,9 @@ const SearchBar = () => {
   const setSearchFromLocaleState = (e: SyntheticEvent) => {
     e.preventDefault();
     setSearch(inputVal);
+    setInputVal('');
   };
+
   return (
     <form className={style.component} onSubmit={setSearchFromLocaleState}>
       <ButtonIcon />

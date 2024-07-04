@@ -3,13 +3,15 @@ import { EventEntity, NewEventEntity } from 'types';
 import { useAuthContext, useEventsContext } from '../index';
 import { EventActions } from '../../types';
 
+type GetEventsParams = { id?: string; search?: string };
+
 interface FetchState<T> {
   event: T | null;
   error: string | null;
   setError: React.Dispatch<React.SetStateAction<string | null>>;
   eventInsert: (data: NewEventEntity | EventEntity) => Promise<void>;
   eventDelete: (id: string) => Promise<void>;
-  getEvents: (id?: string) => Promise<void>;
+  getEvents: (params?: GetEventsParams) => Promise<void>;
 }
 
 export const useEventFetch = <T>(): FetchState<T> => {
@@ -73,11 +75,18 @@ export const useEventFetch = <T>(): FetchState<T> => {
   };
 
   const getEvents = useCallback(
-    async (id?: string) => {
+    async ({ id, search }: GetEventsParams = {}) => {
       setError(null);
-      const url = !id
-        ? 'http://localhost:3001/events'
-        : `http://localhost:3001/events/${id}`;
+
+      let url;
+
+      if (id) {
+        url = `http://localhost:3001/events/${id}`;
+      } else if (search) {
+        url = `http://localhost:3001/events/search/${search}`;
+      } else {
+        url = 'http://localhost:3001/events';
+      }
 
       const response = await fetch(url, {
         headers: {
@@ -89,7 +98,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
       const json = await response.json();
 
       if (response.ok) {
-        const eventRecords = !id ? json.eventRecord : json;
+        const eventRecords = !id && !search ? json.eventRecord : json;
 
         dispatch({
           type: !id ? 'SET_EVENTS' : 'SET_CURRENT_EVENT',

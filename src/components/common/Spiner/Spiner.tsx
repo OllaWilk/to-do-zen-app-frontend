@@ -11,7 +11,7 @@ const Spiner = ({ message }: Props) => {
       <div className={style.spinner}></div>
       <p>
         <TbUfo />
-        {message ? 'Loading...' : message}
+        {message ? message : 'Loading...'}
       </p>
     </div>
   );

@@ -11,13 +11,18 @@
 }
 
 .spinerWraper {
-  @include flex(column, center, center);
+  @include flex(column, center, flex-start);
   position: relative;
   gap: 20px;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  transform: translate(0%, -50%);
+  width: 60%;
+
+  @media screen and (max-width: 1111px) {
+    width: 100%;
+  }
 
   .spinner {
     width: 200px;

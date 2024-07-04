@@ -18,13 +18,13 @@ export const Event = () => {
   //get event witch id
   useEffect(() => {
     (async () => {
-      await getEvents(id);
+      await getEvents({ id });
     })();
   }, [getEvents, id]);
 
   useEffect(() => {
     if (event?.id !== id) {
-      getEvents(id);
+      getEvents({ id });
     }
   }, [event, id, getEvents]);
 

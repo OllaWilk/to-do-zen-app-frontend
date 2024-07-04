@@ -14,19 +14,21 @@ export const EventsList = () => {
   const { getEvents } = useEventFetch<EventEntity[]>();
 
   useEffect(() => {
-    console.log('reequest do bazy danych', search);
-
     (async () => {
-      await getEvents();
+      if (search === '') {
+        await getEvents();
+      } else {
+        await getEvents({ search });
+      }
     })();
   }, [getEvents, search]);
 
   if (!events) {
-    return <Spiner />;
+    return <NoDataAlert message='No events to display' />;
   } else if (events.length === 0) {
-    return <NoDataAlert message='Brak wydarzeń do wyświetlenia' />;
+    return <Spiner message='add event' />;
   } else if (events === null) {
-    return <NoDataAlert message='Nie znaleziono wydarzenia' />;
+    return <NoDataAlert message='Event not found' />;
   }
 
   return (
