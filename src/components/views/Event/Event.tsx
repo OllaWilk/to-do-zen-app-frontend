@@ -17,16 +17,12 @@ export const Event = () => {
 
   //get event witch id
   useEffect(() => {
-    (async () => {
-      await getEvents({ id });
-    })();
-  }, [getEvents, id]);
-
-  useEffect(() => {
     if (event?.id !== id) {
-      getEvents({ id });
+      (async () => {
+        await getEvents({ id });
+      })();
     }
-  }, [event, id, getEvents]);
+  }, [getEvents, id, event]);
 
   if (!event) {
     return (
