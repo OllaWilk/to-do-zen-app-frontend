@@ -28,7 +28,7 @@ const Map = () => {
             position={[Number(event.lat), Number(event.lon), 5]}
           >
             <Popup>
-              <h2>{event.title}</h2>
+              <h2 className={style.title}>{event.title}</h2>
             </Popup>
           </Marker>
         ))}

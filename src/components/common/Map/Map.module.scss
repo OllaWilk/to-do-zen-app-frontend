@@ -4,3 +4,13 @@
   height: 100%;
   position: relative;
 }
+
+.title {
+  font-size: 15px;
+  font-family: var(--font-text);
+  margin: 10px 10px;
+  width: auto;
+  color: var(--color-main);
+  text-transform: uppercase;
+  text-align: center;
+}
