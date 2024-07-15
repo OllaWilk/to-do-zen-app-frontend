@@ -5,7 +5,7 @@
   padding: 0 16px 0 0;
   @include flex(column, stretch, space-around);
 
-  @media screen and (max-width: 1111px) {
+  @include xl-max {
     width: 100%;
     padding: 0;
   }

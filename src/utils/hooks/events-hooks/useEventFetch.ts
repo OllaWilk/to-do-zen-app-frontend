@@ -1,28 +1,30 @@
 import { useState, useCallback } from 'react';
 import { EventEntity, NewEventEntity } from 'types';
-import { useAuthContext, useEventsContext } from '../index';
-import { EventActions } from '../../types';
+import {
+  useAuthContext,
+  useEventsContext,
+  useAsistantMessageContext,
+} from '../index';
 
 type GetEventsParams = { id?: string; search?: string };
 
 interface FetchState<T> {
   event: T | null;
-  error: string | null;
-  setError: React.Dispatch<React.SetStateAction<string | null>>;
+  message: string | null;
+  setMessage: (message: string | null) => void;
   eventInsert: (data: NewEventEntity | EventEntity) => Promise<void>;
   eventDelete: (id: string) => Promise<void>;
   getEvents: (params?: GetEventsParams) => Promise<void>;
 }
 
 export const useEventFetch = <T>(): FetchState<T> => {
-  const [error, setError] = useState<null | string>(null);
+  const { message, setMessage } = useAsistantMessageContext();
   const [json, setJson] = useState<T | null>(null);
   const { user } = useAuthContext();
   const { dispatch } = useEventsContext();
 
   const eventInsert = async (data: NewEventEntity | EventEntity) => {
-    setError(null);
-
+    setMessage(null);
     const method = 'id' in data ? 'PATCH' : 'POST';
     const url =
       'id' in data
@@ -41,25 +43,22 @@ export const useEventFetch = <T>(): FetchState<T> => {
     const json = await res.json();
 
     if (!res.ok) {
-      setError(json.error || 'An error occurred');
+      setMessage(json.error || 'An error occurred');
     }
 
     if (res.ok) {
       //update EventContext
       dispatch({
-        type:
-          method === 'POST'
-            ? EventActions.CREATE_EVENT
-            : EventActions.UPDATE_EVENT,
+        type: method === 'POST' ? 'CREATE_EVENT' : 'UPDATE_EVENT',
         payload: json,
       });
-      setError(null);
+      setMessage(null);
       setJson(json);
     }
   };
 
   const eventDelete = async (id: string) => {
-    setError(null);
+    setMessage(null);
 
     const res = await fetch(`http://localhost:3001/events/${id}`, {
       method: 'DELETE',
@@ -76,7 +75,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
 
   const getEvents = useCallback(
     async ({ id, search }: GetEventsParams = {}) => {
-      setError(null);
+      setMessage(null);
 
       let url;
 
@@ -106,11 +105,18 @@ export const useEventFetch = <T>(): FetchState<T> => {
         });
         setJson(eventRecords);
       } else {
-        setError(json.message);
+        setMessage(json.message);
       }
     },
-    [dispatch, user]
+    [dispatch, user, setMessage]
   );
 
-  return { eventInsert, eventDelete, getEvents, error, setError, event: json };
+  return {
+    eventInsert,
+    eventDelete,
+    getEvents,
+    message,
+    setMessage,
+    event: json,
+  };
 };

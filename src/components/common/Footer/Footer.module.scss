@@ -1,17 +1,28 @@
 @import '../../../styles/mixins.scss';
 
-.footer {
+.login {
   width: 80%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 15px 0;
+  margin: auto;
+
+  @include md-max {
+    width: 95%;
+  }
+}
+
+.cockpitView {
+  width: calc(100% - 250px);
+  margin: 0 0 0 auto;
+  padding: 17px 20px;
+
+  @include md-max {
+    width: 100%;
+  }
+}
+
+.footer {
   @include flex(row, center, space-between);
   flex-wrap: wrap;
   color: var(--color-dark);
-
-  @include sm-max {
-    width: 95%;
-  }
 
   .links {
     @include flex(row, center, center);

@@ -3,7 +3,7 @@
 .event {
   @include flex(column, stretch, space-around);
 
-  @media screen and (max-width: 1111px) {
+  @include xl-max {
     width: 100%;
     padding: 0;
   }
@@ -30,7 +30,7 @@
     border-radius: 0 0 0 30px;
     margin: 0 0 17px 0;
 
-    @media screen and (max-width: 1111px) {
+    @include xl-max {
       border-radius: 0 0 30px 30px;
     }
   }

@@ -10,7 +10,7 @@
   border-top: 1px var(--color-grey) solid;
   border-bottom: 1px var(--color-grey) solid;
 
-  @media screen and (max-width: 1111px) {
+  @include xl-max {
     width: 100%;
   }
 }

@@ -77,7 +77,7 @@
 
 // Large-desctop devices
 @mixin xl-max {
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1111px) {
     @content;
   }
 }

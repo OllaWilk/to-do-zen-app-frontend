@@ -18,15 +18,17 @@
 }
 
 .cockpit {
-  position: absolute;
+  flex: 1;
+  margin-left: 250px;
   width: calc(100vw - 267px);
-  min-height: 100vh;
   right: 0;
   padding: 17px 17px 0 17px;
   color: var(--color-dark);
-  @include flex(column, stretch, center);
 
-  @include md-max {
+  // overflow-y: hidden;
+
+  @include lg-max {
+    margin-left: 0;
     width: 100%;
   }
 }
@@ -34,7 +36,13 @@
 .toggleHorizontal {
   transform: translate(0);
 
-  @include md-max {
+  @include lg-max {
     transform: translateX(-100%);
   }
+}
+
+.layoutWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

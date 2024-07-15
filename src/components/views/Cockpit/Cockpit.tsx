@@ -1,6 +1,7 @@
 import React from 'react';
+
 import { useToggle } from '../../../utils/hooks/useToggle';
-import { ControlPanel, EventsList } from '../../layout';
+import { ControlPanel, EventsList, LeftSidePanel } from '../../layout';
 import {
   SectionCart,
   SectionHeader,
@@ -15,29 +16,33 @@ import style from './Cockpit.module.scss';
 export const Cockpit = () => {
   const [isOpen, toggleIsOpen] = useToggle(true);
 
+  console.log(Boolean(isOpen));
   return (
     <SectionCart>
-      <SectionHeader text={'Things to do <sup>yay!</sup>'} />
-      <div className={style.search}>
-        <div className={style.buttonAdd} onClick={toggleIsOpen}>
-          <ButtonBlack
-            buttonName={isOpen ? 'Add event' : 'Show map'}
-            styles={{ width: '100%' }}
-          />
-        </div>
+      <LeftSidePanel>
+        <SectionHeader text={'Things to do <sup>yay!</sup>'} />
         <SearchBar />
-      </div>
-      <EventsList />
+        <EventsList />
+      </LeftSidePanel>
       <ControlPanel>
         <UserPanel />
+        <div
+          className={!isOpen ? `${style.none}` : `${style.buttonAdd}`}
+          onClick={toggleIsOpen}
+        >
+          <ButtonBlack buttonName={'Add event'} styles={{ width: '100%' }} />
+        </div>
         <Map />
         <div
           className={
-            isOpen
-              ? style.openForm
+            !isOpen
+              ? `${style.showForm} ${style.controlPanel}`
               : `${style.controlPanel} ${style.toggleHorizontal}`
           }
         >
+          <p onClick={toggleIsOpen} className={style.close}>
+            x
+          </p>
           <EventForm />
         </div>
       </ControlPanel>

@@ -1,7 +1,7 @@
 @import '../../../styles/mixins.scss';
 
 .component {
-  width: 100%;
+  // width: 100%;
   @include flex(row, center, space-between);
   flex-wrap: wrap;
 

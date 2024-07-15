@@ -3,7 +3,7 @@
 .hamburgerComponent {
   display: none;
 
-  @include md-max {
+  @include lg-max {
     display: block;
 
     position: absolute;

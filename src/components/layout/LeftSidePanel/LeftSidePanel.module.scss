@@ -1,0 +1,21 @@
+@import '../../../styles/mixins.scss';
+
+.leftSidePAnel {
+  min-width: 200px;
+  width: 60%;
+  @include flex(column, stretch, space-between);
+  gap: 20px;
+  padding: 17px;
+
+  @include xl-max {
+    width: 50%;
+  }
+
+  @include lg-max {
+    width: 50%;
+  }
+
+  @include md-max {
+    width: 100%;
+  }
+}

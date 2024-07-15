@@ -2,7 +2,7 @@
 
 .componentWrap {
   width: 100%;
-  @include flex(column, stretch, flex-end);
+  padding: 0 17px;
   color: var(--color-main);
 }
 .error {

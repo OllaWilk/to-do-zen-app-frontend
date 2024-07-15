@@ -3,27 +3,37 @@
 .userWrap {
   z-index: 999;
   @include flex(row, center, flex-end);
-  flex-wrap: wrap-reverse;
   gap: 20px;
-  width: 100%;
+  padding: 17px;
 
-  @media screen and (max-width: 1111px) {
+  @include xl-max {
     justify-content: center;
   }
 
+  @include sm-max {
+    flex-wrap: wrap-reverse;
+  }
+
   .text {
-    width: auto;
+    width: 80%;
     background-color: var(--color-light);
-    padding: 15px;
+    padding: 20px 15px;
     border-radius: 30px;
     position: relative;
     text-align: center;
+
+    @include sm-max {
+      width: 100%;
+    }
+
+    span {
+      color: var(--color-main);
+    }
 
     &::after {
       content: '';
       position: absolute;
       top: 50%;
-
       right: -12px;
       width: 0;
       height: 0;
@@ -31,19 +41,26 @@
       border-right: 10px solid transparent;
       border-top: 10px solid var(--color-light);
       transform: translateY(-50%) rotate(-90deg);
+      @include shadow;
     }
   }
 
   .imgWrap {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
     background-color: var(--color-light);
     padding: 8px;
     border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
 
     img {
       @include img;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
+}
+
+.fadeIn {
+  display: none;
 }

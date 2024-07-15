@@ -1,4 +1,4 @@
-export function formatDate(isoDateString: string): string | Date {
+export function formatIsoDateString(isoDateString: string): string | Date {
   const date = new Date(isoDateString);
 
   const year = date.getFullYear();
@@ -7,3 +7,13 @@ export function formatDate(isoDateString: string): string | Date {
 
   return `${year}-${month}-${day}`;
 }
+
+export const formatShortDate = (date: Date): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+  return date.toLocaleDateString('en-EN', options);
+};

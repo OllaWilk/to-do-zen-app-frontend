@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useContext, useState } from 'react';
 import { ButtonIcon } from '../../common/index';
-import style from './SearchBar.module.scss';
 import { SearchContext } from '../../../context/search';
+import style from './SearchBar.module.scss';
 
 const SearchBar = () => {
   const { search, setSearch } = useContext(SearchContext);

@@ -4,12 +4,15 @@
   background-color: var(--color-light);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   border-radius: 30px;
-  padding: 17px;
   position: relative;
   overflow: hidden;
+  @include flex(row, flex-start, space-between);
+  flex-wrap: wrap;
+  flex-grow: 3;
   min-height: calc(100vh - 34px);
 
-  @media screen and (max-width: 1111px) {
-    min-height: 105vh;
+  @include md-max {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
   }
 }

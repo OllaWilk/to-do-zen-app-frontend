@@ -14,7 +14,7 @@ const MainLayout = () => {
   const [isOpen, toggleIsOpen] = useToggle(true);
 
   return (
-    <>
+    <div className={styles.layoutWrapper}>
       <header
         className={
           !isOpen
@@ -35,9 +35,9 @@ const MainLayout = () => {
       </header>
       <section className={styles.cockpit}>
         <Outlet />
-        <Footer />
       </section>
-    </>
+      <Footer />
+    </div>
   );
 };
 

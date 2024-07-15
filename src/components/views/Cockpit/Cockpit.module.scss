@@ -1,42 +1,57 @@
 @import '../../../styles/mixins.scss';
-.search {
-  width: calc(100% - 42%);
-  @include flex(column, stretch, space-between);
-  padding: 1.7rem 0 1rem 0;
-  gap: 20px;
 
-  @media screen and (max-width: 1111px) {
+.showForm {
+  position: absolute;
+  right: 100%;
+  background-color: var(--color-grey);
+  width: 150%;
+  @include shadow;
+
+  @include xl-max {
     width: 100%;
   }
 
   @include md-max {
-    flex-direction: column;
-    align-items: flex-start;
+    position: relative;
+    right: 0;
   }
 }
 
 .toggleHorizontal {
-  transform: translate(0);
-}
-
-.openForm {
   position: absolute;
-  transform: translate(110%);
+  right: 150%;
+  width: 150%;
+  transform: translate(-100%, 0);
+  background-color: var(--color-grey);
+
+  @include md-max {
+    transform: translate(0%, 0);
+  }
 }
 
 .controlPanel {
-  background-color: var(--color-grey);
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
   height: 100%;
   transition: transform 0.3s ease-in-out;
-  padding: 17px;
-  z-index: 999;
+  z-index: 888;
+  @include flex(column, flex-end, center);
+}
 
-  @media screen and (max-width: 1111px) {
-    right: 0;
-    @include flex(column, flex-end, center);
+.buttonAdd {
+  display: block;
+  z-index: 999;
+}
+
+.none {
+  display: none;
+}
+
+.close {
+  font-size: 1.2rem;
+  text-align: center;
+  width: 50px;
+  cursor: pointer;
+
+  @include md-max {
+    padding: 17px 0;
   }
 }

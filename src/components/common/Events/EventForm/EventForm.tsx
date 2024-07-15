@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { EventEntity, NewEventEntity, EventStatus } from 'types';
-import { formatDate, useEventFetch } from '../../../../utils/hooks';
+import {
+  formatIsoDateString,
+  useEventFetch,
+  useAsistantMessageContext,
+} from '../../../../utils/hooks/index';
 import { Form, Input, Textarea, Select } from '../../Form';
 import styles from './EventForm.module.scss';
 
@@ -14,11 +18,11 @@ interface NewEventEntityWithAdress extends NewEventEntity {
 
 export const EventForm = ({ event }: Props) => {
   // Hook to handle event insertion and error handling
-  const { eventInsert, error } = useEventFetch();
+  const { eventInsert } = useEventFetch();
   // Format the event date for display in the form
-  const eventDataFormat = formatDate(`${event?.event_date}`);
+  const eventDataFormat = formatIsoDateString(`${event?.event_date}`);
   // State to manage location error messages
-  const [errorLocation, setErrorLocation] = useState<string | null>(null);
+  const { setMessage } = useAsistantMessageContext();
 
   // Initial form values, using event data if available
   const formValues = {
@@ -65,13 +69,10 @@ export const EventForm = ({ event }: Props) => {
       } else {
         await eventInsert(form);
       }
-
-      // Clear any previous location error messages
-      setErrorLocation(null);
     } catch (error) {
       console.error(error);
       // Set an error message if location fetch fails
-      setErrorLocation(
+      setMessage(
         'Sorry, no location found. Please check for typos and ensure the format is City, Street Name, House Number. For example: "Wroclaw, Pereca 1". Avoid using abbreviations like "ul.", "al.", etc.'
       );
     }
@@ -82,7 +83,7 @@ export const EventForm = ({ event }: Props) => {
       <Form
         submit={submit}
         formValues={formValues}
-        buttonName={event?.id ? 'edit' : 'add'}
+        buttonName={event?.id ? 'edit' : 'submit'}
       >
         <Input
           label={'title'}
@@ -109,10 +110,6 @@ export const EventForm = ({ event }: Props) => {
           minLength={3}
           maxHeight={100}
         />
-        <p className={`${error ? styles.error : styles.success}`}>{error}</p>
-        <p className={`${errorLocation ? styles.error : styles.success}`}>
-          {errorLocation}
-        </p>
       </Form>
     </div>
   );
