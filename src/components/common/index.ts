@@ -1,6 +1,7 @@
 export { AnimatedAstronaut } from './AnimatedAstronaut/AnimatedAstronaut';
 export * from './Buttons';
 export { Column } from './Column/Column';
+export { SortBar } from './SortBar/SortBar';
 export { DateDisplay } from './DateDisplay/DateDisplay';
 export * from './Events';
 export { Footer } from './Footer/Footer';

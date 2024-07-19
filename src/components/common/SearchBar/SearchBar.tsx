@@ -3,14 +3,26 @@ import { ButtonIcon } from '../../common/index';
 import { SearchContext } from '../../../context/search';
 import style from './SearchBar.module.scss';
 
+/**
+ * The SearchBar component allows users to enter search queries.
+ * It uses context to manage search query state at the application level.
+ */
+
 const SearchBar = () => {
-  const { search, setSearch } = useContext(SearchContext);
+  // Retrieve the search state and the function to update it from the context
+  const { search, setSearch, setOrder } = useContext(SearchContext);
+  // Local state for input value
   const [inputVal, setInputVal] = useState(search);
 
+  /**
+   * Function to handle form submission.
+   * Updates the search state and resets the input value.
+   */
   const setSearchFromLocaleState = (e: SyntheticEvent) => {
     e.preventDefault();
-    setSearch(inputVal);
-    setInputVal('');
+    setOrder(''); // Resets the order value
+    setSearch(inputVal); // Updates the search state in the context
+    setInputVal(''); // Resets the input value
   };
 
   return (

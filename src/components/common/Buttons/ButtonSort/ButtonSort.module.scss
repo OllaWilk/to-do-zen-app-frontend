@@ -1,0 +1,14 @@
+@import '../../../../styles//mixins.scss';
+
+.sortBtn {
+  color: var(--color-main);
+  transition: var(--transition);
+  background-color: transparent;
+  @include btn;
+  @include flex(row, center, center);
+  gap: 0.5rem;
+
+  &::hover {
+    color: var(--color-danger);
+  }
+}

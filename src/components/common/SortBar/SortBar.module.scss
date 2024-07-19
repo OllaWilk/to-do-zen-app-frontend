@@ -1,0 +1,30 @@
+@import '../../../styles/mixins.scss';
+
+.buttonsWrap {
+  @include flex(row, stretch, space-between);
+  flex-wrap: wrap;
+
+  @include lg-max {
+    align-items: center;
+  }
+
+  @include md-max {
+    justify-content: center;
+  }
+}
+
+.ikons {
+  @include flex(row, center, center);
+  gap: 10px;
+  color: var(--color-main);
+
+  svg {
+    transition: var(--transition);
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    &:hover {
+      color: var(--color-dark);
+    }
+  }
+}

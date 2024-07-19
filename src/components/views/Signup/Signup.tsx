@@ -12,16 +12,22 @@ import {
 } from '../../common/index';
 import styles from './Signup.module.scss';
 
+// Signup component for user registration
 export const Signup = () => {
+  // Initial form values
   const formValues: UserEntityForm = {
     email: '',
     password: '',
   };
 
+  // useState hook to manage form data
   const [data, setData] = useState(formValues);
+  // Custom hook for user authentication
   const { auth, error, isLoading } = useUserAuth();
+  // Custom hook for toggling password visibility
   const [isToggled, toggle] = useToggle(true);
 
+  // Handle input change events
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -31,10 +37,11 @@ export const Signup = () => {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await auth(data.email, data.password, 'signup');
+    await auth(data.email, data.password, 'signup'); // Call auth function with email and password
   };
 
   return (

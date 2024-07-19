@@ -6,6 +6,7 @@ import {
   SectionCart,
   SectionHeader,
   EventForm,
+  SortBar,
   UserPanel,
   SearchBar,
   Map,
@@ -16,12 +17,12 @@ import style from './Cockpit.module.scss';
 export const Cockpit = () => {
   const [isOpen, toggleIsOpen] = useToggle(true);
 
-  console.log(Boolean(isOpen));
   return (
     <SectionCart>
       <LeftSidePanel>
         <SectionHeader text={'Things to do <sup>yay!</sup>'} />
         <SearchBar />
+        <SortBar />
         <EventsList />
       </LeftSidePanel>
       <ControlPanel>
