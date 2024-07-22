@@ -7,12 +7,11 @@
   padding: 0 40px;
   position: absolute;
 
-  width: calc(95%);
-  gap: 0px;
+  width: 100%;
+  height: 100%;
 
   @include xl-min {
-    gap: 80px;
-    @include flex(row, center, space-around);
+    @include flex(row, center, center);
   }
 
   @include sm-max {
@@ -22,17 +21,22 @@
 
   .infoWrap {
     @include flex(column, center, center);
-    gap: 40px;
+    gap: 20px;
+    width: 50%;
+
+    @include lg-max {
+      width: 80%;
+    }
   }
 
   .imgWrap {
     background-color: var(--color-main);
-    width: 50%;
+    width: 40%;
     overflow: hidden;
     padding: 20px;
 
     @include lg-max {
-      width: 100%;
+      width: 80%;
     }
 
     @include sm-max {

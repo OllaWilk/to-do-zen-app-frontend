@@ -1,0 +1,31 @@
+@import '../../../styles//mixins.scss';
+
+.language {
+  @include flex(row, center, center);
+  gap: 10px;
+  width: 100%;
+  padding: 10px 0 0 0;
+
+  .flag,
+  .active {
+    background-color: var(--color-grey);
+    opacity: 0.5;
+    height: 25px;
+    padding: 1px;
+    transition: var(--transition);
+
+    &:hover {
+      opacity: 1;
+    }
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    opacity: 1;
+  }
+}

@@ -18,3 +18,6 @@ export { SectionHeader } from './SectionHeader/SectionHeader';
 export { Spiner } from './Spiner/Spiner';
 export { Tag } from './Tag/Tag';
 export { UserPanel } from './UserPanel/UserPanel';
+export { CartWithParagraphs } from './CartWithParagraphs/CartWithParagraphs';
+export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';
+export { NavigationCartDots } from './navigationCartDots/navigationCartDots';
