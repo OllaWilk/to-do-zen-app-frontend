@@ -1,7 +1,7 @@
 @import '../../../styles//mixins.scss';
 
 .textWrap {
-  @include flex(column, center, center);
+  @include flex(column, flex-start, flex-start);
 }
 
 .hidden {

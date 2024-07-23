@@ -7,9 +7,10 @@
 
   .navigationSlide {
     @include btn;
+    font-weight: normal;
 
     &:hover {
-      color: var(--color-light);
+      color: var(--color-main);
     }
   }
 
@@ -41,6 +42,6 @@
 }
 
 .activeDot {
-  font-size: 1.5rem;
-  color: var(--color-light);
+  font-size: 1.3rem;
+  color: var(--color-main);
 }

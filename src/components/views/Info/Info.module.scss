@@ -3,7 +3,7 @@
 .infoComponent {
   @include flex(row-reverse, stretch, center);
   flex-wrap: wrap;
-  padding: 60px 30px;
+  padding: 17px 30px;
 
   @include lg-max {
     flex-direction: column;

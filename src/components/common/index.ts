@@ -1,4 +1,5 @@
 export { AnimatedAstronaut } from './AnimatedAstronaut/AnimatedAstronaut';
+export { Abstract } from './Abstract/Abstract';
 export * from './Buttons';
 export { Column } from './Column/Column';
 export { SortBar } from './SortBar/SortBar';
@@ -20,4 +21,4 @@ export { Tag } from './Tag/Tag';
 export { UserPanel } from './UserPanel/UserPanel';
 export { CartWithParagraphs } from './CartWithParagraphs/CartWithParagraphs';
 export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';
-export { NavigationCartDots } from './navigationCartDots/navigationCartDots';
+export { NavigationCartDots } from './NavigationCartDots/NavigationCartDots';

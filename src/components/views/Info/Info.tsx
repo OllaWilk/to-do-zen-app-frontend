@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { info, infoPl } from '../../../data/info';
+import { infoEn, infoPl } from '../../../data/index';
 import myAsistant from '../../../images/asistant.png';
-
 import {
   CartWithParagraphs,
   NavigationCartDots,
@@ -13,7 +12,7 @@ const Info = () => {
   const [lang, setLang] = useState<string>('en');
   const [currentCard, setCurrentCard] = useState<number>(0);
 
-  const carts = lang === 'en' ? info : infoPl;
+  const carts = lang === 'en' ? infoEn : infoPl;
   const cartsNumb = carts.length;
 
   const handleNext = () => {
@@ -26,6 +25,8 @@ const Info = () => {
 
   return (
     <div className={styles.infoComponent}>
+      <LanguageSwitcher lang={lang} setLang={setLang} />
+
       <div className={styles.imgWrap}>
         <img className={styles.mainImg} src={myAsistant} alt='asistant' />
       </div>
@@ -37,15 +38,14 @@ const Info = () => {
             isVisible={index === currentCard}
           />
         ))}
-        <LanguageSwitcher lang={lang} setLang={setLang} />
+        <NavigationCartDots
+          currentCard={currentCard}
+          cartsNumb={cartsNumb}
+          handleNext={handleNext}
+          handlePrev={handlePrev}
+          setCurrentCard={setCurrentCard}
+        />
       </article>
-      <NavigationCartDots
-        currentCard={currentCard}
-        cartsNumb={cartsNumb}
-        handleNext={handleNext}
-        handlePrev={handlePrev}
-        setCurrentCard={setCurrentCard}
-      />
     </div>
   );
 };

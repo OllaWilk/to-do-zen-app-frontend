@@ -2,6 +2,7 @@
 
 .sectionHeader {
   text-transform: uppercase;
+  width: 100%;
 
   padding: 17px;
   border-bottom: 1px var(--color-grey) solid;
@@ -9,7 +10,6 @@
 
   @include md-max {
     text-align: center;
-    // width: 95%;
   }
 
   h2 {

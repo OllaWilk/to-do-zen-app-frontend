@@ -1,4 +1,12 @@
+@import '../../../styles/mixins.scss';
+
 .paragraph {
   text-align: justify;
-  padding: 17px 0;
+  margin: 8px 0;
+  @include flex(column, flex-start, center);
+
+  strong {
+    margin-right: 10px;
+    color: var(--color-main);
+  }
 }

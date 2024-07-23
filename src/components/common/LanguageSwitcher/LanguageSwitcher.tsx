@@ -1,6 +1,5 @@
 import React from 'react';
-import plFlag from '../../../images/poland-flag.png';
-import enFlag from '../../../images/usa-flag.png';
+
 import styles from './LanguageSwitcher.module.scss';
 
 interface Props {
@@ -15,13 +14,13 @@ const LanguageSwitcher = ({ lang, setLang }: Props) => {
         className={lang === 'en' ? styles.flag : styles.active}
         onClick={() => setLang('pl')}
       >
-        <img src={plFlag} alt='polish flag' />
+        <span>PL</span>
       </div>
       <div
         className={lang === 'pl' ? styles.flag : styles.active}
         onClick={() => setLang('en')}
       >
-        <img src={enFlag} alt='usa flag' />
+        <span>EN</span>
       </div>
     </div>
   );

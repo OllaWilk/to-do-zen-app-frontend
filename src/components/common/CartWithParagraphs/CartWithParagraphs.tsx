@@ -1,21 +1,23 @@
 import React from 'react';
-import { SectionHeader } from '../SectionHeader/SectionHeader';
-import { Paragraph } from '../Paragraph/Paragraph';
+import { Paragraph, SectionHeader, Abstract } from '../index';
 import styles from './CartWithParagraphs.module.scss';
 
 interface Props {
   cart: {
-    title: string;
+    title?: string;
+    abstract?: string;
     paragraph: string[];
   };
   isVisible: boolean;
 }
 const CartWithParagraphs = ({ cart, isVisible }: Props) => {
+  const { title, abstract, paragraph } = cart;
   return (
     <div className={isVisible ? styles.textWrap : styles.hidden}>
-      <SectionHeader text={cart.title} />
-      {cart.paragraph.map((paragraph, idx) => (
-        <div key={idx + cart.title}>
+      {title && <SectionHeader text={title} />}
+      {abstract && <Abstract abstract={abstract} />}
+      {paragraph.map((paragraph, idx) => (
+        <div key={idx + 'title' + idx}>
           <Paragraph text={paragraph} />
         </div>
       ))}

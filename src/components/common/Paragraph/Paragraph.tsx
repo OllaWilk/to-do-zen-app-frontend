@@ -1,4 +1,6 @@
 import React from 'react';
+import parse from 'html-react-parser';
+
 import styles from './Paragraph.module.scss';
 
 interface Props {
@@ -6,7 +8,11 @@ interface Props {
 }
 
 const Paragraph = ({ text }: Props) => {
-  return <p className={styles.paragraph}>{text}</p>;
+  return (
+    <p className={styles.paragraph}>
+      {typeof text !== 'number' ? parse(text + '') : text}
+    </p>
+  );
 };
 
 export { Paragraph };

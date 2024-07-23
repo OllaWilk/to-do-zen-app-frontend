@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './navigationCartDots.module.scss';
+import styles from './NavigationCartDots.module.scss';
 
 interface Props {
   currentCard: number;
@@ -28,7 +28,7 @@ const NavigationCartDots = ({
             className={index === currentCard ? styles.activeDot : styles.dot}
             onClick={() => setCurrentCard(index)}
           >
-            {index}
+            {index + 1}
           </p>
         ))}
       </div>
