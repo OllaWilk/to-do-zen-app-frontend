@@ -1,0 +1,20 @@
+@import '../../../styles/mixins.scss';
+
+.listWrap {
+  @include flex(column, stretch, space-between);
+  gap: 17px;
+
+  .list {
+    @include flex(row, flex-start, flex-start);
+
+    @include md-max {
+      flex-direction: column;
+      text-align: justify;
+    }
+
+    .year {
+      font-weight: bold;
+      min-width: 120px;
+    }
+  }
+}

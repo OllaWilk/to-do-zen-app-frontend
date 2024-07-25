@@ -12,6 +12,10 @@
     text-align: center;
   }
 
+  @include sm-max {
+    padding: 17px 0px;
+  }
+
   h2 {
     font-size: 17px;
   }
