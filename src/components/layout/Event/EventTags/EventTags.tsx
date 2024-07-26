@@ -38,10 +38,5 @@ export const EventTags = ({
         <TbTimeDuration10 />
       </Tag>
     )}
-    {reminder && (
-      <Tag text={reminder} days={' days'}>
-        <p>Remind me for: </p>
-      </Tag>
-    )}
   </div>
 );

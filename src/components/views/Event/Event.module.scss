@@ -1,12 +1,24 @@
 @import '../../../styles/mixins.scss';
 
-.event {
-  width: 60%;
-  padding: 0 16px 0 0;
-  @include flex(column, stretch, space-around);
+.eventWrap {
+  width: 100%;
+  display: flex;
 
-  @include xl-max {
-    width: 100%;
-    padding: 0;
+  @include md-max {
+    padding-bottom: 20px;
+    flex-direction: column;
   }
+}
+
+.addBtn {
+  display: none;
+
+  @include md-max {
+    display: block;
+    padding: 0 17px 0 17px;
+  }
+}
+
+.none {
+  display: none;
 }
