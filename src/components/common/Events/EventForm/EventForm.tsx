@@ -57,8 +57,13 @@ export const EventForm = ({ event }: Props) => {
       const location = await response.json();
 
       // Set the latitude and longitude from the location data
-      form.lon = parseFloat(location[0].lon);
-      form.lat = parseFloat(location[0].lat);
+      if (event && !form.address) {
+        form.lon = event.lon;
+        form.lat = event.lat;
+      } else {
+        form.lon = parseFloat(location[0].lon);
+        form.lat = parseFloat(location[0].lat);
+      }
 
       // Insert or update the event with the form data
       if (event) {
@@ -94,14 +99,18 @@ export const EventForm = ({ event }: Props) => {
           placeholder={'title'}
         />
         <Input label={'Date'} name='event_date' type='date' />
-        <Input label={'address'} name='address' />
+        <Input
+          label={'address'}
+          name='address'
+          placeholder={'City, Street Number'}
+        />
         <Select
           label={'status'}
           name='status'
           options={['planed', 'ongoing', 'completed'] as EventStatus[]}
         />
         <Input label={'category'} name='category' required />
-        <Input label={'price'} name='price' type='number' />
+        <Input label={'price'} name='price' type='number' placeholder='0' />
         <Input label={'duration'} name='duration' required />
         <Textarea
           label={'description'}
