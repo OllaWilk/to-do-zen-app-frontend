@@ -26,9 +26,9 @@ const Contact = () => {
         </a>
       </div>
       <div className={styles.wrap}>
-        <a href='mailto:aleksandra.wilk.letkiewicz@gmail.com'>
+        <a href='mailto:alex.dev.wilk@gmail.com'>
           <SiGmail />
-          <p>aleksandra.wilk.letkiewicz@gmail.com</p>
+          <p>alex.dev.wilk@gmail.com</p>
         </a>
         <a href='tel:+48721775786'>
           <AiFillPhone />
