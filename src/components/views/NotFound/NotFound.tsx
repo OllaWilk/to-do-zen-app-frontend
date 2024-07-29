@@ -1,5 +1,4 @@
 import React from 'react';
-import { notFound } from '../../../data/pages/notFound';
 import { AnimatedAstronaut, ButtonBlack } from '../../common/index';
 import styles from './NotFound.module.scss';
 
@@ -7,15 +6,16 @@ interface Props {
   message?: string;
 }
 export const NotFound = ({ message }: Props) => {
-  const { header, button } = notFound;
   return (
     <div className={styles.componentWrap}>
       <div className={styles.infoWrap}>
-        <h2>{header}</h2>
+        <h2>
+          {'Upss... It looks like you’ve drifted off course into the cosmos!'}
+        </h2>
         <p>{message}</p>
         <ButtonBlack
-          dynamicPath={`${button.link}`}
-          buttonName={`${button.text}`}
+          dynamicPath={'cockpit'}
+          buttonName={'Return to the main cocakpit'}
         />
       </div>
       <div className={styles.imgWrap}>

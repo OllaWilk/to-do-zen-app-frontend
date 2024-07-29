@@ -7,3 +7,4 @@ export { default as hartClaud } from './hartClaud.png';
 export { default as search } from './search.png';
 export { default as deleteIcon } from './delete.png';
 export { default as edit } from './edit.png';
+export { default as aleksandraWilk } from './aleksandraWilk.jpeg';

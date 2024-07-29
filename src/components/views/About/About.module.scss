@@ -1,40 +1,154 @@
 @import '../../../styles/mixins.scss';
 
-.wrap {
-  @include flex(row, center, center);
+.cv {
+  margin: auto;
+  overflow: hidden;
+  @include flex(column, center, flex-start);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 17px;
+  max-width: calc(210px * 5.6);
+}
 
-  gap: 40px;
-  overflow-y: scroll;
+.header {
+  @include flex(row, center, space-between);
+  height: 300px;
+  width: 100%;
+  background-color: var(--color-cv-green);
+  color: var(--color-light);
+  gap: 20px;
+  padding-right: 50px;
 
-  @include lg-max {
+  @include md-max {
+    padding-right: 0;
     height: auto;
-    flex-direction: column;
-    gap: 0px;
+    gap: 0;
+    padding: 10px;
+  }
+
+  @include sm-max {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   img {
     object-fit: cover;
-    width: 200px;
-    height: auto;
+    height: 100%;
 
-    @include lg-max {
-      margin: 30px 0;
+    @include md-max {
+      width: 150px;
+      border-radius: 50%;
+      justify-content: center;
     }
   }
 
-  .info {
-    gap: 30px;
-    padding: 30px;
-    width: 50%;
+  .name {
+    width: 100%;
+    text-transform: uppercase;
 
-    @include lg-max {
-      width: 100%;
+    h2 {
+      font-size: 3rem;
+      padding: 0 0 0 0;
+
+      @include md-max {
+        font-size: 2rem;
+      }
+
+      @include sm-max {
+        font-size: 1.5rem;
+      }
     }
 
-    .contact {
-      @include flex(row, center, center);
+    p {
+      text-align: right;
+
+      @include md-max {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.info {
+  @include flex(row, stretch, space-between);
+  width: 100%;
+  height: 100%;
+
+  @include md-max {
+    flex-direction: column;
+  }
+}
+
+.leftSide {
+  background-color: var(--color-dark);
+  width: 300px;
+  padding: 25px 50px;
+  color: var(--color-light);
+  gap: 20px;
+
+  @include md-max {
+    width: 100%;
+    padding: 25px;
+    @include flex(row, stretch, space-between);
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .skilWrap {
+    @include md-max {
+      padding: 0 17px;
+      min-width: 150px;
+    }
+
+    ul {
+      padding: 0 0 0 17px;
+    }
+  }
+
+  .text {
+    margin: 17px 0;
+  }
+
+  .text:first-of-type {
+    margin-top: 0;
+    margin-bottom: 17px;
+  }
+
+  .language {
+    margin-top: 30px;
+    padding: 10px 0;
+    border-top: 1px solid;
+
+    @include md-max {
+      border: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
       gap: 20px;
-      font-size: 30px;
     }
   }
+}
+
+.rightSide {
+  width: calc(100% - 300px);
+  background-color: var(--color-light);
+  padding: 25px 50px;
+  @include flex(column, stretch, flex-start);
+  gap: 17px;
+
+  @include md-max {
+    width: 100%;
+    padding: 25px 20px;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    width: 100%;
+
+    padding: 0 0 8px 0;
+    border-bottom: 1px var(--color-grey) solid;
+  }
+}
+
+.rodo {
+  font-size: 0.7rem;
 }

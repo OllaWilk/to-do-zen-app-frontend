@@ -35,7 +35,7 @@ function App() {
             <Route path='/cockpit' element={<Cockpit />} />
             <Route path='/events/:id' element={<Event />} />
             <Route path='/info' element={<Info />} />
-            <Route path='/about' element={<About />} />
+            <Route path='/AleksandraWilk' element={<About />} />
           </Route>
         ) : (
           // Redirect to Welcome page if user is not authenticated

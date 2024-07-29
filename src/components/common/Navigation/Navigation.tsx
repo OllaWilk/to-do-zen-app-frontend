@@ -1,16 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaStar, FaRocket } from 'react-icons/fa';
-import { /*  TbCalendarEvent, */ TbUfo } from 'react-icons/tb';
+import { TbUfo } from 'react-icons/tb';
 
 import style from './Navigation.module.scss';
 
 const Navigation = () => {
   const navigation = [
     { name: 'Cockpit', path: 'cockpit', icon: <FaStar /> },
-    // { name: 'Events', path: 'event', icon: <TbCalendarEvent /> },
     { name: 'Info', path: 'info', icon: <FaRocket /> },
-    { name: 'About', path: 'about', icon: <TbUfo /> },
+    { name: 'For Recruiters', path: 'AleksandraWilk', icon: <TbUfo /> },
   ];
 
   return (

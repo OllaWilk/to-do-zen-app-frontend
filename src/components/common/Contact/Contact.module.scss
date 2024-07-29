@@ -1,0 +1,42 @@
+@import '../../../styles/mixins.scss';
+
+.contact {
+  @include flex(row, center, space-between);
+  flex-wrap: wrap;
+  gap: 17px;
+
+  @include sm-max {
+    justify-content: center;
+  }
+
+  .wrap {
+    @include flex(column, flex-start, center);
+    gap: 17px;
+
+    @include sm-max {
+      align-items: center;
+    }
+
+    a {
+      @include flex(row, center, center);
+      gap: 17px;
+      color: var(--color-dark);
+
+      @include sm-max {
+        flex-wrap: wrap;
+        gap: 10px;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+
+      svg {
+        font-size: 25px;
+        transition: var(--transition);
+
+        @include sm-max {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

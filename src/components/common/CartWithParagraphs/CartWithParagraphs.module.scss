@@ -1,0 +1,9 @@
+@import '../../../styles//mixins.scss';
+
+.textWrap {
+  @include flex(column, flex-start, flex-start);
+}
+
+.hidden {
+  display: none;
+}

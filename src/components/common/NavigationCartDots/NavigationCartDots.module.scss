@@ -1,0 +1,47 @@
+@import '../../../styles//mixins.scss';
+
+.slideNav {
+  @include flex(row, center, space-between);
+  width: 100%;
+  padding: 20px 20px 0 20px;
+
+  .navigationSlide {
+    @include btn;
+    font-weight: normal;
+
+    &:hover {
+      color: var(--color-main);
+    }
+  }
+
+  @include sm-max {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+  }
+}
+
+.dots {
+  @include flex(row, center, center);
+  gap: 10px;
+
+  @include sm-max {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.dot {
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--color-light);
+  }
+}
+
+.activeDot {
+  font-size: 1.3rem;
+  color: var(--color-main);
+}
