@@ -28,7 +28,7 @@ export const Footer = () => {
           <FaLinkedin />
         </Link>
         <a
-          href='mailto:aleksandra.wilk.letkiewicz@gmail.com
+          href='mailto:alex.dev.wilk@gmail.com
 '
         >
           <SiGmail />

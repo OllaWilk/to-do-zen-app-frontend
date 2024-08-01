@@ -9,7 +9,7 @@ import {
   LeftSidePanel,
 } from '../../layout/index';
 import { NotFound } from '../NotFound/NotFound';
-import { SectionCart, Spiner, EventForm } from '../../common/index';
+import { SectionCart, Spiner, EventForm, UserPanel } from '../../common/index';
 import styles from './Event.module.scss';
 
 export const Event = () => {
@@ -49,6 +49,7 @@ export const Event = () => {
             title={event.title}
             date={event.event_date}
             description={event.description}
+            status={event.status}
           />
           <EventTags
             status={event.status}
@@ -58,15 +59,10 @@ export const Event = () => {
             reminder={event.reminder}
           />
         </LeftSidePanel>
-        {/* <div onClick={toggleIsOpen} className={styles.addBtn}>
-          {!isOpen ? (
-            <ButtonBlack buttonName={'edit event'} styles={{ width: '100%' }} />
-          ) : (
-            <IoMdClose />
-          )}
-        </div> */}
+
         {event.id === id && (
           <ControlPanel>
+            <UserPanel />
             <EventForm event={event} />
           </ControlPanel>
         )}

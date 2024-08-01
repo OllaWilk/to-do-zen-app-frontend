@@ -1,0 +1,67 @@
+@import '../../../styles/mixins.scss';
+
+.expand {
+  @include flex(column, center, flex-start);
+}
+
+.chooseFileButton {
+  @include btn;
+  height: 50px;
+  width: 100%;
+}
+
+.upload {
+  @include flex(column, center, center);
+  padding: 20px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .icon {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    @include flex(row, center, center);
+    font-size: 2rem;
+    transition: var(--transition);
+    border-radius: 50%;
+
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-danger);
+    }
+  }
+
+  .chooseFile {
+    @include flex(column, center, center);
+    width: 100%;
+    margin-top: 20px;
+
+    input[type='file'] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 2px dashed #ccc;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+
+      &:hover {
+        border-color: #5955b3;
+      }
+    }
+
+    .chooseFileButton {
+      @include btn;
+      background-color: var(--color-danger);
+      color: var(--color-light);
+
+      &:hover {
+        background-color: darken(#28a745, 10%);
+      }
+    }
+  }
+}
