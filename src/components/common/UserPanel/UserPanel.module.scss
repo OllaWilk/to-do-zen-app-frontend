@@ -22,6 +22,11 @@
     position: relative;
     text-align: center;
 
+    svg {
+      font-size: 2rem;
+      color: var(--color-error);
+    }
+
     @include sm-max {
       width: 100%;
     }

@@ -26,6 +26,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
 
   // Function to insert or update an event
   const eventInsert = async (data: NewEventEntity | EventEntity) => {
+    console.log('DATA', data);
     setMessage(null); // Clear any previous messages
     const method = 'id' in data ? 'PATCH' : 'POST'; // Determine the HTTP method based on whether the event has an id
     const url =

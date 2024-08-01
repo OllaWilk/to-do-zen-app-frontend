@@ -67,6 +67,7 @@ export const EventForm = ({ event }: Props) => {
 
       // Insert or update the event with the form data
       if (event) {
+        console.log('EVENT', event, 'FORM', form);
         await eventInsert({
           ...event,
           ...form,

@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import React from 'react';
 import parse from 'html-react-parser';
+import { BiError } from 'react-icons/bi';
 import {
   useAsistantMessageContext,
   formatShortDate,
@@ -26,7 +27,14 @@ const UserPanel = ({ userName }: Props) => {
   return (
     <div className={styles.userWrap}>
       <div className={`${styles.text}`}>
-        {message ? <p>{message}</p> : <p>{parse(messages[1] + '')}</p>}
+        {message ? (
+          <div>
+            <BiError />
+            <p>{message}</p>
+          </div>
+        ) : (
+          <p>{parse(messages[1] + '')}</p>
+        )}
       </div>
       <div className={`${styles.errorImgShow} ${styles.imgWrap}`}>
         <img src={userAvatar} alt='avatar' />
