@@ -14,13 +14,7 @@ interface Props {
   reminder?: number | null;
 }
 
-export const EventTags = ({
-  status,
-  category,
-  price,
-  duration,
-  reminder,
-}: Props) => (
+export const EventTags = ({ status, category, price, duration }: Props) => (
   <div className={styles.eventsWrap}>
     <Tag text={status}>
       <LuCalendarClock />
@@ -28,11 +22,11 @@ export const EventTags = ({
     <Tag text={category}>
       <MdCategory />
     </Tag>
-    {price && (
-      <Tag text={price + ' zł'}>
-        <BsCashCoin />
-      </Tag>
-    )}
+
+    <Tag text={price + ' zł'}>
+      <BsCashCoin />
+    </Tag>
+
     {duration && (
       <Tag text={duration}>
         <TbTimeDuration10 />

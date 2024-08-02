@@ -46,6 +46,7 @@ export const Event = () => {
       <div className={styles.eventWrap}>
         <LeftSidePanel>
           <EventDetails
+            eventId={event.id}
             title={event.title}
             date={event.event_date}
             description={event.description}

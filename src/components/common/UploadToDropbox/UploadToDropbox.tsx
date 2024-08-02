@@ -3,8 +3,11 @@ import { RiImageAddFill } from 'react-icons/ri';
 import { useAsistantMessageContext, useToggle } from '../../../utils/hooks';
 import styles from './UploadToDropbox.module.scss';
 
+interface Props {
+  eventId: string;
+}
 // This React component is designed for uploading an image file to a server.
-const UploadToDropbox = () => {
+const UploadToDropbox = ({ eventId }: Props) => {
   // Context hook to set messages for the user.
   const { setMessage } = useAsistantMessageContext();
   // State to manage the success message display.
@@ -13,6 +16,8 @@ const UploadToDropbox = () => {
   const [isOpen, toggleIsOpen] = useToggle(false);
   // State to hold the file object to be uploaded.
   const [file, setFile] = useState<File | null>(null);
+  // State to description file.
+  const [description, setDescription] = useState<string>('');
 
   // Event handler for file input change.
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +28,10 @@ const UploadToDropbox = () => {
     if (!selectFile) {
       setMessage('Please select a file to upload');
     }
+  };
+
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(e.target.value);
   };
 
   // Function to handle the file upload process.
@@ -40,6 +49,8 @@ const UploadToDropbox = () => {
       // Prepare the file data for sending.
       const formData = new FormData();
       formData.append('image', file);
+      formData.append('description', description);
+      formData.append('event_id', eventId);
       const uploadUrl = 'http://localhost:3001/event/photos/upload';
 
       try {
@@ -64,10 +75,11 @@ const UploadToDropbox = () => {
         );
         // Clear the file from state after uploading.
         setFile(null);
+        setDescription('');
       } catch (error) {
         // Handle errors and update the user interface with the error message.
-        console.error('Error uploading file:', error);
-        setMessage('Error uploading file: ' + error);
+        console.error(error);
+        setMessage('' + error);
       }
     }
   };
@@ -80,9 +92,15 @@ const UploadToDropbox = () => {
       {isOpen && (
         <div className={styles.chooseFile}>
           <button className={styles.chooseFileButton} onClick={handleUpload}>
-            Upload to Dropbox
+            Upload picture to Dropbox
           </button>
           <input type='file' onChange={handleFileChange} accept='image/*' />
+          <textarea
+            placeholder='Enter image description'
+            value={description}
+            onChange={handleDescriptionChange}
+            className={styles.textarea}
+          />
           <p>{success}</p>
         </div>
       )}
