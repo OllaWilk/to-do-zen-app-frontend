@@ -1,5 +1,5 @@
 export enum EventStatus {
-  PLANED = 'planed',
+  PLANNED = 'planned',
   ONGOING = 'ongoing',
   COMPLETED = 'completed',
 }

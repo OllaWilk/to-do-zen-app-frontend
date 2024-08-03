@@ -27,7 +27,7 @@ export const EventForm = ({ event }: Props) => {
   // Initial form values, using event data if available
   const formValues = {
     title: event?.title || '',
-    status: event?.status || ('planed' as EventStatus),
+    status: event?.status || ('planned' as EventStatus),
     category: event?.category || '',
     description: event?.description || '',
     duration: event?.duration || '',
@@ -98,7 +98,7 @@ export const EventForm = ({ event }: Props) => {
         <Select
           label={'status'}
           name='status'
-          options={['planed', 'ongoing', 'completed'] as EventStatus[]}
+          options={['planned', 'ongoing', 'completed'] as EventStatus[]}
         />
         <Input label={'category'} name='category' required />
         <Input label={'price'} name='price' type='number' />

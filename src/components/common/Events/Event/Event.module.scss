@@ -8,13 +8,26 @@
   @include flex(column, stretch, flex-start);
 
   .cartImage {
-    background-color: darken($color: #f4f4fe, $amount: 8);
     @include flex(row, center, space-between);
     border-radius: 30px;
     width: 100%;
     padding: 17px;
     overflow: hidden;
     position: relative;
+
+    &.completed {
+      background-color: var(--color-dark-blue);
+      color: var(--color-light);
+    }
+
+    &.ongoing {
+      background-color: var(--color-blue);
+    }
+
+    &.planned {
+      background-color: var(--color-blue-light);
+      color: var(--color-dark-blue);
+    }
 
     @include sm-max {
       flex-direction: column;
@@ -31,11 +44,11 @@
   gap: 17px;
   padding: 17px;
   max-height: 0;
-  background-color: var(--color-light-main);
   border-radius: 30px;
   overflow: hidden;
   transition: max-height 0.25s ease-in-out, diaply ease-in-out 0s,
     transform 0.3s ease-in-out;
+  background-color: var(--color-light-main);
 
   &:hover {
     @include shadow;
@@ -68,6 +81,10 @@
     div {
       @include flex(row, center, space-between);
       gap: 8px;
+    }
+
+    p {
+      padding-left: 0;
     }
   }
 }
