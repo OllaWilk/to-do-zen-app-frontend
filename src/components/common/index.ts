@@ -21,6 +21,7 @@ export { SectionHeader } from './SectionHeader/SectionHeader';
 export { Spiner } from './Spiner/Spiner';
 export { Technologies } from './Technologies/Technologies';
 export { Tag } from './Tag/Tag';
+export { UploadToDropbox } from './UploadToDropbox/UploadToDropbox';
 export { UserPanel } from './UserPanel/UserPanel';
 export { CartWithParagraphs } from './CartWithParagraphs/CartWithParagraphs';
 export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';

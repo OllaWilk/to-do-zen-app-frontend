@@ -16,7 +16,7 @@ interface Props {
 const Textarea = ({
   name,
   label,
-  minLength = 0,
+  minLength = 3,
   maxLength = 1000,
   maxHeight = 200,
   disabled,

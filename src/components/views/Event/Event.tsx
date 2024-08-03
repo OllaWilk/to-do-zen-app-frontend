@@ -2,9 +2,14 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { EventEntity } from 'types';
 import { useEventFetch, useEventsContext } from '../../../utils/hooks';
-import { ControlPanel, EventDetails, EventTags } from '../../layout/index';
+import {
+  ControlPanel,
+  EventDetails,
+  EventTags,
+  LeftSidePanel,
+} from '../../layout/index';
 import { NotFound } from '../NotFound/NotFound';
-import { SectionCart, Spiner, EventForm } from '../../common/index';
+import { SectionCart, Spiner, EventForm, UserPanel } from '../../common/index';
 import styles from './Event.module.scss';
 
 export const Event = () => {
@@ -38,25 +43,31 @@ export const Event = () => {
 
   return (
     <SectionCart>
-      <div className={styles.event}>
-        <EventDetails
-          title={event.title}
-          date={event.event_date}
-          description={event.description}
-        />
-        <EventTags
-          status={event.status}
-          category={event.category}
-          price={event.price}
-          duration={event.duration}
-          reminder={event.reminder}
-        />
+      <div className={styles.eventWrap}>
+        <LeftSidePanel>
+          <EventDetails
+            eventId={event.id}
+            title={event.title}
+            date={event.event_date}
+            description={event.description}
+            status={event.status}
+          />
+          <EventTags
+            status={event.status}
+            category={event.category}
+            price={event.price}
+            duration={event.duration}
+            reminder={event.reminder}
+          />
+        </LeftSidePanel>
+
+        {event.id === id && (
+          <ControlPanel>
+            <UserPanel />
+            <EventForm event={event} />
+          </ControlPanel>
+        )}
       </div>
-      {event.id === id && (
-        <ControlPanel>
-          <EventForm event={event} />
-        </ControlPanel>
-      )}
     </SectionCart>
   );
 };

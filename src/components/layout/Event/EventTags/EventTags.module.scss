@@ -1,14 +1,14 @@
 @import '../../../../styles/mixins.scss';
 
 .eventsWrap {
-  @include flex(row, center, flex-start);
+  @include flex(row, center, center);
+  width: 100%;
   flex-wrap: wrap;
   color: var(--color-main);
   gap: 20px;
   padding: 17px 0;
   text-transform: uppercse;
   border-top: 1px var(--color-grey) solid;
-  border-bottom: 1px var(--color-grey) solid;
 
   @include xl-max {
     width: 100%;

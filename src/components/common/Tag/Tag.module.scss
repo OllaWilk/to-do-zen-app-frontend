@@ -11,6 +11,12 @@
   height: auto;
   @include flex(row, center, center);
   gap: 17px;
+  width: auto;
+
+  @include sm-max {
+    width: 100%;
+    justify-content: space-between;
+  }
 
   .text {
     padding: 0.7rem 30px 0.7rem 0;

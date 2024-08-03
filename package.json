@@ -50,6 +50,7 @@
     "@types/react": "^18.2.71",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
+    "dropbox": "^10.34.0",
     "html-react-parser": "^5.1.10",
     "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
