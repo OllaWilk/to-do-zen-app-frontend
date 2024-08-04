@@ -11,7 +11,7 @@
   .imgWrap {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-height: 300px;
-    height: auto;
+    height: 300px;
     background-color: #f3f4f6;
 
     img {
@@ -19,15 +19,11 @@
       @include img;
       object-fit: cover;
       object-position: bottom bottom;
-      height: 300px;
+      height: 100%;
 
       @include xl-max {
         border-radius: 30px 30px 8px 8px;
       }
-    }
-
-    .text {
-      padding: 17px;
     }
   }
 

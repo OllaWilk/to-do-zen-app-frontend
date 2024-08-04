@@ -1,9 +1,13 @@
 @import '../../../styles/mixins.scss';
 
 .component {
-  // width: 100%;
   @include flex(row, center, space-between);
   flex-wrap: wrap;
+  width: 100%;
+
+  @include xl-min {
+    width: calc(100% - 270px);
+  }
 
   input {
     background: var(--color-light);

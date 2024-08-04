@@ -21,25 +21,34 @@ export const Cockpit = () => {
     <SectionCart>
       <LeftSidePanel>
         <SectionHeader text={'Things to do <sup>yay!</sup>'} />
-        <SearchBar />
+        <div className={style.wrapper}>
+          <ButtonBlack
+            buttonName={isOpen ? 'Add event' : 'close form'}
+            styles={{ minWidth: '100px', width: '250px' }}
+            onClick={toggleIsOpen}
+          />
+          <SearchBar />
+        </div>
         <SortBar />
         <EventsList />
+        <div
+          className={`${style.controlPanel} ${
+            isOpen ? style.toggleHorizontal : style.showForm
+          }`}
+        >
+          <p onClick={toggleIsOpen} className={style.close}>
+            x
+          </p>
+          <EventForm />
+        </div>
       </LeftSidePanel>
       <ControlPanel>
         <UserPanel />
-        <div
-          className={!isOpen ? `${style.none}` : `${style.buttonAdd}`}
-          onClick={toggleIsOpen}
-        >
-          <ButtonBlack buttonName={'Add event'} styles={{ width: '100%' }} />
-        </div>
         <Map />
         <div
-          className={
-            !isOpen
-              ? `${style.showForm} ${style.controlPanel}`
-              : `${style.controlPanel} ${style.toggleHorizontal}`
-          }
+          className={`${style.hide} ${
+            isOpen ? style.toggleHorizontal : style.showForm
+          }`}
         >
           <p onClick={toggleIsOpen} className={style.close}>
             x

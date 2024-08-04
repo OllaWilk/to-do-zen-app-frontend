@@ -8,7 +8,6 @@ interface Props {
   buttonName: string;
   disabled?: boolean | null | undefined;
   styles?: React.CSSProperties;
-
   onClick?: () => void;
 }
 
@@ -23,7 +22,12 @@ const ButtonBlack = ({
 
   if (!dynamicPath)
     return (
-      <button style={styles} className={className} disabled={!!disabled}>
+      <button
+        style={styles}
+        className={className}
+        disabled={!!disabled}
+        onClick={onClick}
+      >
         {parse(buttonName)}
       </button>
     );

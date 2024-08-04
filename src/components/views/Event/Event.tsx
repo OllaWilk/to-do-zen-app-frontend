@@ -9,7 +9,13 @@ import {
   LeftSidePanel,
 } from '../../layout/index';
 import { NotFound } from '../NotFound/NotFound';
-import { SectionCart, Spiner, EventForm, UserPanel } from '../../common/index';
+import {
+  SectionCart,
+  Spiner,
+  EventForm,
+  UserPanel,
+  UploadToDropbox,
+} from '../../common/index';
 import styles from './Event.module.scss';
 
 export const Event = () => {
@@ -64,6 +70,11 @@ export const Event = () => {
         {event.id === id && (
           <ControlPanel>
             <UserPanel />
+            {event.status === 'completed' && (
+              <>
+                <UploadToDropbox eventId={event.id} />
+              </>
+            )}
             <EventForm event={event} />
           </ControlPanel>
         )}

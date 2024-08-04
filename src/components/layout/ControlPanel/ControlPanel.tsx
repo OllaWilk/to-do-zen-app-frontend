@@ -6,13 +6,7 @@ type Props = {
 };
 
 const ControlPanel = ({ children }: Props) => {
-  return (
-    <>
-      <div className={`${styles.controlPanel} ${styles.toggleHorizontal}`}>
-        {children}
-      </div>
-    </>
-  );
+  return <div className={`${styles.controlPanel} `}>{children}</div>;
 };
 
 export { ControlPanel };

@@ -2,7 +2,8 @@
 
 .leftSidePAnel {
   min-width: 200px;
-  width: 60%;
+  width: 67%;
+
   @include flex(column, stretch, space-between);
   gap: 20px;
   padding: 17px;
