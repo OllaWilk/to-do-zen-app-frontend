@@ -3,6 +3,7 @@
 .eventWrap {
   width: 100%;
   display: flex;
+  background: red;
 
   @include md-max {
     padding-bottom: 20px;

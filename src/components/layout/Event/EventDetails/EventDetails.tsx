@@ -22,6 +22,12 @@ export const EventDetails = ({
   const { setMessage } = useAsistantMessageContext();
 
   useEffect(() => {
+    const text =
+      status === 'completed'
+        ? 'The event is completed. You can now add photo and use this event as a blog post.'
+        : 'Once the event is completed, you will be able to add photos and use this event as a blog post.';
+    console.log(text);
+    // setMessage(text);
     const fetchPhotos = async () => {
       try {
         const response = await fetch(
@@ -36,7 +42,7 @@ export const EventDetails = ({
         // setPhotos(data);
         console.log(data);
       } catch (error) {
-        setMessage('Filed to load photos');
+        setMessage({ message: 'Failed to load photos', ikonError: true });
       }
     };
 
@@ -44,11 +50,6 @@ export const EventDetails = ({
       fetchPhotos();
     }
   }, [status, eventId, setMessage]);
-
-  // const text =
-  //   status === 'completed'
-  //     ? 'The event is completed. You can now add photo and use this event as a blog post.'
-  //     : 'Once the event is completed, you will be able to add photos and use this event as a blog post.';
 
   return (
     <div className={styles.event}>

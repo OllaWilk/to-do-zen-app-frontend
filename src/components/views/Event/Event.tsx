@@ -71,9 +71,7 @@ export const Event = () => {
           <ControlPanel>
             <UserPanel />
             {event.status === 'completed' && (
-              <>
-                <UploadToDropbox eventId={event.id} />
-              </>
+              <UploadToDropbox eventId={event.id} />
             )}
             <EventForm event={event} />
           </ControlPanel>

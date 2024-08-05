@@ -22,9 +22,14 @@
     position: relative;
     text-align: center;
 
-    svg {
+    .ikonError {
       font-size: 2rem;
       color: var(--color-error);
+    }
+
+    .ikonOk {
+      font-size: 2rem;
+      color: var(--color-ok);
     }
 
     @include sm-max {

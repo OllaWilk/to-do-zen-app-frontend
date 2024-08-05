@@ -8,10 +8,15 @@ import {
 
 type GetEventsParams = { id?: string; search?: string; order?: string };
 
+interface AssistantMessage {
+  message: string | null;
+  ikonError?: boolean | null;
+}
+
 interface FetchState<T> {
   event: T | null;
-  message: string | null;
-  setMessage: (message: string | null) => void;
+  messageState: AssistantMessage;
+  setMessage: React.Dispatch<React.SetStateAction<AssistantMessage>>;
   eventInsert: (data: NewEventEntity | EventEntity) => Promise<void>;
   eventDelete: (id: string) => Promise<void>;
   getEvents: (params?: GetEventsParams) => Promise<void>;
@@ -19,14 +24,14 @@ interface FetchState<T> {
 
 // Custom hook for event-related operations
 export const useEventFetch = <T>(): FetchState<T> => {
-  const { message, setMessage } = useAsistantMessageContext(); // Message context for displaying messages
+  const { messageState, setMessage } = useAsistantMessageContext(); // Message context for displaying messages
   const [json, setJson] = useState<T | null>(null); // State to hold the fetched event data
   const { user } = useAuthContext(); // Authentication context to get user data
   const { dispatch } = useEventsContext(); // Events context to dispatch actions
 
   // Function to insert or update an event
   const eventInsert = async (data: NewEventEntity | EventEntity) => {
-    setMessage(null); // Clear any previous messages
+    setMessage({ message: null, ikonError: null }); // Clear any previous messages
     const method = 'id' in data ? 'PATCH' : 'POST'; // Determine the HTTP method based on whether the event has an id
     const url =
       'id' in data
@@ -45,7 +50,10 @@ export const useEventFetch = <T>(): FetchState<T> => {
     const json = await res.json(); // Parse the JSON response
 
     if (!res.ok) {
-      setMessage(json.error || 'An error occurred'); // Set an error message if the request was not successful
+      setMessage({
+        message: json.error || 'An error occurred',
+        ikonError: true,
+      }); // Set an error message if the request was not successful
     }
 
     if (res.ok) {
@@ -54,14 +62,18 @@ export const useEventFetch = <T>(): FetchState<T> => {
         type: method === 'POST' ? 'CREATE_EVENT' : 'UPDATE_EVENT',
         payload: json,
       });
-      setMessage(null); // Clear the message state
+      setMessage({
+        message: 'The event has been successfully added.',
+        ikonError: true,
+      });
+      setMessage({ message: null, ikonError: true }); // Clear the message state
       setJson(json);
     }
   };
 
   // Function to delete an event
   const eventDelete = async (id: string) => {
-    setMessage(null); // Clear any previous messages
+    setMessage({ message: null, ikonError: null }); // Clear any previous messages
 
     const res = await fetch(`http://localhost:3001/events/${id}`, {
       method: 'DELETE',
@@ -73,13 +85,23 @@ export const useEventFetch = <T>(): FetchState<T> => {
 
     if (res.ok) {
       dispatch({ type: 'DELETE_EVENT', payload: id });
+      setMessage({
+        message: 'The event has been successfully deleted.',
+        ikonError: false,
+      });
+    } else {
+      const json = await res.json();
+      setMessage({
+        message: json.message || 'Failed to delete event',
+        ikonError: true,
+      }); // Set error message if delete failed
     }
   };
 
   // Function to fetch events
   const getEvents = useCallback(
     async ({ id, search, order }: GetEventsParams = {}) => {
-      setMessage(null); // Clear any previous messages
+      setMessage({ message: null, ikonError: null }); // Clear any previous messages
 
       let url;
 
@@ -112,7 +134,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
         });
         setJson(eventRecords);
       } else {
-        setMessage(json.message);
+        setMessage({ message: json.message, ikonError: true });
       }
     },
     [dispatch, user, setMessage] // Dependencies for the useCallback hook
@@ -122,7 +144,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
     eventInsert,
     eventDelete,
     getEvents,
-    message,
+    messageState,
     setMessage,
     event: json,
   };

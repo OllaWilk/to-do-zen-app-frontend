@@ -77,9 +77,11 @@ export const EventForm = ({ event }: Props) => {
     } catch (error) {
       console.error(error);
       // Set an error message if location fetch fails
-      setMessage(
-        'Sorry, no location found. Please check for typos and ensure the format is City, Street Name, House Number. For example: "Wroclaw, Pereca 1". Avoid using abbreviations like "ul.", "al.", etc.'
-      );
+      setMessage({
+        message:
+          'Sorry, no location found. Please check for typos and ensure the format is City, Street Name, House Number. For example: "Wroclaw, Pereca 1". Avoid using abbreviations like "ul.", "al.", etc.',
+        ikonError: true,
+      });
     }
   };
 

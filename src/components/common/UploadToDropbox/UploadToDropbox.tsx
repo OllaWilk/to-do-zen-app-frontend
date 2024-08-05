@@ -26,7 +26,10 @@ const UploadToDropbox = ({ eventId }: Props) => {
 
     // If no file is selected, prompt the user to select a file.
     if (!selectFile) {
-      setMessage('Please select a file to upload');
+      setMessage({
+        message: 'Please select a file to upload',
+        ikonError: true,
+      });
     }
   };
 
@@ -38,12 +41,15 @@ const UploadToDropbox = ({ eventId }: Props) => {
   const handleUpload = async () => {
     // Check if a file has been selected before proceeding.
     if (!file) {
-      setMessage('No file selected. Please attach a picture.');
+      setMessage({
+        message: 'No file selected. Please attach a picture.',
+        ikonError: true,
+      });
       setSuccess(null);
       return;
     } else {
       // Clear any previous messages or statuses.
-      setMessage(null);
+      setMessage({ message: null, ikonError: null });
       setSuccess(null);
 
       // Prepare the file data for sending.
@@ -79,7 +85,7 @@ const UploadToDropbox = ({ eventId }: Props) => {
       } catch (error) {
         // Handle errors and update the user interface with the error message.
         console.error(error);
-        setMessage('' + error);
+        setMessage({ message: '' + error, ikonError: true });
       }
     }
   };
