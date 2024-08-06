@@ -6,6 +6,7 @@ export { Contact } from './Contact/Contact';
 export { SortBar } from './SortBar/SortBar';
 export { DateDisplay } from './DateDisplay/DateDisplay';
 export * from './Events';
+export { ExpandableSection } from './ExpandableSection/ExpandableSection';
 export { Footer } from './Footer/Footer';
 export { Faq } from './Faq/Faq';
 export * from './Form';

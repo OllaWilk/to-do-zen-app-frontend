@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import { RiImageAddFill } from 'react-icons/ri';
-import { useAsistantMessageContext, useToggle } from '../../../utils/hooks';
+import { useAsistantMessageContext } from '../../../utils/hooks';
 import styles from './UploadToDropbox.module.scss';
+import { ExpandableSection } from '../ExpandableSection/ExpandableSection';
 
 interface Props {
   eventId: string;
@@ -12,8 +13,7 @@ const UploadToDropbox = ({ eventId }: Props) => {
   const { setMessage } = useAsistantMessageContext();
   // State to manage the success message display.
   const [success, setSuccess] = useState<string | null>(null);
-  // State to control the visibility of the file upload interface.
-  const [isOpen, toggleIsOpen] = useToggle(false);
+
   // State to hold the file object to be uploaded.
   const [file, setFile] = useState<File | null>(null);
   // State to description file.
@@ -91,26 +91,19 @@ const UploadToDropbox = ({ eventId }: Props) => {
   };
 
   return (
-    <div className={styles.upload}>
-      <div className={styles.icon} onClick={toggleIsOpen}>
-        <RiImageAddFill />
-      </div>
-      {isOpen && (
-        <div className={styles.chooseFile}>
-          <button className={styles.chooseFileButton} onClick={handleUpload}>
-            Upload picture to Dropbox
-          </button>
-          <input type='file' onChange={handleFileChange} accept='image/*' />
-          <textarea
-            placeholder='Enter image description'
-            value={description}
-            onChange={handleDescriptionChange}
-            className={styles.textarea}
-          />
-          <p>{success}</p>
-        </div>
-      )}
-    </div>
+    <ExpandableSection icon={<RiImageAddFill />}>
+      <button className={styles.chooseFileButton} onClick={handleUpload}>
+        Upload picture to Dropbox
+      </button>
+      <input type='file' onChange={handleFileChange} accept='image/*' />
+      <textarea
+        placeholder='Enter image description'
+        onChange={handleDescriptionChange}
+        className={styles.textarea}
+      />
+      {/* Display success message if needed */}
+      <p>{success}</p>
+    </ExpandableSection>
   );
 };
 

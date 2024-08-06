@@ -10,67 +10,36 @@
   width: 100%;
 }
 
-.upload {
-  @include flex(column, center, center);
-  padding: 20px;
-  background-color: #f3f4f6;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.1);
+input[type='file'],
+textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 2px dashed #ccc;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
 
-  .icon {
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    @include flex(row, center, center);
-    font-size: 2rem;
-    transition: var(--transition);
-    border-radius: 50%;
-
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--color-danger);
-    }
+  &:hover {
+    border-color: #5955b3;
   }
+}
 
-  .chooseFile {
-    @include flex(column, center, center);
-    width: 100%;
-    margin-top: 20px;
+textarea {
+  border: none;
 
-    input[type='file'],
-    textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 2px dashed #ccc;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
+  &:hover {
+    border-color: none;
+  }
+}
 
-      &:hover {
-        border-color: #5955b3;
-      }
-    }
+.chooseFileButton {
+  @include btn;
+  background-color: var(--color-danger);
+  color: var(--color-light);
 
-    textarea {
-      border: none;
-
-      &:hover {
-        border-color: none;
-      }
-    }
-
-    .chooseFileButton {
-      @include btn;
-      background-color: var(--color-danger);
-      color: var(--color-light);
-
-      &:hover {
-        background-color: darken(#28a745, 10%);
-      }
-    }
+  &:hover {
+    background-color: darken(#28a745, 10%);
   }
 }

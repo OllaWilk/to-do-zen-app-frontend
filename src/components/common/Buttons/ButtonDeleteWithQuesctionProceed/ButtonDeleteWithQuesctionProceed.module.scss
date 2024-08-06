@@ -1,0 +1,31 @@
+@import '../../../../styles//mixins.scss';
+
+.confirmationButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+
+  .btnYes,
+  .btnNo {
+    @include btn;
+    font-size: 1rem;
+    color: var(--color-light);
+  }
+
+  .btnYes {
+    background-color: var(--color-ok);
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+
+  .btnNo {
+    background-color: var(--color-error);
+
+    &:hover {
+      background-color: var(--color-darker-error);
+    }
+  }
+}

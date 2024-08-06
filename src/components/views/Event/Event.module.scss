@@ -1,31 +1,23 @@
 @import '../../../styles/mixins.scss';
 
-.eventWrap {
+.actions {
+  @include flex(column, stretch, center);
+  flex-wrap: wrap;
+  gap: 17px;
+  padding: 17px;
+
   width: 100%;
-  display: flex;
-  background: red;
+}
 
-  @include md-max {
-    padding-bottom: 20px;
-    flex-direction: column;
+.chooseFile {
+  width: 100%;
+
+  div {
+    width: 100%;
+    padding: 0;
   }
 }
 
-.addBtn {
-  display: none;
-
-  @include md-max {
-    display: block;
-    padding: 0 17px 0 17px;
-  }
-}
-
-.none {
-  display: none;
-}
-
-.dropboxWrap {
-  position: relative;
-  top: 0;
-  right: 0;
+.text {
+  padding: 0 17px;
 }

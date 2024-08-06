@@ -1,0 +1,31 @@
+@import '../../../styles/mixins.scss';
+
+.expandableSection {
+  @include flex(column, center, center);
+  padding: 20px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.1);
+
+  .icon {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    @include flex(row, center, center);
+    font-size: 2rem;
+    transition: var(--transition);
+    border-radius: 50%;
+
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-danger);
+    }
+  }
+  .content {
+    width: 100%;
+    margin-top: 20px;
+    @include flex(column, center, center);
+  }
+}
