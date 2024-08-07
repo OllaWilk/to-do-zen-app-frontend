@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import backgrounImg from '../../../../images/space.png';
 import { useAsistantMessageContext } from '../../../../utils/hooks';
-import { SectionHeader, Paragraph } from '../../../common/index';
+import { SectionHeader, Paragraph, PhotoGallery } from '../../../common/index';
 import styles from './EventDetails.module.scss';
 
 interface Props {
@@ -20,7 +20,7 @@ export const EventDetails = ({
   eventId,
 }: Props) => {
   const { setMessage } = useAsistantMessageContext();
-  const [photos, setPhotos] = useState(backgrounImg);
+  const [photos, setPhotos] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchPhotos = async () => {
@@ -34,7 +34,11 @@ export const EventDetails = ({
         }
 
         const data = await response.json();
-        setPhotos(data[0].photo_url);
+        const images = data.map(
+          (photo: { photo_url: string }) => photo.photo_url
+        );
+
+        setPhotos(images);
       } catch (error) {
         console.error({ message: 'Failed to load photos', ikonError: true });
       }
@@ -47,9 +51,13 @@ export const EventDetails = ({
 
   return (
     <div className={styles.event}>
-      <div className={styles.imgWrap}>
-        <img src={photos} alt='woman in space' />
-      </div>
+      {status === 'completed' ? (
+        <PhotoGallery images={photos} name={title} />
+      ) : (
+        <div className={styles.imgWrap}>
+          <img src={photos[0] || backgrounImg} alt='woman in space' />
+        </div>
+      )}
       <SectionHeader text={title} date={date} />
       <div className={styles.wrap}>
         <Paragraph text={description} />

@@ -27,3 +27,4 @@ export { UserPanel } from './UserPanel/UserPanel';
 export { CartWithParagraphs } from './CartWithParagraphs/CartWithParagraphs';
 export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';
 export { NavigationCartDots } from './NavigationCartDots/NavigationCartDots';
+export { PhotoGallery } from './PhotoGallery/PhotoGallery';

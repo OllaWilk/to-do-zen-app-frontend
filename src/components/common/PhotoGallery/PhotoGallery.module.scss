@@ -1,0 +1,51 @@
+@import '../../../styles//mixins.scss';
+
+// PhotoGallery.module.scss
+.gallery {
+  @include flex(row, stretch, center);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tile {
+  position: relative;
+  flex: 1 1 170px;
+  max-width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5955b390;
+  @include flex(row, center, center);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tile:hover .overlay {
+  opacity: 1;
+}
+
+.delete {
+  color: var(--color-light);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: var(--transition);
+
+  &:hover {
+    font-size: 2rem;
+  }
+}
