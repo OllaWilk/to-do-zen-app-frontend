@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import backgrounImg from '../../../../images/space.png';
-import { useAsistantMessageContext } from '../../../../utils/hooks';
+import {
+  useEventPhotosContext,
+  useEventPhotosFetch,
+} from '../../../../utils/hooks';
 import { SectionHeader, Paragraph, PhotoGallery } from '../../../common/index';
 import styles from './EventDetails.module.scss';
 
@@ -19,43 +22,26 @@ export const EventDetails = ({
   status,
   eventId,
 }: Props) => {
-  const { setMessage } = useAsistantMessageContext();
-  const [photos, setPhotos] = useState<string[]>([]);
+  const { photoFetch } = useEventPhotosFetch();
+
+  const {
+    state: { photos },
+  } = useEventPhotosContext();
 
   useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/event/photos/${eventId}`
-        );
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch photos');
-        }
-
-        const data = await response.json();
-        const images = data.map(
-          (photo: { photo_url: string }) => photo.photo_url
-        );
-
-        setPhotos(images);
-      } catch (error) {
-        console.error({ message: 'Failed to load photos', ikonError: true });
-      }
-    };
-
     if (status === 'completed') {
-      fetchPhotos();
+      photoFetch(eventId);
     }
-  }, [status, eventId, setMessage]);
+  }, [eventId, status, photoFetch]);
 
   return (
     <div className={styles.event}>
+      {/* Conditionally render the photo gallery if the event is completed */}
       {status === 'completed' ? (
-        <PhotoGallery images={photos} name={title} />
+        <PhotoGallery images={photos} />
       ) : (
         <div className={styles.imgWrap}>
-          <img src={photos[0] || backgrounImg} alt='woman in space' />
+          <img src={backgrounImg} alt='woman in space' />
         </div>
       )}
       <SectionHeader text={title} date={date} />
