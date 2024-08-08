@@ -46,7 +46,11 @@ export const useEventPhotosFetch = () => {
           body: formData,
         });
 
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) {
+          const errorData = await response.json();
+          setMessage({ message: errorData.message, ikonError: true });
+          throw new Error(errorData.message || 'Network response was not ok');
+        }
 
         const resultText: EventPhoto = await (response.headers
           .get('content-type')
@@ -62,7 +66,6 @@ export const useEventPhotosFetch = () => {
         });
       } catch (error) {
         console.error(error);
-        setMessage({ message: '' + error, ikonError: true });
       }
     }
   };
@@ -76,6 +79,7 @@ export const useEventPhotosFetch = () => {
           `http://localhost:3001/event/photos/${eventId}`
         );
 
+        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch photos');
         }
@@ -95,9 +99,9 @@ export const useEventPhotosFetch = () => {
   );
 
   const onDelete = async (photo_id: string) => {
-    console.log('delete');
     setMessage({ message: null, ikonError: null });
     try {
+      console.log('delete');
       const res = await fetch(
         `http://localhost:3001/event/photos/delete/${photo_id}`,
         {
@@ -110,6 +114,7 @@ export const useEventPhotosFetch = () => {
       );
 
       if (res.ok) {
+        console.log('res ok');
         dispatch({ type: 'DELETE_EVENT_PHOTO', payload: photo_id });
         setMessage({
           message: 'The photo has been successfully deleted.',

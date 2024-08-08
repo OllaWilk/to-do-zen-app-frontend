@@ -10,7 +10,7 @@ interface PhotoGalleryProps {
 
 const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images }) => {
   const { onDelete } = useEventPhotosFetch();
-
+  console.log(images);
   return (
     <div className={styles.gallery}>
       {images?.map((image) => (
@@ -23,7 +23,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images }) => {
           <div className={styles.overlay}>
             <FaTrash
               className={styles.delete}
-              onClick={() => onDelete(image.photo_url)}
+              onClick={() => onDelete(image.photo_id)}
             />
           </div>
         </div>

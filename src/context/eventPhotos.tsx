@@ -23,7 +23,6 @@ export const eventPhotosReducer = (
         photos: action.payload,
       };
     case 'ADD_EVENT_PHOTO':
-      console.log('add photo', state, action);
       return {
         ...state,
         photos: [action.payload, ...(state.photos || [])],
