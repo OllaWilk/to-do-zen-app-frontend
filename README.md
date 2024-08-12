@@ -1,10 +1,8 @@
+
 # 🍀 SpaceSteps overview v0.1.0 frontend 
-
 Welcome to the repository of my feature-rich application! Below is a detailed breakdown of the various functionalities and features offered by my platform:
-
-
-**Preview: **  [https://youtu.be/07dt1U2Rgts](https://youtu.be/07dt1U2Rgts) 
-
+## 🙋🏼‍♀️ Live demo:
+[![Watch Demo Video](screenshots/welcome.png)](https://www.youtube.com/watch?v=07dt1U2Rgts)
 
 ##### Home Page:
 The home page welcomes users with a clean interface and offers two primary buttons: 'Login' and 'Signup'. Whether you're an existing user or a new one, getting started is straightforward and intuitive.
@@ -39,11 +37,15 @@ When creating an event, the current date is automatically set, and the event sta
 ##### Event Sorting and Filtering:
 Users can sort events by title, status, price, and date. Additionally, filtering options are available to refine the event list. There are three event statuses: 'Planned' (light color), 'Ongoing' (blue), and 'Completed' (dark blue), making it easy to identify each event's status.
 
+![Screenshot](screenshots/cockpit.png)
+
 ##### Event Editing and Deletion:
 Expanding an event tile allows users to edit or delete the event. Editing redirects to the event’s page for modifications, while deleting prompts a confirmation to prevent accidental deletions.
 
 ##### Event to Blog Transformation:
 When an event’s status is changed to 'Completed', it transforms into a blog where users can upload photos. These photos are stored in Dropbox, and the links are saved in a MySQL database on the backend.
+
+![Screenshot](screenshots/blogpost.png)
 
 ##### Dropbox Integration:
 The application features a Dropbox integration where all uploaded photos are securely stored. You can easily manage these photos by viewing them directly in Dropbox.
