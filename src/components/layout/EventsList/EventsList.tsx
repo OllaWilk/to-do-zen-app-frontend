@@ -29,7 +29,7 @@ export const EventsList = () => {
   if (!events) {
     return <NoDataAlert message='No events to display' />; // If events is undefined, show a no data alert
   } else if (events.length === 0) {
-    return <Spiner message='add event' />; // If events array is empty, show a spinner
+    return <Spiner />; // If events array is empty, show a spinner
   } else if (events === null) {
     return <NoDataAlert message='Event not found' />; // If events is null, show a different no data alert
   }

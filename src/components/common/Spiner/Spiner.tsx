@@ -1,18 +1,18 @@
 import React from 'react';
+
 import { TbUfo } from 'react-icons/tb';
 import style from './Spiner.module.scss';
 
-interface Props {
-  message?: string;
-}
-const Spiner = ({ message }: Props) => {
+const Spiner = () => {
   return (
     <div className={style.spinerWraper}>
-      <div className={style.spinner}></div>
+      <TbUfo />
+      <p>It looks like you do not have any events scheduled right now.</p>
       <p>
-        <TbUfo />
-        {message ? message : 'Loading...'}
+        To see something here, simply add your events and they will appear in no
+        time.
       </p>
+      <p> Start planning and make this space yours!</p>
     </div>
   );
 };

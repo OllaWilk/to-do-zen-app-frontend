@@ -1,44 +1,24 @@
 @import '../../../styles//mixins.scss';
 
-@keyframes spinner {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(360deg);
-  }
-}
-
 .spinerWraper {
-  @include flex(column, center, flex-start);
-  position: relative;
-  gap: 20px;
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translate(0%, -50%);
-  width: 60%;
+  @include flex(column, center, center);
+  gap: 10px;
+  padding: 30px;
+  border-radius: 30px;
+  width: 100%;
+  background-color: var(--color-light-main);
+  color: var(--color-main);
+
+  svg {
+    font-size: 30px;
+  }
 
   @include xl-max {
     width: 100%;
   }
 
-  .spinner {
-    width: 200px;
-    height: 200px;
-    border: 10px solid var(--color-main);
-    border-top: 10px solid transparent;
-    border-radius: 50%;
-    animation: spinner 4s infinite;
-  }
-
   p {
     @include flex(row, center, center);
     gap: 10px;
-
-    svg {
-      font-size: 30px;
-    }
   }
 }
