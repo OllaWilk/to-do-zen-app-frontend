@@ -32,7 +32,7 @@ export const EventForm = ({ event }: Props) => {
     description: event?.description || '',
     duration: event?.duration || '',
     price: Number(event?.price || 0),
-    event_date: event?.event_date ? (eventDataFormat as Date) : null,
+    event_date: event?.event_date && (eventDataFormat as Date),
     reminder: event?.reminder || 1,
     creator_id: event?.creator_id || '',
     lat: event?.lat,
