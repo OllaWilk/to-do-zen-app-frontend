@@ -9,12 +9,10 @@ interface Props {
   handleClick: () => void;
 }
 
-const HamburgerNavigation = ({ isOpen, handleClick }: Props) => {
-  return (
-    <div className={styles.hamburgerComponent} onClick={handleClick}>
-      {isOpen ? <HiMenu /> : <IoMdClose />}
-    </div>
-  );
-};
+const HamburgerNavigation = ({ isOpen, handleClick }: Props) => (
+  <div className={styles.hamburgerComponent} onClick={handleClick}>
+    {isOpen ? <HiMenu /> : <IoMdClose />}
+  </div>
+);
 
 export { HamburgerNavigation };

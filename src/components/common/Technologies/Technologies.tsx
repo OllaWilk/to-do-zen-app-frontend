@@ -11,17 +11,15 @@ interface Props {
   technologies: Technology[];
 }
 
-const Technologies = ({ technologies }: Props) => {
-  return (
-    <ul>
-      {technologies.map((el, index) => (
-        <li key={el.name} className={styles.technologies}>
-          {el.icon}
-          <p>{el.name}</p>
-        </li>
-      ))}
-    </ul>
-  );
-};
+const Technologies = ({ technologies }: Props) => (
+  <ul>
+    {technologies.map((el, index) => (
+      <li key={el.name} className={styles.technologies}>
+        {el.icon}
+        <p>{el.name}</p>
+      </li>
+    ))}
+  </ul>
+);
 
 export { Technologies };

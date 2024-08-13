@@ -6,14 +6,12 @@ interface Props {
   children?: React.ReactNode;
   days?: string;
 }
-export const Tag = ({ text, children, days }: Props) => {
-  return (
-    <div className={style.tag}>
-      <div className={style.wrap}>{children}</div>
-      <div className={style.text}>
-        {text}
-        {days && days}
-      </div>
+export const Tag = ({ text, children, days }: Props) => (
+  <div className={style.tag}>
+    <div className={style.wrap}>{children}</div>
+    <div className={style.text}>
+      {text}
+      {days && days}
     </div>
-  );
-};
+  </div>
+);

@@ -6,10 +6,8 @@ import style from './ButtonEdit.module.scss';
 interface Props {
   url: string;
 }
-export const ButtonEdit = ({ url }: Props) => {
-  return (
-    <Link to={url} className={style.icon}>
-      <MdEdit />
-    </Link>
-  );
-};
+export const ButtonEdit = ({ url }: Props) => (
+  <Link to={url} className={style.icon}>
+    <MdEdit />
+  </Link>
+);

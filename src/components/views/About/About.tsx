@@ -14,7 +14,7 @@ import {
 } from 'react-icons/si';
 import { FaHtml5, FaNodeJs, FaGithub, FaReact } from 'react-icons/fa';
 import { GoDotFill } from 'react-icons/go';
-import { educationData, workExpData } from '../../../data/index';
+import { educationData, workExpData } from '../../../i18n/index';
 import { aleksandraWilk } from '../../../images/index';
 import { CvList } from '../../layout/index';
 import { Contact, Paragraph, SectionHeader, Technologies } from '../../common';

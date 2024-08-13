@@ -7,12 +7,10 @@ interface Props {
   text?: string | number;
 }
 
-const Paragraph = ({ text }: Props) => {
-  return (
-    <p className={styles.paragraph}>
-      {typeof text !== 'number' ? parse(text + '') : text}
-    </p>
-  );
-};
+const Paragraph = ({ text }: Props) => (
+  <p className={styles.paragraph}>
+    {typeof text !== 'number' ? parse(text + '') : text}
+  </p>
+);
 
 export { Paragraph };

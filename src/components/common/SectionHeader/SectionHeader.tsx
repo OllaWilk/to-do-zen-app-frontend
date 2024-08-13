@@ -8,13 +8,11 @@ interface Props {
   date?: Date | null;
 }
 
-const SectionHeader = ({ text, date }: Props) => {
-  return (
-    <div className={styles.sectionHeader}>
-      <h2>{parse(text)}</h2>
-      {date && <DateDisplay date={date} />}
-    </div>
-  );
-};
+const SectionHeader = ({ text, date }: Props) => (
+  <div className={styles.sectionHeader}>
+    <h2>{parse(text)}</h2>
+    {date && <DateDisplay date={date} />}
+  </div>
+);
 
 export { SectionHeader };

@@ -5,8 +5,8 @@ type SectionCartProps = {
   children: React.ReactNode;
 };
 
-const SectionCart: React.FC<SectionCartProps> = ({ children }) => {
-  return <div className={style.sectionComponent}>{children}</div>;
-};
+const SectionCart: React.FC<SectionCartProps> = ({ children }) => (
+  <div className={style.sectionComponent}>{children}</div>
+);
 
 export { SectionCart };

@@ -4,8 +4,8 @@ import style from './Abstract.module.scss';
 interface Props {
   abstract: string;
 }
-const Abstract = ({ abstract }: Props) => {
-  return <h3 className={style.text}>{abstract}</h3>;
-};
+const Abstract = ({ abstract }: Props) => (
+  <h3 className={style.text}>{abstract}</h3>
+);
 
 export { Abstract };

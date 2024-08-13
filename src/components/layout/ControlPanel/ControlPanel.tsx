@@ -5,8 +5,8 @@ type Props = {
   children: React.ReactNode;
 };
 
-const ControlPanel = ({ children }: Props) => {
-  return <div className={`${styles.controlPanel} `}>{children}</div>;
-};
+const ControlPanel = ({ children }: Props) => (
+  <div className={`${styles.controlPanel} `}>{children}</div>
+);
 
 export { ControlPanel };

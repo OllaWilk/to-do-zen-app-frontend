@@ -7,10 +7,8 @@ interface Props {
   handleSort: (e: SyntheticEvent<HTMLButtonElement>) => void;
 }
 
-export const ButtonSort = ({ value, label, handleSort }: Props) => {
-  return (
-    <button className={style.sortBtn} value={value} onClick={handleSort}>
-      {label}
-    </button>
-  );
-};
+export const ButtonSort = ({ value, label, handleSort }: Props) => (
+  <button className={style.sortBtn} value={value} onClick={handleSort}>
+    {label}
+  </button>
+);

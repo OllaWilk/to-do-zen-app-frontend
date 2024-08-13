@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { infoEn, infoPl } from '../../../data/index';
+import { infoEn, infoPl } from '../../../i18n/index';
 import myAsistant from '../../../images/asistant.png';
 import {
   CartWithParagraphs,

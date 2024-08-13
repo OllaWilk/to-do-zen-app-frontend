@@ -1,6 +1,13 @@
-import { UserActions, EventActions } from '../../types/';
+import { UserActions /* EventActions */ } from '../../types/';
 import { useEventsContext } from '../events-hooks';
 import { useAuthContext } from './useAuthContext';
+export enum EventActions {
+  CREATE_EVENT = 'CREATE_EVENT',
+  DELETE_EVENT = 'DELETE_EVENT',
+  SET_CURRENT_EVENT = 'SET_CURRENT_EVENT',
+  SET_EVENTS_EMPTY = 'SET_EVENTS',
+  UPDATE_EVENT = 'UPDATE_EVENT',
+}
 
 export const useLogout = () => {
   const { dispatch } = useAuthContext();

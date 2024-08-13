@@ -15,28 +15,26 @@ const NavigationCartDots = ({
   handleNext,
   handlePrev,
   setCurrentCard,
-}: Props) => {
-  return (
-    <div className={styles.slideNav}>
-      <div className={styles.navigationSlide} onClick={handlePrev}>
-        prev ---
-      </div>
-      <div className={styles.dots}>
-        {Array.from({ length: cartsNumb }).map((_, index) => (
-          <p
-            key={index}
-            className={index === currentCard ? styles.activeDot : styles.dot}
-            onClick={() => setCurrentCard(index)}
-          >
-            {index + 1}
-          </p>
-        ))}
-      </div>
-      <div className={styles.navigationSlide} onClick={handleNext}>
-        --- next
-      </div>
+}: Props) => (
+  <div className={styles.slideNav}>
+    <div className={styles.navigationSlide} onClick={handlePrev}>
+      prev ---
     </div>
-  );
-};
+    <div className={styles.dots}>
+      {Array.from({ length: cartsNumb }).map((_, index) => (
+        <p
+          key={index}
+          className={index === currentCard ? styles.activeDot : styles.dot}
+          onClick={() => setCurrentCard(index)}
+        >
+          {index + 1}
+        </p>
+      ))}
+    </div>
+    <div className={styles.navigationSlide} onClick={handleNext}>
+      --- next
+    </div>
+  </div>
+);
 
 export { NavigationCartDots };

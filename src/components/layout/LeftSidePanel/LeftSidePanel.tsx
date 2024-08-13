@@ -5,8 +5,8 @@ type Props = {
   children: React.ReactNode;
 };
 
-const LeftSidePanel = ({ children }: Props) => {
-  return <div className={style.leftSidePAnel}> {children}</div>;
-};
+const LeftSidePanel = ({ children }: Props) => (
+  <div className={style.leftSidePAnel}> {children}</div>
+);
 
 export { LeftSidePanel };

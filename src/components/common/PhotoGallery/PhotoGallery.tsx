@@ -10,7 +10,7 @@ interface PhotoGalleryProps {
 
 const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images }) => {
   const { onDelete } = useEventPhotosFetch();
-  console.log(images);
+
   return (
     <div className={styles.gallery}>
       {images?.map((image) => (
