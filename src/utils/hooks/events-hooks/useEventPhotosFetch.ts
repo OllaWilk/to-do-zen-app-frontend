@@ -42,6 +42,7 @@ export const useEventPhotosFetch = () => {
         const response = await fetch(uploadUrl, {
           method: 'POST',
           body: formData,
+          credentials: 'include',
         });
 
         if (!response.ok) {
@@ -74,7 +75,10 @@ export const useEventPhotosFetch = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:3001/event/photos/${eventId}`
+          `http://localhost:3001/event/photos/${eventId}`,
+          {
+            credentials: 'include',
+          }
         );
 
         if (!response.ok) {
