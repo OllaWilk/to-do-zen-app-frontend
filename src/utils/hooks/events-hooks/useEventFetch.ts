@@ -1,10 +1,6 @@
 import { useState, useCallback } from 'react';
 import { EventEntity, NewEventEntity } from 'types';
-import {
-  useAuthContext,
-  useEventsContext,
-  useAsistantMessageContext,
-} from '../index';
+import { useEventsContext, useAsistantMessageContext } from '../index';
 
 type GetEventsParams = { id?: string; search?: string; order?: string };
 
@@ -26,7 +22,6 @@ interface FetchState<T> {
 export const useEventFetch = <T>(): FetchState<T> => {
   const { messageState, setMessage } = useAsistantMessageContext(); // Message context for displaying messages
   const [json, setJson] = useState<T | null>(null); // State to hold the fetched event data
-  const { user } = useAuthContext(); // Authentication context to get user data
   const { dispatch } = useEventsContext(); // Events context to dispatch actions
 
   // Function to insert or update an event
@@ -42,9 +37,9 @@ export const useEventFetch = <T>(): FetchState<T> => {
       method,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user?.token}`, // Include the authorization header
       },
       body: JSON.stringify(data), // Send the event data as JSON
+      credentials: 'include',
     });
 
     const json = await res.json(); // Parse the JSON response
@@ -79,8 +74,8 @@ export const useEventFetch = <T>(): FetchState<T> => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user?.token}`,
       },
+      credentials: 'include',
     });
 
     if (res.ok) {
@@ -118,8 +113,8 @@ export const useEventFetch = <T>(): FetchState<T> => {
       const response = await fetch(url, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user?.token}`,
         },
+        credentials: 'include',
       });
 
       const json = await response.json();
@@ -137,7 +132,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
         setMessage({ message: json.message, ikonError: true });
       }
     },
-    [dispatch, user, setMessage] // Dependencies for the useCallback hook
+    [dispatch, setMessage] // Dependencies for the useCallback hook
   );
 
   return {

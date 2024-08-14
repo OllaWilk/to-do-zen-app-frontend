@@ -1,8 +1,7 @@
 import React, { createContext, useReducer, Dispatch, useEffect } from 'react';
 import { UserEntity, CompleteUserEntity } from 'types';
 import { UserActions } from '../utils/types/JsonCommunicationType';
-import { isTokenExpired } from '../utils/hooks/tokenValidation';
-
+//
 // Define the initial state type
 type UserState = {
   user: UserEntity | null;
@@ -48,23 +47,25 @@ export const AuthContextProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
+    // Fetch the currently logged-in user from the backend
+    (async () => {
+      try {
+        const res = await fetch(`http://localhost:3001/user/me`, {
+          method: 'GET',
+          credentials: 'include',
+        });
 
-    //get user from localStorage
-    if (savedUser) {
-      const user = JSON.parse(savedUser);
-      const token = user.token;
-
-      // Check if the token is expired
-      if (token && isTokenExpired(token)) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.location.href = '/';
-      } else {
-        // Dispatch login action if the token is valid
-        dispatch({ type: UserActions.LOGIN, payload: user });
+        if (res.ok) {
+          const user = await res.json();
+          dispatch({ type: UserActions.LOGIN, payload: user });
+        } else {
+          dispatch({ type: UserActions.LOGOUT });
+        }
+      } catch (error) {
+        console.error('Failed to fetch', error);
+        dispatch({ type: UserActions.LOGOUT });
       }
-    }
+    })();
   }, []);
 
   return (

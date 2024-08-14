@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import {
   useAsistantMessageContext,
-  useAuthContext,
   useEventPhotosContext,
 } from '../../../utils/hooks';
 import { EventPhoto } from 'types';
@@ -16,7 +15,6 @@ export const useEventPhotosFetch = () => {
   const { setMessage } = useAsistantMessageContext();
   const { dispatch } = useEventPhotosContext();
   const [success, setSuccess] = useState<string | null>(null);
-  const { user } = useAuthContext();
 
   const handleUpload = async ({
     eventId,
@@ -79,7 +77,6 @@ export const useEventPhotosFetch = () => {
           `http://localhost:3001/event/photos/${eventId}`
         );
 
-        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch photos');
         }
@@ -101,20 +98,18 @@ export const useEventPhotosFetch = () => {
   const onDelete = async (photo_id: string) => {
     setMessage({ message: null, ikonError: null });
     try {
-      console.log('delete');
       const res = await fetch(
         `http://localhost:3001/event/photos/delete/${photo_id}`,
         {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${user?.token}`,
           },
+          credentials: 'include',
         }
       );
 
       if (res.ok) {
-        console.log('res ok');
         dispatch({ type: 'DELETE_EVENT_PHOTO', payload: photo_id });
         setMessage({
           message: 'The photo has been successfully deleted.',
