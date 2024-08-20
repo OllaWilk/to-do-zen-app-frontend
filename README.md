@@ -20,7 +20,7 @@ Once logged in, users are directed to the Cockpit—a central hub where they can
 
 ##### Individual User Accounts:
 
-Each user has a personalized account, ensuring a secure experience. Upon login, a unique token is generated and stored in cookies for 3 days. After the token expires, users are automatically logged out. The token is also removed from local storage when the user logs out manually.
+Each user has a personalized account, ensuring a secure experience. Upon login, a unique token is generated and stored on the backend, enhancing security. The token is valid for 3 days, after which users are automatically logged out. The token is also removed from the backend when the user logs out manually.
 
 ##### Adding Events:
 
