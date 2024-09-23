@@ -1,0 +1,24 @@
+@import '../../../../styles/mixins.scss';
+
+.language {
+  margin-top: 30px;
+  padding: 10px 0;
+  border-top: 1px solid;
+
+  @include md-max {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.text {
+  margin: 17px 0;
+}
+
+.text:first-of-type {
+  margin-top: 0;
+  margin-bottom: 17px;
+}

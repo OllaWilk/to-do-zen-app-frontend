@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaStar, FaRocket } from 'react-icons/fa';
 import { TbUfo } from 'react-icons/tb';
+import { FaEarthAmericas } from 'react-icons/fa6';
 
 import style from './Navigation.module.scss';
 
@@ -10,6 +11,7 @@ const Navigation = () => {
     { name: 'Cockpit', path: 'cockpit', icon: <FaStar /> },
     { name: 'Info', path: 'info', icon: <FaRocket /> },
     { name: 'For Recruiters', path: 'AleksandraWilk', icon: <TbUfo /> },
+    { name: 'Portfolio', path: 'portfolio', icon: <FaEarthAmericas /> },
   ];
 
   return (

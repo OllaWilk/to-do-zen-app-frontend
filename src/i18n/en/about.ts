@@ -44,3 +44,6 @@ export const workExpData = [
       'Managed and maintained the website operations for SmartQuba and IceQub. Collaborated closely with clients to understand their needs, making necessary adjustments to meet their digital objectives.',
   },
 ];
+
+export const rodo =
+  'I consent to the processing of my personal data contained in my application for the purposes necessary to carry out the recruitment process (in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (GDPR)).';

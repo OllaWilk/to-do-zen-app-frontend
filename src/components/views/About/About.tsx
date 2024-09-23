@@ -11,13 +11,21 @@ import {
   SiJest,
   SiBlender,
   SiAdobephotoshop,
+  SiJira,
 } from 'react-icons/si';
 import { FaHtml5, FaNodeJs, FaGithub, FaReact } from 'react-icons/fa';
 import { GoDotFill } from 'react-icons/go';
-import { educationData, workExpData } from '../../../i18n/index';
 import { aleksandraWilk } from '../../../images/index';
-import { CvList } from '../../layout/index';
-import { Contact, Paragraph, SectionHeader, Technologies } from '../../common';
+import {
+  Bio,
+  Contact,
+  EducationSection,
+  ExperienceSection,
+  LanguageSection,
+  RODO,
+  SectionHeader,
+  SkillsSection,
+} from '../../common';
 import styles from './About.module.scss';
 
 const About = () => {
@@ -49,6 +57,7 @@ const About = () => {
     'Familiar with': [
       { icon: <SiAdobephotoshop />, name: 'Photoshop' },
       { icon: <SiBlender />, name: 'Blender' },
+      { icon: <SiJira />, name: 'jira' },
     ],
   };
 
@@ -63,50 +72,15 @@ const About = () => {
       </div>
       <article className={styles.info}>
         <div className={styles.leftSide}>
-          {/* Loop through each skill category and display it */}
-          {Object.entries(skills).map(([key, value]) => (
-            <div key={key + value} className={styles.skilWrap}>
-              <p className={styles.text}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}:
-              </p>
-              <Technologies technologies={value} />
-            </div>
-          ))}
-          <div className={styles.language}>
-            <p className={styles.text}>Languages:</p>
-            <p>Polish - Native</p>
-            <p>English - B2</p>
-          </div>
+          <SkillsSection skills={skills} />
+          <LanguageSection />
         </div>
         <div className={styles.rightSide}>
           <Contact />
-          <Paragraph
-            text={
-              'I am a landscape architect and an artist by education, with a growing passion for programming. Over the past two years, I have immersed myself in JavaScript, completing both a web developer course at Kodilla and a backend developer course at MegaK. I have also gained hands-on experience as a freelancer, designing and implementing websites, which enhances my practical skills. Regular participation in meet.js meetings allows me to exchange knowledge and insights with fellow programmers, fostering a vibrant learning environment.'
-            }
-          />
-          <Paragraph
-            text={
-              'In my free time, I am learning NEXT.js, aiming to specialize further in this area. Besides programming, I am completing the Crown of Polish Mountains challenge and hiking in the mountains.'
-            }
-          />
-          <div>
-            <h3>Education</h3>
-            <CvList entries={educationData} />
-          </div>
-          <div>
-            <h3>Work Experience</h3>
-            <CvList entries={workExpData} />
-          </div>
-          <p className={styles.rodo}>
-            Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w
-            mojej aplikacji dla potrzeb niezbędnych do realizacji procesu
-            rekrutacji (zgodnie z Rozporządzeniem Parlamentu Europejskiego i
-            Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób
-            fizycznych w związku z przetwarzaniem danych osobowych i w sprawie
-            swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE
-            (RODO)).
-          </p>
+          <Bio />
+          <EducationSection />
+          <ExperienceSection />
+          <RODO />
         </div>
       </article>
     </div>

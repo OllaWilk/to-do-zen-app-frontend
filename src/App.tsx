@@ -12,6 +12,7 @@ import {
   Signup,
 } from './components/views';
 import { MainLayout } from './components/layout';
+import { MyPortfolio } from './components/common';
 
 function App() {
   const { user } = useAuthContext();
@@ -36,6 +37,7 @@ function App() {
             <Route path='/events/:id' element={<Event />} />
             <Route path='/info' element={<Info />} />
             <Route path='/AleksandraWilk' element={<About />} />
+            <Route path='/portfolio' element={<MyPortfolio />} />
           </Route>
         ) : (
           // Redirect to Welcome page if user is not authenticated
