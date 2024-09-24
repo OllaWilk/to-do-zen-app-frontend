@@ -11,14 +11,13 @@ type Project = {
 
 export const projects: Project[] = [
   {
-    id: 'rainbowl',
-    title: 'App for odred meals and booking tables',
+    id: 'ameriqube',
+    title: ' AMERIqube',
     description:
-      'This project is a custom-built website for "Rainbowl" restaurant, focused on healthy meals like oatmeal, soups, and puddings. I hand-coded everything using vanilla JavaScript with an emphasis on OOP, and designed the HTML/SCSS from scratch to ensure a modern, responsive user experience. The backend is being developed in NestJS, with plans to include a specialized section for waitstaff to manage orders efficiently, streamlining restaurant operations.',
-    liveLink: 'https://rainbowl-qhbyoj46u-ollawilk.vercel.app',
-    repoLink:
-      'https://github.com/OllaWilk/rainbowl-app-for-order-meals-and-booking-tables',
-    image: gitProjects.rainbowl,
+      'AMERIqube is a Pennsylvania-based company that serves as the parent organization for IceQube and Smart Qube. This application supports and streamlines operations for AMERIqube and its subsidiaries, leveraging cutting-edge solutions to optimize business processes. Key responsibilities in the project included creating a user-friendly interface, ensuring multilingual support, and applying best practices for code structure and project management.',
+    liveLink: 'https://ameriqubeapp.vercel.app/',
+    repoLink: 'https://github.com/OllaWilk/ameriqubeapp',
+    image: gitProjects.ameriqube,
   },
   {
     id: 'smartqube',
@@ -30,14 +29,16 @@ export const projects: Project[] = [
     image: gitProjects.smartqube,
   },
   {
-    id: 'ameriqube',
-    title: ' AMERIqube',
+    id: 'rainbowl',
+    title: 'App for odred meals and booking tables',
     description:
-      'AMERIqube is a Pennsylvania-based company that serves as the parent organization for IceQube and Smart Qube. This application supports and streamlines operations for AMERIqube and its subsidiaries, leveraging cutting-edge solutions to optimize business processes. Key responsibilities in the project included creating a user-friendly interface, ensuring multilingual support, and applying best practices for code structure and project management.',
-    liveLink: 'https://ameriqubeapp.vercel.app/',
-    repoLink: 'https://github.com/OllaWilk/ameriqubeapp',
-    image: gitProjects.ameriqube,
+      'This project is a custom-built website for "Rainbowl" restaurant, focused on healthy meals like oatmeal, soups, and puddings. I hand-coded everything using vanilla JavaScript with an emphasis on OOP, and designed the HTML/SCSS from scratch to ensure a modern, responsive user experience. The backend is being developed in NestJS, with plans to include a specialized section for waitstaff to manage orders efficiently, streamlining restaurant operations.',
+    liveLink: 'https://rainbowl-qhbyoj46u-ollawilk.vercel.app',
+    repoLink:
+      'https://github.com/OllaWilk/rainbowl-app-for-order-meals-and-booking-tables',
+    image: gitProjects.rainbowl,
   },
+
   {
     id: 'jogaimasaz',
     title: 'Joga i masaż Anna Gidzińska',
@@ -54,6 +55,14 @@ export const projects: Project[] = [
       'Application as a recruitment platform. It connects the participants of the MegaK course and potential employers. The purpose of the app is to help students find their first job as a developer.',
     repoLink: ' https://github.com/Jutrzenka/HeadHunterG11-FR',
     image: gitProjects.HeadHunter,
+  },
+  {
+    id: 'kodilla',
+    title: ' Kodilla team project',
+    description:
+      'This is project for furniture store. It consists of many sections regarding: Hot deals, Features, New Furniture, Gallery, Feedback, Brands... RWD has been implemented for most sections and its mode is saved in the Redux application state. It is possible to add furniture product to "favorites" and this will also be saved in the application state.',
+    repoLink: 'https://github.com/OllaWilk/Kodilla-team-project',
+    image: gitProjects.kodilla,
   },
   {
     id: 'kgp',
@@ -73,14 +82,7 @@ export const projects: Project[] = [
     repoLink: 'https://github.com/OllaWilk/rock-paper-scissors-game',
     image: gitProjects.game,
   },
-  {
-    id: 'kodilla',
-    title: ' Kodilla team project',
-    description:
-      'This is project for furniture store. It consists of many sections regarding: Hot deals, Features, New Furniture, Gallery, Feedback, Brands... RWD has been implemented for most sections and its mode is saved in the Redux application state. It is possible to add furniture product to "favorites" and this will also be saved in the application state.',
-    repoLink: 'https://github.com/OllaWilk/Kodilla-team-project',
-    image: gitProjects.kodilla,
-  },
+
   {
     id: 'florist',
     title: 'My first website',
