@@ -1,5 +1,5 @@
 import { createContext, ChangeEvent } from 'react';
-import { UserEntityForm, NewEventEntity } from 'types';
+import { UserEntityForm, NewEventEntity } from '@alexwilk/spacesteps-types';
 
 export interface FormContextType<T> {
   form: T;

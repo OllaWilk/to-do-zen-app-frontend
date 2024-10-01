@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { MdAlternateEmail } from 'react-icons/md';
-import { UserEntityForm } from 'types';
+import { UserEntityForm } from '@alexwilk/spacesteps-types';
 import { useUserAuth, useToggle } from '../../../utils/hooks/index';
 import {
   Logo,

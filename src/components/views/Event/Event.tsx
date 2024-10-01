@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MdDelete, MdOutlineEdit } from 'react-icons/md';
-import { EventEntity } from 'types';
+import { EventEntity } from '@alexwilk/spacesteps-types';
 import { useEventFetch, useEventsContext } from '../../../utils/hooks';
 import {
   ControlPanel,

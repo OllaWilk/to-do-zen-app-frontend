@@ -1,5 +1,5 @@
 import React, { useState, ReactElement, ChangeEvent, FormEvent } from 'react';
-import { UserEntityForm, NewEventEntity } from 'types';
+import { UserEntityForm, NewEventEntity } from '@alexwilk/spacesteps-types';
 import { FormContext } from '../../../utils/hooks';
 import styles from './Form.module.scss';
 

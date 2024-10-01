@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, Dispatch, useEffect } from 'react';
-import { UserEntity, CompleteUserEntity } from 'types';
+import { UserEntity, CompleteUserEntity } from '@alexwilk/spacesteps-types';
 import { UserActions } from '../utils/types/JsonCommunicationType';
 //
 // Define the initial state type

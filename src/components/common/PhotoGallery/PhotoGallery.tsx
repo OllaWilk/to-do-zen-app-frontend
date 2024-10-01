@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './PhotoGallery.module.scss';
 import { FaTrash } from 'react-icons/fa';
 import { useEventPhotosFetch } from '../../../utils/hooks';
-import { EventPhoto } from 'types';
+import { EventPhoto } from '@alexwilk/spacesteps-types';
 
 interface PhotoGalleryProps {
   images: EventPhoto[] | null;

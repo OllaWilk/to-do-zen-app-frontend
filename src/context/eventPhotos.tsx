@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactNode, useReducer, createContext } from 'react';
-import { EventPhoto } from 'types';
+import { EventPhoto } from '@alexwilk/spacesteps-types';
 
 interface EventPhotoState {
   photos: EventPhoto[] | null;

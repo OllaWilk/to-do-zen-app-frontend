@@ -3,7 +3,7 @@ import {
   useAsistantMessageContext,
   useEventPhotosContext,
 } from '../../../utils/hooks';
-import { EventPhoto } from 'types';
+import { EventPhoto } from '@alexwilk/spacesteps-types';
 
 interface UseEventPhotosFetchProps {
   eventId: string;

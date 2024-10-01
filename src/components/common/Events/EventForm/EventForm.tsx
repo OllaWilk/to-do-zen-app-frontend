@@ -1,5 +1,9 @@
 import React from 'react';
-import { EventEntity, NewEventEntity, EventStatus } from 'types';
+import {
+  EventEntity,
+  NewEventEntity,
+  EventStatus,
+} from '@alexwilk/spacesteps-types';
 import {
   formatIsoDateString,
   useEventFetch,

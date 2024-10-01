@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { EventEntity, NewEventEntity } from 'types';
+import { EventEntity, NewEventEntity } from '@alexwilk/spacesteps-types';
 import { useEventsContext, useAsistantMessageContext } from '../index';
 
 type GetEventsParams = { id?: string; search?: string; order?: string };

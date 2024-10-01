@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, useReducer, ReactNode } from 'react';
-import { EventEntity } from 'types';
+import { EventEntity } from '@alexwilk/spacesteps-types';
 
 interface EventsState {
   events: EventEntity[] | null;

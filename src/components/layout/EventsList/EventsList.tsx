@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { EventEntity } from 'types';
+import { EventEntity } from '@alexwilk/spacesteps-types';
 import { useEventFetch, useEventsContext } from '../../../utils/hooks';
 import { SearchContext } from '../../../context/search';
 import { NoDataAlert, Spiner, Event } from '../../common';
