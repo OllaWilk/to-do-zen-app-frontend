@@ -30,8 +30,8 @@ export const useEventFetch = <T>(): FetchState<T> => {
     const method = 'id' in data ? 'PATCH' : 'POST'; // Determine the HTTP method based on whether the event has an id
     const url =
       'id' in data
-        ? `http://localhost:3001/events/${data.id}`
-        : `http://localhost:3001/events`;
+        ? `${process.env.REACT_APP_API_URL}/events/${data.id}`
+        : `${process.env.REACT_APP_API_URL}/events`;
 
     const res = await fetch(url, {
       method,
@@ -70,7 +70,7 @@ export const useEventFetch = <T>(): FetchState<T> => {
   const eventDelete = async (id: string) => {
     setMessage({ message: null, ikonError: null }); // Clear any previous messages
 
-    const res = await fetch(`http://localhost:3001/events/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/events/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -101,13 +101,13 @@ export const useEventFetch = <T>(): FetchState<T> => {
       let url;
 
       if (id) {
-        url = `http://localhost:3001/events/${id}`; // Fetch a specific event by id
+        url = `${process.env.REACT_APP_API_URL}/events/${id}`; // Fetch a specific event by id
       } else if (search && !order) {
-        url = `http://localhost:3001/events/search/${search}`; // Fetch events by search term
+        url = `${process.env.REACT_APP_API_URL}/events/search/${search}`; // Fetch events by search term
       } else if (search && order) {
-        url = `http://localhost:3001/events/sort/${search}/${order}`; // Fetch and sort events by search term and order
+        url = `${process.env.REACT_APP_API_URL}/events/sort/${search}/${order}`; // Fetch and sort events by search term and order
       } else {
-        url = 'http://localhost:3001/events'; // Fetch all events
+        url = `${process.env.REACT_APP_API_URL}/events`; // Fetch all events
       }
 
       const response = await fetch(url, {

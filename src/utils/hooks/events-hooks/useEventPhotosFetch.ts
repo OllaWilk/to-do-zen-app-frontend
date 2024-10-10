@@ -36,7 +36,7 @@ export const useEventPhotosFetch = () => {
       formData.append('image', file);
       formData.append('description', description);
       formData.append('event_id', eventId);
-      const uploadUrl = 'http://localhost:3001/event/photos/upload';
+      const uploadUrl = `${process.env.REACT_APP_API_URL}/event/photos/upload`;
 
       try {
         const response = await fetch(uploadUrl, {
@@ -75,7 +75,7 @@ export const useEventPhotosFetch = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:3001/event/photos/${eventId}`,
+          `${process.env.REACT_APP_API_URL}event/photos/${eventId}`,
           {
             credentials: 'include',
           }
@@ -103,7 +103,7 @@ export const useEventPhotosFetch = () => {
     setMessage({ message: null, ikonError: null });
     try {
       const res = await fetch(
-        `http://localhost:3001/event/photos/delete/${photo_id}`,
+        `${process.env.REACT_APP_API_URL}/event/photos/delete/${photo_id}`,
         {
           method: 'DELETE',
           headers: {

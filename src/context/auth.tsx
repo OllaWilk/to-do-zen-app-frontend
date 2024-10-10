@@ -50,7 +50,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     // Fetch the currently logged-in user from the backend
     (async () => {
       try {
-        const res = await fetch(`http://localhost:3001/user/me`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/user/me`, {
           method: 'GET',
           credentials: 'include',
         });

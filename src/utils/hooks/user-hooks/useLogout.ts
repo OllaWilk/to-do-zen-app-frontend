@@ -16,7 +16,7 @@ export const useLogout = () => {
 
   const logout = async () => {
     try {
-      await fetch('http://localhost:3001/user/logout', {
+      await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
