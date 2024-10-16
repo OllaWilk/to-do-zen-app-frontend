@@ -4,7 +4,7 @@ Welcome to the repository of my feature-rich application! Below is a detailed br
 
 ## 🙋🏼‍♀️ Live demo:
 
-[![Watch Demo Video](screenshots/welcome.png)](https://www.youtube.com/watch?v=07dt1U2Rgts)
+[![Watch Demo Video](screenshots/welcome.png)](https://spacesteps.vercel.app)
 
 ##### Home Page:
 
@@ -102,9 +102,9 @@ Users cannot access the application while logged out, ensuring data security. Ad
 
 **Live demo:** IN PROGRESS \
 
-**Github frontend:** [https://github.com/OllaWilk/to-do-zen-app-frontend](https://github.com/OllaWilk/to-do-zen-app-frontend)
+**Github frontend:** [https://github.com/OllaWilk/to-do-zen-app-frontend](https://github.com/OllaWilk/spacesteps-frontend)
 
-**Github backend:** [https://github.com/OllaWilk/to-do-zen-app-backend](https://github.com/OllaWilk/to-do-zen-app-backend)
+**Github backend:** [https://github.com/OllaWilk/spacesteps-backend](https://github.com/OllaWilk/spacesteps-backend)
 
 ## 🐞 Tech Stack
 
