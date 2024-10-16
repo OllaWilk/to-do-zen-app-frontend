@@ -6,6 +6,10 @@ Welcome to the repository of my feature-rich application! Below is a detailed br
 
 [![Watch Demo Video](screenshots/welcome.png)](https://spacesteps.vercel.app)
 
+### 🔑 **Login**: test@ab.cd
+
+### 🔒 **Password**: Test123!
+
 ##### Home Page:
 
 The home page welcomes users with a clean interface and offers two primary buttons: 'Login' and 'Signup'. Whether you're an existing user or a new one, getting started is straightforward and intuitive.
@@ -102,7 +106,7 @@ Users cannot access the application while logged out, ensuring data security. Ad
 
 **Live demo:** IN PROGRESS \
 
-**Github frontend:** [https://github.com/OllaWilk/to-do-zen-app-frontend](https://github.com/OllaWilk/spacesteps-frontend)
+**Github frontend:** [https://github.com/OllaWilk/spacesteps-frontend](https://github.com/OllaWilk/spacesteps-frontend)
 
 **Github backend:** [https://github.com/OllaWilk/spacesteps-backend](https://github.com/OllaWilk/spacesteps-backend)
 
