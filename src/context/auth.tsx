@@ -53,6 +53,9 @@ export const AuthContextProvider = ({ children }: Props) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/user/me`, {
           method: 'GET',
           credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
 
         if (res.ok) {

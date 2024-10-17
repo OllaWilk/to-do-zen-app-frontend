@@ -16,9 +16,11 @@ export const useUserAuth = () => {
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/user/${url}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
         credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
       });
       const json = await res.json();
 

@@ -75,7 +75,7 @@ export const useEventPhotosFetch = () => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}event/photos/${eventId}`,
+          `${process.env.REACT_APP_API_URL}/event/photos/${eventId}`,
           {
             credentials: 'include',
           }
