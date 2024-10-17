@@ -1,14 +1,14 @@
-# 🍀 SpaceSteps overview v0.1.0 frontend
+# 🍀 Splot overview v0.1.0 frontend
 
 Welcome to the repository of my feature-rich application! Below is a detailed breakdown of the various functionalities and features offered by my platform:
 
 ## 🙋🏼‍♀️ Live demo:
 
-[![Watch Demo Video](screenshots/welcome.png)](https://spacesteps.vercel.app)
+[![Watch Demo Video](screenshots/welcome.png)](https://www.splotapp.eu)
 
-### 🔑 **Login**: test@ab.cd
+### 🔑 **Login**: alex.dev.wilk@gmail.com
 
-### 🔒 **Password**: Test123!
+### 🔒 **Password**: AlexDev1!
 
 ##### Home Page:
 
@@ -106,9 +106,9 @@ Users cannot access the application while logged out, ensuring data security. Ad
 
 **Live demo:** IN PROGRESS \
 
-**Github frontend:** [https://github.com/OllaWilk/spacesteps-frontend](https://github.com/OllaWilk/spacesteps-frontend)
+**Github frontend:** [https://github.com/OllaWilk/splot-frontend](https://github.com/OllaWilk/splot-frontend)
 
-**Github backend:** [https://github.com/OllaWilk/spacesteps-backend](https://github.com/OllaWilk/spacesteps-backend)
+**Github backend:** [https://github.com/OllaWilk/splot-backend](https://github.com/OllaWilk/splot-backend)
 
 ## 🐞 Tech Stack
 
@@ -126,13 +126,13 @@ Users cannot access the application while logged out, ensuring data security. Ad
 **Clone the project:**
 
 ```
-git clone https://github.com/OllaWilk/to-do-zen-app-frontend.git
+git clone https://github.com/OllaWilk/splot-frontend.git
 ```
 
 **Go to the project directory:**
 
 ```
-cd to-do-zen-app-frontend
+cd splot-frontend
 ```
 
 **Install dependencies:**
