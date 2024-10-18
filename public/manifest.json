@@ -1,6 +1,6 @@
 {
-  "short_name": "SpaceSteps App",
-  "name": "SpaceSteps",
+  "short_name": "SplotApp",
+  "name": "SplotApp",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

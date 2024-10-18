@@ -1,4 +1,4 @@
-# 🍀 Splot overview v0.1.0 frontend
+# 🍀 SplotApp overview v0.1.0 frontend
 
 Welcome to the repository of my feature-rich application! Below is a detailed breakdown of the various functionalities and features offered by my platform:
 

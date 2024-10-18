@@ -48,7 +48,7 @@ export const Signup = () => {
     <>
       <section className={styles.signup}>
         <form onSubmit={handleSubmit}>
-          <Logo text={'SpaceSteps'} />
+          <Logo text={'SplotApp'} />
           <div className={styles.inputWrapper}>
             <input
               type='email'

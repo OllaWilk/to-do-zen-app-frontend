@@ -17,12 +17,13 @@ const Welcome = () => {
     <>
       <section className={`${styles.welcome} `}>
         <article>
-          <Logo text={'Splot'} />
+          <Logo text={'SplotApp'} />
           <Paragraph
             text={
-              'Discover the power of small steps leading to great achievements. With SpaceSteps, your daily to-do list and habits aren’t just tasks – they’re your journey through a universe of possibilities. Start creating, organizing, and tracking your goals today. Master your universe, one step at a time. Share and plan your time with friends to make every moment of your journey more satisfying and full of unforgettable memories. '
+              'Discover harmony in your daily life with SplotApp. In a world full of distractions and fleeting digital connections, SplotApp helps you reconnect with what truly matters – your time, your habits, and your relationships. Each task isn’t just another checkbox – it’s a step toward a more balanced, meaningful life.'
             }
           />
+
           <div className={styles.btns}>
             {!user ? (
               <>

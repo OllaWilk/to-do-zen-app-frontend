@@ -19,6 +19,8 @@
 
   article {
     width: 50%;
+    @include flex(column, stretch, space-between);
+    gap: 20px;
 
     @include lg-max {
       width: 100%;

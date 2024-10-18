@@ -23,11 +23,7 @@ const MainLayout = () => {
         }
       >
         <div className={styles.logoWrap}>
-          <Logo
-            text={'SpaceSteps'}
-            fontSize='20px'
-            imgSize={{ width: '40px', height: '40px' }}
-          />
+          <Logo text={'SplotApp'} fontSize='20px' />
         </div>
         <Navigation />
         <HamburgerNavigation isOpen={isOpen} handleClick={toggleIsOpen} />
