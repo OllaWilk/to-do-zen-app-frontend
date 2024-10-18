@@ -2,7 +2,6 @@
 
 .logo {
   @include flex(row, center, flex-start);
-  height: 100px;
 
   @include sm-max {
     justify-content: center;

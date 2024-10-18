@@ -1,40 +1,53 @@
 @import '../../../styles/mixins.scss';
 
-.login {
-  width: 80%;
-  margin: auto;
-
-  @include md-max {
-    width: 95%;
-  }
-}
-
-.cockpitView {
-  width: calc(100% - 250px);
-  margin: 0 0 0 auto;
-  padding: 17px 20px;
-
-  @include md-max {
-    width: 100%;
-  }
-}
-
 .footer {
+  max-width: 1400px;
+  padding: 0 20px;
+  margin: 0 auto;
   @include flex(row, center, space-between);
-  flex-wrap: wrap;
+  text-align: center;
   color: var(--color-dark);
 
+  @include lg-max {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  @include md-max {
+    flex-direction: column;
+    text-align: justify;
+  }
+
+  &.cockpitView {
+    color: var(--color-dark);
+  }
+
+  .info {
+    font-size: 0.9rem;
+
+    @include sm-max {
+      margin-bottom: 20px;
+    }
+  }
+
   .links {
-    @include flex(row, center, center);
-    flex-wrap: wrap;
+    @include flex(row, center, flex-end);
     gap: 15px;
+    width: 30%;
+
+    @include md-max {
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
 
     a {
       color: var(--color-dark);
-      height: 20px;
+      font-size: 1.2rem;
+      transition: color 0.3s;
 
-      svg {
-        font-size: 20px;
+      &:hover {
+        color: var(--color-light);
       }
     }
   }

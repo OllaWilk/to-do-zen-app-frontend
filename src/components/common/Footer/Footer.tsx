@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 import { SiGmail } from 'react-icons/si';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useAuthContext } from '../../../utils/hooks/index';
-
 import styles from './Footer.module.scss';
 
 export const Footer = () => {
   const { user } = useAuthContext();
 
   return (
-    <footer
-      className={`${styles.footer} ${
-        !user ? styles.login : styles.cockpitView
-      }`}
-    >
+    <footer className={`${styles.footer} ${user ? styles.cockpitView : ''}`}>
       <p className={styles.info}>
         This application is made from scratch for training and recruitment
         purposes.
@@ -27,10 +22,7 @@ export const Footer = () => {
         <Link to='https://www.linkedin.com/in/alex-wilk/'>
           <FaLinkedin />
         </Link>
-        <a
-          href='mailto:alex.dev.wilk@gmail.com
-'
-        >
+        <a href='mailto:alex.dev.wilk@gmail.com'>
           <SiGmail />
         </a>
       </div>

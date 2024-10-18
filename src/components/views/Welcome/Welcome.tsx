@@ -17,7 +17,7 @@ const Welcome = () => {
     <>
       <section className={`${styles.welcome} `}>
         <article>
-          <Logo text={'SplotApp'} />
+          <Logo />
           <Paragraph
             text={
               'Discover harmony in your daily life with SplotApp. In a world full of distractions and fleeting digital connections, SplotApp helps you reconnect with what truly matters – your time, your habits, and your relationships. Each task isn’t just another checkbox – it’s a step toward a more balanced, meaningful life.'

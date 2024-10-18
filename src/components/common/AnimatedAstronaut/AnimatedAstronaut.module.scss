@@ -15,6 +15,10 @@
 .imgWrap {
   position: relative;
 
+  @include md-max {
+    display: none;
+  }
+
   img {
     width: 580px;
     object-fit: contain;
